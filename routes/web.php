@@ -16,3 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/hulajnogi', function () {
+    $hulajnogi = DB::table('hulajnogi')->get();
+    return view('hulajnogi', ['hulajnogi' => $hulajnogi]);
+});
