@@ -4,7 +4,7 @@
     <title>HULAJNOGI</title>
 </head>
 <body>
-<h1>List of Hulajnogi</h1>
+<h1>List of Hulajnogii</h1>
 <table>
     <thread>
         <tr>
