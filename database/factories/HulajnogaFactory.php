@@ -17,8 +17,8 @@ class HulajnogaFactory extends Factory
     public function definition(): array
     {
         return [
-            'nazwa' => fake()->name(),
-            'model' => fake()->phoneNumber(),
+            'Nazwa' => $this->faker->paragraph,
+            'Model' => $this->faker->paragraph,
 
         ];
     }
