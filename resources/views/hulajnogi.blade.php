@@ -21,8 +21,11 @@
         <td>{{ $hulajnoga->Nazwa }}</td>
             <td>{{ $hulajnoga->Model }}</td>
             <td>
-                <button class="btn btn-primary btn-sm">Edit</button>
-                <button class="btn btn-danger btn-sm">Delete</button>
+                <form action="{{route('hulajnogi.destroy', $hulajnoga->id)}}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-danger btn-sm">Delete</button>
+                </form>
             </td>
         </tr>
     @endforeach
@@ -30,14 +33,15 @@
 </table>
 <div class="container">
     <h2>Dodaj Nową Hulajnogę</h2>
-    <form>
+    <form action="{{route('hulajnogi.store')}}" method="POST">
+        @csrf
         <div class="mb-3">
             <label for="nazwa" class="form-label">Nazwa:</label>
-            <input type="text" class="form-control" id="nazwa">
+            <input type="text" class="form-control" id="nazwa" name="nazwa">
         </div>
         <div class="mb-3">
             <label for="model" class="form-label">Model:</label>
-            <input type="text" class="form-control" id="model">
+            <input type="text" class="form-control" id="model" name="model">
         </div>
         <button type="submit" class="btn btn-success">Dodaj</button>
     </form>

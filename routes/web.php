@@ -18,3 +18,6 @@ Route::get('/', function () {
 });
 
 Route::get('/hulajnogi', [\App\Http\Controllers\HulajnogiController::class, 'index']);
+Route::post('/hulajnogi',[\App\Http\Controllers\HulajnogiController::class, 'store'])->name('hulajnogi.store');
+Route::delete('/hulajnogi/{id}', [\App\Http\Controllers\HulajnogiController::class, 'destroy'])->name('hulajnogi.destroy');
+
