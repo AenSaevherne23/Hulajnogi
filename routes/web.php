@@ -17,7 +17,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/hulajnogi', function () {
-    $hulajnogi = DB::table('hulajnogi')->get();
-    return view('hulajnogi', ['hulajnogi' => $hulajnogi]);
-});
+Route::get('/hulajnogi', [HulajnogaFactory::class, 'index']);
