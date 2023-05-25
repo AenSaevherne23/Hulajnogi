@@ -27,7 +27,7 @@
 @endforeach
 <?php
     use App\Models\Hulajnogi;
-    $rekordy=Hulajnogi::factory()->count(5)->create();
+    /*$rekordy=Hulajnogi::factory()->count(5)->create();*/
     ?>
 
 </body>
