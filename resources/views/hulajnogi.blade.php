@@ -5,7 +5,7 @@
     <title>HULAJNOGI</title>
 </head>
 <body>
-<h1>Lista hulajnog</h1>
+<h1>Lista hulajnóg</h1>
 <table class="table table-striped table-bordered">
     <thread>
         <tr>

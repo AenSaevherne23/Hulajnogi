@@ -30,4 +30,13 @@ class HulajnogiController extends Controller
 
         return redirect('/hulajnogi');
     }
+
+    public function update(Request $request, Hulajnogi $hulajnoga)
+    {
+        $hulajnoga->Nazwa = $request->input('nazwa');
+        $hulajnoga->Model = $request->input('model');
+        $hulajnoga->save();
+
+        return redirect('/hulajnogi');
+    }
 }
