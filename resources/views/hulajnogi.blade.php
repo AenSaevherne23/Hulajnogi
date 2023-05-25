@@ -9,10 +9,9 @@
 <table class="table table-striped table-bordered">
     <thread>
         <tr>
-
-            <th>nazwa</th>
-            <th>model</th>
-
+            <th>NAZWA</th>
+            <th>MODEL</th>
+            <th>AKCJE</th>
         </tr>
     </thread>
     <tbody>
