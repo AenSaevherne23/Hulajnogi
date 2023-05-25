@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class HulajnogaFactory extends Factory
+class HulajnogiFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,8 +17,8 @@ class HulajnogaFactory extends Factory
     public function definition(): array
     {
         return [
-            'Nazwa' => $this->faker->paragraph,
-            'Model' => $this->faker->paragraph,
+            'Nazwa' => $this->faker->city,
+            'Model' => $this->faker->address,
 
         ];
     }

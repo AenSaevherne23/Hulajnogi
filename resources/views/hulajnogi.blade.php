@@ -18,10 +18,16 @@
 
     @foreach ($hulajnogi as $hulajnoga)
 
-    <p>{{ $hulajnoga->nazwa }}</p>
-    <p>{{$hulajnoga->model}}</p>
+    <p>{{ $hulajnoga->Nazwa }}</p>
+    <p>{{ $hulajnoga->Model }}</p>
+
+
 
 @endforeach
+<?php
+    use App\Models\Hulajnogi;
+    $rekordy=Hulajnogi::factory()->count(5)->create();
+    ?>
 
 </body>
 </html>

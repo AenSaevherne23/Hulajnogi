@@ -17,4 +17,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/hulajnogi', [HulajnogaFactory::class, 'index']);
+Route::get('/hulajnogi', [\App\Http\Controllers\HulajnogiController::class, 'index']);
