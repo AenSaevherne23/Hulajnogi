@@ -2,7 +2,7 @@
 <head>
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>HULAJNOGI</title>
+    <title>HULAJNOGIl</title>
 </head>
 <body>
 <h1>List of Hulajnogiij</h1>
