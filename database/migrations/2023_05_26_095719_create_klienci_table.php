@@ -15,9 +15,7 @@ return new class extends Migration
             $table->increments('id');
             $table->string('Imie', 255);
             $table->string('Nazwisko', 255);
-            $table->string('Email', 255);
-            $table->string('Login', 255);
-            $table->string('Haslo', 255);
+            $table->string('Telefon', 255);
             $table->timestamps();
         });
     }

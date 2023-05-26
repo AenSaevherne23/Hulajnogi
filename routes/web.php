@@ -23,3 +23,6 @@ Route::delete('/hulajnogi/{id}', [\App\Http\Controllers\HulajnogiController::cla
 Route::put('/hulajnogi/{hulajnoga}', [\App\Http\Controllers\HulajnogiController::class, 'update'])->name('hulajnogi.update');
 
 Route::get('/klienci', [\App\Http\Controllers\KlienciController::class, 'index']);
+Route::post('/klienci',[\App\Http\Controllers\KlienciController::class, 'store'])->name('klienci.store');
+Route::delete('/klienci/{id}', [\App\Http\Controllers\KlienciController::class, 'destroy'])->name('klienci.destroy');
+Route::put('/klienci/{klient}', [\App\Http\Controllers\KlienciController::class, 'update'])->name('klienci.update');

@@ -12,6 +12,6 @@ class Klienci extends Model
     protected  $primaryKey = 'id';
     public $timestamps = true;
 
-    protected $fillable = ['Imie', 'Nazwisko', 'Email', 'Login', 'Haslo'];
+    protected $fillable = ['Imie', 'Nazwisko', 'Telefon'];
     protected $dates = ['created_at', 'updated_at'];
 }

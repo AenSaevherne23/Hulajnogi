@@ -19,9 +19,7 @@ class KlienciFactory extends Factory
         return [
             'Imie' => $this->faker->city,
             'Nazwisko' => $this->faker->city,
-            'Email' => $this->faker->city,
-            'Login' => $this->faker->city,
-            'Haslo' => $this->faker->city,
+            'Telefon' => $this->faker->city,
         ];
     }
 }
