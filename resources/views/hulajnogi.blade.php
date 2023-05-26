@@ -95,8 +95,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
-
-
 <?php
     use App\Models\Hulajnogi;
     /*$rekordy=Hulajnogi::factory()->count(5)->create();*/
