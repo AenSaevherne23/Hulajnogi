@@ -15,7 +15,7 @@
     <table class="table table-striped table-bordered w-50">
         <thead>
         <tr>
-            <th>Imie</th>
+            <th>Imię</th>
             <th>Nazwisko</th>
             <th>Telefon</th>
             <th>Akcje</th>
