@@ -6,13 +6,10 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            
+
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
@@ -22,16 +19,14 @@ return new class extends Migration
             $table->string('role')->default('employee'); // Dodaj pole dla roli, domyślnie 'employee'
             $table->rememberToken();
             $table->timestamps();
-            
+
             // Dodaj pole id_placowki
             $table->unsignedBigInteger('id_placowki')->nullable();
             $table->foreign('id_placowki')->references('id')->on('placowki');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
