@@ -22,3 +22,4 @@ Route::post('/hulajnogi',[\App\Http\Controllers\HulajnogiController::class, 'sto
 Route::delete('/hulajnogi/{id}', [\App\Http\Controllers\HulajnogiController::class, 'destroy'])->name('hulajnogi.destroy');
 Route::put('/hulajnogi/{hulajnoga}', [\App\Http\Controllers\HulajnogiController::class, 'update'])->name('hulajnogi.update');
 
+Route::get('/klienci', [\App\Http\Controllers\KlienciController::class, 'index']);

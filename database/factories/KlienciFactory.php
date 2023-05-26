@@ -17,7 +17,11 @@ class KlienciFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'Imie' => $this->faker->city,
+            'Nazwisko' => $this->faker->city,
+            'Email' => $this->faker->city,
+            'Login' => $this->faker->city,
+            'Haslo' => $this->faker->city,
         ];
     }
 }
