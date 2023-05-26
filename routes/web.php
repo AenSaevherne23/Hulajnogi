@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use App\Http\Controllers\PlacowkiController;
+use App\Http\Controllers\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +19,33 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware(['auth'])->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/home');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::group(['middleware' => ['auth', 'admin']], function () {
+    Route::get('/placowki', [PlacowkiController::class, 'index'])->name('placowki.index');
+    Route::post('/placowki', [PlacowkiController::class, 'store'])->name('placowki.store');
+    Route::put('/placowki/{placowka}', [PlacowkiController::class, 'update'])->name('placowki.update');
+    Route::delete('/placowki/{placowka}', [PlacowkiController::class, 'destroy'])->name('placowki.destroy');
+
+     Route::get('/pracownicy', [UserController::class, 'index'])->name('pracownicy.index');
+    Route::get('/pracownicy/create', [UserController::class, 'create'])->name('pracownicy.create');
+    Route::post('/pracownicy', [UserController::class, 'store'])->name('pracownicy.store');
+    Route::get('/pracownicy/{user}/edit', [UserController::class, 'edit'])->name('pracownicy.edit');
+    Route::put('/pracownicy/{user}', [UserController::class, 'update'])->name('pracownicy.update');
+    Route::delete('/pracownicy/{user}', [UserController::class, 'destroy'])->name('pracownicy.destroy');
 });
