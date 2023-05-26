@@ -107,7 +107,7 @@
 
 <?php
 use App\Models\Klienci;
-$rekordy=Klienci::factory()->count(5)->create();
+/*$rekordy=Klienci::factory()->count(5)->create();*/
 ?>
 </body>
 </html>
