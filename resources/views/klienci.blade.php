@@ -14,7 +14,7 @@
             <th>Nazwisko</th>
             <th>Email</th>
             <th>Login</th>
-            <th>Hasło</th>
+            <th>TAJNE</th>
         </tr>
     </thread>
     <tbody>
