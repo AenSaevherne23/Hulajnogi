@@ -1,82 +1,130 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-
-    <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/dist/tailwind.css" rel="stylesheet" />
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-<div id="app">
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-        <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Laravel') }}
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <span
+        class="absolute text-white text-4xl top-5 left-4 cursor-pointer"
+        onclick="openSidebar()"
+    >
+      <i class="bi bi-filter-left px-2 bg-gray-900 rounded-md"></i>
+    </span>
+    <div
+        class="sidebar fixed top-0 bottom-0 lg:left-0 p-2 w-[300px] overflow-y-auto text-center bg-gray-900"
+    >
+        <div class="text-gray-100 text-xl">
+            <div class="p-2.5 mt-1 flex items-center">
+                <i class="bi bi-app-indicator px-2 py-1 rounded-md bg-blue-600"></i>
+                <h1 class="font-bold text-gray-200 text-[15px] ml-3">TailwindCSS</h1>
+                <i
+                    class="bi bi-x cursor-pointer ml-28 lg:hidden"
+                    onclick="openSidebar()"
+                ></i>
+            </div>
+            <div class="my-2 bg-gray-600 h-[1px]"></div>
+        </div>
+        <div
+            class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer bg-gray-700 text-white"
+        >
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav me-auto">
-
-                </ul>
-
-                <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ms-auto">
-                    <!-- Authentication Links -->
-                    @guest
-                        @if (Route::has('login'))
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                        @endif
-
-                        @if (Route::has('register'))
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                            </li>
-                        @endif
-                    @else
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }}
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </div>
-                        </li>
-                    @endguest
-                </ul>
+            <i class="bi bi-search text-sm"></i>
+            <input
+                type="text"
+                placeholder="Search"
+                class="text-[15px] ml-4 w-full bg-transparent focus:outline-none"
+            />
+        </div>
+        @guest
+        @if (Route::has('login'))
+                <a href="{{ route('login') }}"
+                   class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
+                >
+                    <i class="bi bi-house-door-fill"></i>
+                    <span class="text-[15px] ml-4 text-gray-200 font-bold">{{ __('Login') }}</span>
+                </a>
+            @endif
+            @if (Route::has('register'))
+                <a href="{{ route('register') }}"
+            class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
+        >
+            <i class="bi bi-bookmark-fill"></i>
+            <span class="text-[15px] ml-4 text-gray-200 font-bold">{{ __('Register') }}</span>
+                </a>
+            @endif
+        @else
+            @endif
+        <div class="my-4 bg-gray-600 h-[1px]"></div>
+        <div
+            class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
+            onclick="dropdown()"
+        >
+            <i class="bi bi-chat-left-text-fill"></i>
+            <div class="flex justify-between w-full items-center">
+                <span class="text-[15px] ml-4 text-gray-200 font-bold">Chatbox</span>
+                <span class="text-sm rotate-180" id="arrow">
+            <i class="bi bi-chevron-down"></i>
+          </span>
             </div>
         </div>
-    </nav>
+        <div
+            class="text-left text-sm mt-2 w-4/5 mx-auto text-gray-200 font-bold"
+            id="submenu"
+        >
+            <h1 class="cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
+                Social
+            </h1>
+            <h1 class="cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
+                Personal
+            </h1>
+            <h1 class="cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
+                Friends
+            </h1>
+        </div>
 
-    <main class="py-4">
-        @yield('content')
-    </main>
-</div>
+        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <a class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white" href="{{ route('logout') }}"
+               onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                <i class="bi bi-box-arrow-in-right"></i>
+
+                <span class="text-[15px] ml-4 text-gray-200 font-bold">   {{ __('Logout') }}</span>
+            </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
+        </div>
+
+
+
+    </div>
+
+
+    <div class="flex justify-center align-center">
+
+
+        <main class="flex">
+            @yield('content')
+        </main>
+    </div>
+    <script type="text/javascript">
+        function dropdown() {
+            document.querySelector("#submenu").classList.toggle("hidden");
+            document.querySelector("#arrow").classList.toggle("rotate-0");
+        }
+        dropdown();
+
+        function openSidebar() {
+            document.querySelector(".sidebar").classList.toggle("hidden");
+        }
+    </script>
 </body>
 </html>

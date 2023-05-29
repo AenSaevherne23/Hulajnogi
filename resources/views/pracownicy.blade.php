@@ -1,17 +1,11 @@
+@extends('layouts.app')
+@section('content')
+
+
 @php
     use App\Models\Placowki;
 @endphp
-<!doctype html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Edytuj pracowników</title>
-</head>
-<body>
+
 <div style="display:flex; align-items: center; justify-content: center; flex-direction: column; margin-bottom: 2.5rem;">
     <h2>Dodaj nowego pracownika</h2>
     @if (auth()->user()->isAdmin())
@@ -140,5 +134,5 @@
 @endif
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+
+@endsection
