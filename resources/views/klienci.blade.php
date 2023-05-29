@@ -51,15 +51,15 @@
                                 @method('PUT')
                                 <div class="mb-3">
                                     <label for="edit_nazwa{{$klient->id}}" class="form-label">Imie:</label>
-                                    <input type="text" class="form-control" id="edit_nazwa{{$klient->id}}" name="imie" value="{{$klient->imie}}">
+                                    <input type="text" class="form-control" id="edit_nazwa{{$klient->id}}" name="imie" value="{{$klient->imie}}" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="edit_adres{{$klient->id}}" class="form-label">Nazwisko:</label>
-                                    <input type="text" class="form-control" id="edit_adres{{$klient->id}}" name="nazwisko" value="{{$klient->nazwisko}}">
+                                    <input type="text" class="form-control" id="edit_adres{{$klient->id}}" name="nazwisko" value="{{$klient->nazwisko}}" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="edit_adres{{$klient->id}}" class="form-label">Telefon:</label>
-                                    <input type="text" class="form-control" id="edit_adres{{$klient->id}}" name="telefon" value="{{$klient->telefon}}">
+                                    <input type="text" class="form-control" id="edit_adres{{$klient->id}}" name="telefon" value="{{$klient->telefon}}" required>
                                 </div>
                                 <button type="submit" class="btn btn-success">Zapisz</button>
                             </form>
@@ -73,7 +73,6 @@
 </div>
 
 <!-- Form Popup Modal -->
-
 <div class="modal fade" id="addRecordModal" tabindex="-1" aria-labelledby="addRecordModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -86,15 +85,15 @@
                     @csrf
                     <div class="mb-3">
                         <label for="imie" class="form-label">Imię:</label>
-                        <input type="text" class="form-control" id="imie" name="imie">
+                        <input type="text" class="form-control" id="imie" name="imie" required>
                     </div>
                     <div class="mb-3">
                         <label for="nazwisko" class="form-label">Nazwisko:</label>
-                        <input type="text" class="form-control" id="nazwisko" name="nazwisko">
+                        <input type="text" class="form-control" id="nazwisko" name="nazwisko" required>
                     </div>
                     <div class="mb-3">
                         <label for="telefon" class="form-label">Telefon:</label>
-                        <input type="text" class="form-control" id="telefon" name="telefon">
+                        <input type="text" class="form-control" id="telefon" name="telefon" required>
                     </div>
                     <button type="submit" class="btn btn-success">Dodaj</button>
                 </form>
