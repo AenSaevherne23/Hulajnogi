@@ -106,13 +106,13 @@
             </div>
 
 
-                <button id="register-submit" type="submit" class="w-full">
-                    <a class="relative inline-flex items-center justify-center w-full p-4 px-5 py-3 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-full shadow-xl group hover:ring-1 hover:ring-purple-500">
-                        <span class="absolute inset-0 w-full h-full bg-gradient-to-br from-blue-600 via-purple-600 to-pink-700"></span>
-                        <span class="absolute bottom-20 right-5 block w-80 h-80 mb-10 mr-30 transition duration-500 origin-bottom-left transform rotate-45 translate-x-0 bg-pink-500 rounded-full opacity-30 group-hover:rotate-90 group-hover:scale-125 ease"></span>
-                        <span class="relative text-white"> {{ __('Create an account!') }}</span>
-                    </a>
-                </button>
+            <button id="register-submit" type="submit" class="w-full">
+                <a class="relative inline-flex items-center justify-center w-full p-4 px-5 py-3 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-full shadow-xl group hover:ring-1 hover:ring-purple-500">
+                    <span class="absolute inset-0 w-full h-full bg-gradient-to-br from-blue-600 via-purple-600 to-pink-700"></span>
+                    <span class="absolute bottom-20 right-5 block w-80 h-80 mb-10 mr-30 transition duration-500 origin-bottom-left transform rotate-45 translate-x-0 bg-pink-500 rounded-full opacity-30 group-hover:rotate-90 group-hover:scale-125 ease"></span>
+                    <span class="relative text-white"> {{ __('Create an account!') }}</span>
+                </a>
+            </button>
         </form>
         <button id="register-button" class="py-2 w-full text-xl text-black bg-white border border-black rounded-2xl">Register</button>
 

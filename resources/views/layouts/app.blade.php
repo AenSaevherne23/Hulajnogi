@@ -1,130 +1,164 @@
 <!DOCTYPE html>
-<html>
+<!-- Coding by CodingNepal | www.codingnepalweb.com -->
+<html lang="en" dir="ltr">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="/dist/tailwind.css" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <title> Drop Down Sidebar Menu | CodingLab </title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Boxiocns CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css"
     />
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="/css/navbar.css" rel="stylesheet"/>
+
 </head>
 <body>
-    <span
-        class="absolute text-white text-4xl top-5 left-4 cursor-pointer"
-        onclick="openSidebar()"
-    >
-      <i class="bi bi-filter-left px-2 bg-gray-900 rounded-md"></i>
-    </span>
-    <div
-        class="sidebar fixed top-0 bottom-0 lg:left-0 p-2 w-[300px] overflow-y-auto text-center bg-gray-900"
-    >
-        <div class="text-gray-100 text-xl">
-            <div class="p-2.5 mt-1 flex items-center">
-                <i class="bi bi-app-indicator px-2 py-1 rounded-md bg-blue-600"></i>
-                <h1 class="font-bold text-gray-200 text-[15px] ml-3">TailwindCSS</h1>
-                <i
-                    class="bi bi-x cursor-pointer ml-28 lg:hidden"
-                    onclick="openSidebar()"
-                ></i>
-            </div>
-            <div class="my-2 bg-gray-600 h-[1px]"></div>
-        </div>
-        <div
-            class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer bg-gray-700 text-white"
-        >
-
-            <i class="bi bi-search text-sm"></i>
-            <input
-                type="text"
-                placeholder="Search"
-                class="text-[15px] ml-4 w-full bg-transparent focus:outline-none"
-            />
-        </div>
-        @guest
-        @if (Route::has('login'))
-                <a href="{{ route('login') }}"
-                   class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
-                >
-                    <i class="bi bi-house-door-fill"></i>
-                    <span class="text-[15px] ml-4 text-gray-200 font-bold">{{ __('Login') }}</span>
-                </a>
-            @endif
-            @if (Route::has('register'))
-                <a href="{{ route('register') }}"
-            class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
-        >
-            <i class="bi bi-bookmark-fill"></i>
-            <span class="text-[15px] ml-4 text-gray-200 font-bold">{{ __('Register') }}</span>
-                </a>
-            @endif
-        @else
-            @endif
-        <div class="my-4 bg-gray-600 h-[1px]"></div>
-        <div
-            class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
-            onclick="dropdown()"
-        >
-            <i class="bi bi-chat-left-text-fill"></i>
-            <div class="flex justify-between w-full items-center">
-                <span class="text-[15px] ml-4 text-gray-200 font-bold">Chatbox</span>
-                <span class="text-sm rotate-180" id="arrow">
-            <i class="bi bi-chevron-down"></i>
-          </span>
-            </div>
-        </div>
-        <div
-            class="text-left text-sm mt-2 w-4/5 mx-auto text-gray-200 font-bold"
-            id="submenu"
-        >
-            <h1 class="cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
-                Social
-            </h1>
-            <h1 class="cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
-                Personal
-            </h1>
-            <h1 class="cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
-                Friends
-            </h1>
-        </div>
-
-        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-            <a class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white" href="{{ route('logout') }}"
-               onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                <i class="bi bi-box-arrow-in-right"></i>
-
-                <span class="text-[15px] ml-4 text-gray-200 font-bold">   {{ __('Logout') }}</span>
+<div class="sidebar">
+    <div class="logo-details">
+        <i class='bx bxl-c-plus-plus'></i>
+        <span class="logo_name">CodingLab</span>
+    </div>
+    <ul class="nav-links">
+        <li>
+            <a href="#">
+                <i class='bx bx-grid-alt' ></i>
+                <span class="link_name">Dashboard</span>
             </a>
-
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                @csrf
-            </form>
-        </div>
-
-
-
+            <ul class="sub-menu blank">
+                <li><a class="link_name" href="#">Category</a></li>
+            </ul>
+        </li>
+        <li>
+            <div class="iocn-link">
+                <a href="#">
+                    <i class='bx bx-collection' ></i>
+                    <span class="link_name">Category</span>
+                </a>
+                <i class='bx bxs-chevron-down arrow' ></i>
+            </div>
+            <ul class="sub-menu">
+                <li><a class="link_name" href="#">Category</a></li>
+                <li><a href="#">HTML & CSS</a></li>
+                <li><a href="#">JavaScript</a></li>
+                <li><a href="#">PHP & MySQL</a></li>
+            </ul>
+        </li>
+        <li>
+            <div class="iocn-link">
+                <a href="#">
+                    <i class='bx bx-book-alt' ></i>
+                    <span class="link_name">Posts</span>
+                </a>
+                <i class='bx bxs-chevron-down arrow' ></i>
+            </div>
+            <ul class="sub-menu">
+                <li><a class="link_name" href="#">Posts</a></li>
+                <li><a href="#">Web Design</a></li>
+                <li><a href="#">Login Form</a></li>
+                <li><a href="#">Card Design</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">
+                <i class='bx bx-pie-chart-alt-2' ></i>
+                <span class="link_name">Analytics</span>
+            </a>
+            <ul class="sub-menu blank">
+                <li><a class="link_name" href="#">Analytics</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">
+                <i class='bx bx-line-chart' ></i>
+                <span class="link_name">Chart</span>
+            </a>
+            <ul class="sub-menu blank">
+                <li><a class="link_name" href="#">Chart</a></li>
+            </ul>
+        </li>
+        <li>
+            <div class="iocn-link">
+                <a href="#">
+                    <i class='bx bx-plug' ></i>
+                    <span class="link_name">Plugins</span>
+                </a>
+                <i class='bx bxs-chevron-down arrow' ></i>
+            </div>
+            <ul class="sub-menu">
+                <li><a class="link_name" href="#">Plugins</a></li>
+                <li><a href="#">UI Face</a></li>
+                <li><a href="#">Pigments</a></li>
+                <li><a href="#">Box Icons</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">
+                <i class='bx bx-compass' ></i>
+                <span class="link_name">Explore</span>
+            </a>
+            <ul class="sub-menu blank">
+                <li><a class="link_name" href="#">Explore</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">
+                <i class='bx bx-history'></i>
+                <span class="link_name">History</span>
+            </a>
+            <ul class="sub-menu blank">
+                <li><a class="link_name" href="#">History</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">
+                <i class='bx bx-cog' ></i>
+                <span class="link_name">Setting</span>
+            </a>
+            <ul class="sub-menu blank">
+                <li><a class="link_name" href="#">Setting</a></li>
+            </ul>
+        </li>
+        <li>
+            <div class="profile-details">
+                <div class="profile-content">
+                    <img src="image/profile.jpg" alt="profileImg">
+                </div>
+                <div class="name-job">
+                    <div class="profile_name">Prem Shahi</div>
+                    <div class="job">Web Desginer</div>
+                </div>
+                <i class='bx bx-log-out' ></i>
+            </div>
+        </li>
+    </ul>
+</div>
+<section class="home-section">
+    <div class="overlay-button">
+        <i class='bx bx-menu'></i>
     </div>
+    @yield("content")
 
-
-    <div class="flex justify-center align-center">
-
-
-        <main class="flex">
-            @yield('content')
-        </main>
-    </div>
-    <script type="text/javascript">
-        function dropdown() {
-            document.querySelector("#submenu").classList.toggle("hidden");
-            document.querySelector("#arrow").classList.toggle("rotate-0");
-        }
-        dropdown();
-
-        function openSidebar() {
-            document.querySelector(".sidebar").classList.toggle("hidden");
-        }
-    </script>
+</section>
+<script>
+    let arrow = document.querySelectorAll(".arrow");
+    for (var i = 0; i < arrow.length; i++) {
+        arrow[i].addEventListener("click", (e)=>{
+            let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
+            arrowParent.classList.toggle("showMenu");
+        });
+    }
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".bx-menu");
+    console.log(sidebarBtn);
+    sidebarBtn.addEventListener("click", ()=>{
+        sidebar.classList.toggle("close");
+    });
+</script>
 </body>
 </html>
