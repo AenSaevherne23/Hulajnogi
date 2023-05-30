@@ -11,9 +11,11 @@ class UserController extends Controller
 {
     public function index()
     {
+        $clients = User::where('role', 'client')->get();
         $employees = User::where('role', 'employee')->get();
+        $admins = User::where('role', 'admin')->get();
     
-        return view('pracownicy', compact('employees'));
+        return view('pracownicy', compact('clients', 'employees', 'admins'));
     }
     
 

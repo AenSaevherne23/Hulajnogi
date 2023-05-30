@@ -47,6 +47,11 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::post('/pracownicy', [UserController::class, 'store'])->name('pracownicy.store');
     Route::get('/pracownicy/{user}/edit', [UserController::class, 'edit'])->name('pracownicy.edit');
     Route::put('/pracownicy/{id}', [UserController::class,'update'])->name('pracownicy.update');
+    Route::put('/employees/{employee}',[UserController::class,'update'])->name('employees.update');
+    Route::put('/employees/{employee}',[UserController::class,'update'])->name('employees.update');
+    Route::put('/admins/{admin}', [UserController::class,'update'])->name('admins.update');
+    Route::put('/clients/{id}', [UserController::class,'update'])->name('clients.update');
+
 
     Route::delete('/pracownicy/{user}', [UserController::class, 'destroy'])->name('pracownicy.destroy');
   
