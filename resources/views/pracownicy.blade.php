@@ -127,11 +127,24 @@
                         </div>
                         <button type="submit" class="btn btn-success">Dodaj</button>
                     </form>
+
+                    <a class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white" href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                        <i class="bi bi-box-arrow-in-right"></i>
+
+                        <span class="text-[15px] ml-4 text-gray-200 font-bold">   {{ __('Logout') }}</span>
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 @endif
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
