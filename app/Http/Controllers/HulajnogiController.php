@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Hulajnogi;
+use App\Models\Placowki;
 use Illuminate\Http\Request;
 
 class HulajnogiController extends Controller
@@ -10,7 +11,9 @@ class HulajnogiController extends Controller
     public function index()
     {
         $hulajnogi = Hulajnogi::all();
-        return view('hulajnogi', compact('hulajnogi'));
+        $placowki = Placowki::all();
+
+        return view('hulajnogi', compact('hulajnogi', 'placowki'));
     }
 
     public function store(Request $request)
@@ -19,6 +22,9 @@ class HulajnogiController extends Controller
         $hulajnoga->Nazwa = $request->input('nazwa');
         $hulajnoga->Model = $request->input('model');
         $hulajnoga->save();
+
+        $placowka = Placowki::find($request->input('placowka_id'));
+        $placowka->hulajnogi()->attach($hulajnoga);
 
         return redirect('/hulajnogi');
     }

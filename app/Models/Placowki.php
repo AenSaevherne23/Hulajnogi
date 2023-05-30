@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Placowki extends Model
 {
     use HasFactory;
+
     protected $table = 'placowki';
     protected $primaryKey = 'id';
     public $timestamps = true;
@@ -17,6 +18,6 @@ class Placowki extends Model
 
     public function hulajnogi()
     {
-        return $this->hasMany(Hulajnogi::class, 'placowka_id');
+        return $this->belongsToMany(Hulajnogi::class, 'placowki_hulajnogi', 'placowka_id', 'hulajnoga_id');
     }
 }
