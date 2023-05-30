@@ -12,6 +12,11 @@ class Hulajnogi extends Model
     protected  $primaryKey = 'id';
     public $timestamps = true;
 
-    protected $fillable = ['Nazwa', 'Model'];
+    protected $fillable = ['Nazwa', 'Model', 'placowka_id'];
     protected $dates = ['created_at', 'updated_at'];
+
+    public function placowka()
+    {
+        return $this->belongsTo(Placowki::class, 'placowka_id');
+    }
 }
