@@ -46,7 +46,8 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/pracownicy/create', [UserController::class, 'create'])->name('pracownicy.create');
     Route::post('/pracownicy', [UserController::class, 'store'])->name('pracownicy.store');
     Route::get('/pracownicy/{user}/edit', [UserController::class, 'edit'])->name('pracownicy.edit');
-    Route::put('/pracownicy/{user}', [UserController::class, 'update'])->name('pracownicy.update');
+    Route::put('/pracownicy/{id}', [UserController::class,'update'])->name('pracownicy.update');
+
     Route::delete('/pracownicy/{user}', [UserController::class, 'destroy'])->name('pracownicy.destroy');
   
   	Route::get('/hulajnogi', [\App\Http\Controllers\HulajnogiController::class, 'index']);

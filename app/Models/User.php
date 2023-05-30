@@ -17,13 +17,9 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var array
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'salary',
-        'role',
-    ];
+    
+     protected $fillable = ['name', 'email', 'password', 'salary', 'role', 'id_placowki'];
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -43,6 +39,7 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+   
 
     /**
      * Check if the user is an administrator.
@@ -63,4 +60,13 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->role === 'employee';
     }
+    public function isKlient()
+    {
+        return $this->role === 'Klient';
+    }
+    public function placowka()
+    {
+        return $this->belongsTo(Placowki::class, 'id_placowki');
+    }
 }
+

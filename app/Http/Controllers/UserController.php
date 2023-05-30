@@ -57,22 +57,20 @@ class UserController extends Controller
             // Użytkownik nie ma uprawnień, przekieruj lub zwróć odpowiedni komunikat
         }
     }
-
-    public function update(Request $request, User $employee)
+    public function update(Request $request, $id)
     {
-        if (Gate::allows('edit-employee', [auth()->user(), $employee])) {
-            // Użytkownik ma uprawnienia do edycji pracownika
-            $employee->name = $request->input('name');
-            $employee->email = $request->input('email');
-            $employee->salary = $request->input('salary');
-            $employee->id_placowki = $request->input('id_placowki');
-            $employee->save();
-
-            return redirect('/pracownicy'); // Zmieniono ścieżkę przekierowania
-        } else {
-            // Użytkownik nie ma uprawnień, przekieruj lub zwróć odpowiedni komunikat
-        }
+        $employee = User::findOrFail($id);
+        $employee->name = $request->input('name');
+        $employee->email = $request->input('email');
+        $employee->salary = $request->input('salary');
+        $employee->id_placowki = $request->input('id_placowki');
+        $employee->role = $request->input('role'); // Dodajanie roli pracownika
+        $employee->save();
+    
+        return redirect('/pracownicy');
     }
+    
+    
 
     public function destroy(User $employee)
     {
