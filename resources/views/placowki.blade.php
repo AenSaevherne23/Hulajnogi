@@ -14,9 +14,9 @@
 
             </div>
         </div>
-    <div class="sm:p-7 p-4">
+    <div class="sm:p-7 p-4 overflow-y-auto">
 
-        <div class="flex w-full items-center mb-7">
+        <div class="flex w-full items-center mb-7 ">
             <button class="inline-flex mr-3 items-center h-8 pl-2.5 pr-2 rounded-md shadow text-gray-700 dark:text-gray-400 dark:border-gray-800 border border-gray-200 leading-none py-0">
                 <svg viewBox="0 0 24 24" class="w-4 mr-2 text-gray-400 dark:text-gray-600" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
@@ -57,10 +57,10 @@
                 <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800 sm:text-gray-400 text-white">Data dodania</th>
             </tr>
             </thead>
-            <tbody class="text-gray-600 dark:text-gray-100">
+            <tbody class="text-gray-600 dark:text-gray-100 ">
             @foreach($placowki as $placowka)
 
-                <tr>
+                <tr class="hover:bg-zinc-600 hover:bg-opacity-10 transition-colors duration-300 ease-in-out">
                     <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800">
                         <div class="flex items-center">
                             <svg viewBox="0 0 24 24" class="w-4 mr-5 text-yellow-500" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -108,10 +108,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
-
-
                         </div>
                     </td>
                 </tr>
