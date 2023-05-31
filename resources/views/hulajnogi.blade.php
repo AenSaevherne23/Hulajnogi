@@ -46,9 +46,14 @@
                                     <td>{{ $hulajnoga->Nazwa }}</td>
                                     <td>{{ $hulajnoga->Model }}</td>
                                     <td>
-                                        @foreach($hulajnoga->placowki ?? [] as $placowka)
+                                        {{--@foreach($hulajnoga->placowki ?? [] as $placowka)
                                             {{ $placowka->nazwa }}<br>
-                                        @endforeach
+                                        @endforeach--}}
+                                        @if($hulajnoga->placowka)
+                                            {{ $hulajnoga->placowka->nazwa }}
+                                        @else
+                                            Brak przypisanej placówki
+                                        @endif
                                     </td>
                                     <td>
                                         <form action="{{ route('hulajnogi.destroy', $hulajnoga->id) }}" method="POST">

@@ -16,7 +16,7 @@ Class CreateHulajnogiTable extends Migration
             $table->string('Nazwa', 255);
             $table->string('Model', 255);
             $table->unsignedBigInteger('placowka_id')->nullable();
-            $table->foreign('placowka_id')->references('id')->on('placowki');
+            $table->foreign('placowka_id')->references('id')->on('placowki')->onDelete('set null');
             $table->timestamps();
         });
     }

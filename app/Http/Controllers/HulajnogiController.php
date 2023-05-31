@@ -21,10 +21,11 @@ class HulajnogiController extends Controller
         $hulajnoga = new Hulajnogi;
         $hulajnoga->Nazwa = $request->input('nazwa');
         $hulajnoga->Model = $request->input('model');
+        $hulajnoga->placowka_id = $request->input('placowka_id');
         $hulajnoga->save();
 
-        $placowka = Placowki::find($request->input('placowka_id'));
-        $placowka->hulajnogi()->attach($hulajnoga);
+        //$placowka = Placowki::find($request->input('placowka_id'));
+        //$placowka->hulajnogi()->attach($hulajnoga);
 
         return redirect('/hulajnogi');
     }
