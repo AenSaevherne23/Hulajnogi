@@ -21,6 +21,7 @@ class RewizjeController extends Controller
         $rewizja->czy_uszkodzona = $request->input('czy_uszkodzona');
         $rewizja->opis = $request->input('opis');
         $rewizja->koszt_uszkodzen = $request->input('koszt_uszkodzen');
+        $rewizja->hulajnoga_id = $request->input('hulajnoga_id');
         $rewizja->save();
 
         return redirect('/rewizje');
@@ -32,6 +33,7 @@ class RewizjeController extends Controller
         $rewizja->czy_uszkodzona = $request->input('czy_uszkodzona');
         $rewizja->opis = $request->input('opis');
         $rewizja->koszt_uszkodzen = $request->input('koszt_uszkodzen');
+        $rewizja->hulajnoga_id = $request->input('hulajnoga_id');
         $rewizja->save();
 
         return redirect('/rewizje');

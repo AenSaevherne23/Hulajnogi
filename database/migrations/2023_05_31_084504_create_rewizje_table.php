@@ -17,6 +17,8 @@ return new class extends Migration
             $table->boolean('Czy_uszkodzona');
             $table->string('Opis');
             $table->decimal('Koszt_uszkodzen');
+            $table->unsignedBigInteger('hulajnoga_id');
+            $table->foreign('hulajnoga_id')->references('id')->on('hulajnogi');
             $table->timestamps();
         });
     }

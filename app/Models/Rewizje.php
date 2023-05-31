@@ -14,4 +14,9 @@ class Rewizje extends Model
 
     protected $fillable = ['Data', 'Czy_uszkodzona', 'Opis', 'Koszt_uszkodzen'];
     protected $dates = ['created_at', 'updated_at'];
+
+    public function hulajnogi()
+    {
+        return $this->belongsTo(Hulajnogi::class, 'hulajnoga_id');
+    }
 }
