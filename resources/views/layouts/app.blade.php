@@ -14,6 +14,9 @@
     />
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="/css/navbar.css" rel="stylesheet"/>
+    <link href="/css/dropdown.css" rel="stylesheet"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
 
 </head>

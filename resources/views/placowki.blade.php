@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+
+
     <div class="flex-grow overflow-hidden h-full flex flex-col">
         <div class="h-16 lg:flex w-full border-b border-gray-200 dark:border-gray-800 hidden px-10">
             <div class="flex h-full text-gray-600 dark:text-gray-400">
@@ -83,13 +85,37 @@
                             <div class="sm:flex hidden flex-col">
                                 {{$placowka->updated_at->format('Y-m-d')}}
                             </div>
-                            <button data-modal-target="editRecordModal{{$placowka->id}}" data-modal-toggle="editRecordModal{{$placowka->id}}"  class="w-8 h-8 inline-flex items-center justify-center text-gray-400 ml-auto">
-                                <svg viewBox="0 0 24 24" class="w-5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="1"></circle>
-                                    <circle cx="19" cy="12" r="1"></circle>
-                                    <circle cx="5" cy="12" r="1"></circle>
-                                </svg>
-                            </button>
+
+                                <button data-modal-target="editRecordModal{{$placowka->id}}" data-modal-toggle="editRecordModal{{$placowka->id}}" class="w-8 h-8 inline-flex items-center justify-center text-gray-400 ml-auto" onclick="toggleMenu()" id="toggleButton">
+                                    <svg viewBox="0 0 24 24" class="w-5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="1"></circle>
+                                        <circle cx="19" cy="12" r="1"></circle>
+                                        <circle cx="5" cy="12" r="1"></circle>
+                                    </svg>
+                                </button>
+
+                            <div class="table_center">
+                                <div id="dropdown{{$placowka->id}}" class="drop-down">
+                                    <div class="drop-down__button">
+                                        <span class="drop-down__name">Account settings</span>
+                                    </div>
+                                    <div class="drop-down__menu-box">
+                                        <ul class="drop-down__menu">
+                                            <li data-name="profile" class="drop-down__item">Your Profile</li>
+                                            <li data-name="dashboard" class="drop-down__item">Your Dashboard</li>
+                                            <li data-name="activity" class="drop-down__item">Recent activity</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <script>
+                                $(document).ready(function() {
+                                    $('#dropdown{{$placowka->id}}').click(function() {
+                                        $(this).toggleClass('drop-down--active');
+                                    });
+                                });
+                            </script>
 
                         </div>
                     </td>
@@ -155,6 +181,7 @@
         </div>
     </div>
     </div>
+
 @endsection
 
 
@@ -193,3 +220,5 @@
         </div>
     </div>
 </div>
+
+
