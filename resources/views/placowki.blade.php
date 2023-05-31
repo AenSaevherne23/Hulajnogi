@@ -109,13 +109,8 @@
                                 </div>
                             </div>
 
-                            <script>
-                                $(document).ready(function() {
-                                    $('#dropdown{{$placowka->id}}').click(function() {
-                                        $(this).toggleClass('drop-down--active');
-                                    });
-                                });
-                            </script>
+
+
 
                         </div>
                     </td>
@@ -160,7 +155,24 @@
                 </div>
 
             @endforeach
+            <script>
+                $(document).ready(function() {
+                    $('[id^="dropdown"]').click(function() {
+                        var dropdownId = $(this).attr('id');
 
+                        // Check if the clicked dropdown is already active
+                        var isActive = $(this).hasClass('drop-down--active');
+
+                        // Close all dropdowns
+                        $('.drop-down').removeClass('drop-down--active');
+
+                        // Open the clicked dropdown if it was not active
+                        if (!isActive) {
+                            $(this).addClass('drop-down--active');
+                        }
+                    });
+                });
+            </script>
             </tbody>
         </table>
         <div class="flex w-full mt-5 space-x-2 justify-end">

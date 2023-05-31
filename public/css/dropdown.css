@@ -7,16 +7,16 @@
 .drop-down{
     display: inline-block;
     position: relative;
-    z-index: 1;
 }
 
 .drop-down__button{
+
     background: linear-gradient(to right,#3d6def, #8FADFE);
     display: inline-block;
     line-height: 40px;
     padding: 0 18px;
     text-align: left;
-    z-index: 50;
+    z-index: 1;
     border-radius: 4px;
     box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.2);
     cursor: pointer;
@@ -48,6 +48,7 @@
 
 .drop-down__menu-box {
     position: absolute;
+    z-index: 30;
     width: 100%;
     left: 0;
     background-color: #fff;
