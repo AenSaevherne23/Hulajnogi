@@ -42,6 +42,7 @@ class HulajnogiController extends Controller
     {
         $hulajnoga->Nazwa = $request->input('nazwa');
         $hulajnoga->Model = $request->input('model');
+        $hulajnoga->placowka_id = $request->input('placowka_id');
         $hulajnoga->save();
 
         return redirect('/hulajnogi');
