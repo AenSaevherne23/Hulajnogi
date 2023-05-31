@@ -46,9 +46,6 @@
                                     <td>{{ $hulajnoga->Nazwa }}</td>
                                     <td>{{ $hulajnoga->Model }}</td>
                                     <td>
-                                        {{--@foreach($hulajnoga->placowki ?? [] as $placowka)
-                                            {{ $placowka->nazwa }}<br>
-                                        @endforeach--}}
                                         @if($hulajnoga->placowka)
                                             {{ $hulajnoga->placowka->nazwa }}
                                         @else
@@ -61,6 +58,7 @@
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">Usuń</button>
                                         </form>
+
                                         <!-- Edit Record Modal -->
                                         <div class="modal fade" id="editRecordModal{{$hulajnoga->id}}" tabindex="-1" aria-labelledby="editRecordModalLabel{{$hulajnoga->id}}" aria-hidden="true">
                                             <div class="modal-dialog">
@@ -81,22 +79,6 @@
                                                                 <label for="edit_model{{$hulajnoga->id}}" class="form-label">Model:</label>
                                                                 <input type="text" class="form-control" id="edit_model{{$hulajnoga->id}}" name="model" value="{{$hulajnoga->Model}}" required>
                                                             </div>
-                                                            {{--<div class="mb-3">
-                                                                <label for="edit_placowka{{$hulajnoga->id}}" class="form-label">Placówka:</label>
-                                                                --}}{{--<input type="text" class="form-control" id="edit_placowka{{$hulajnoga->id}}" name="placowka" value="{{$hulajnoga->placowka->nazwa}}" required>--}}{{--
-                                                                --}}{{--<select name="placowka_id" id="placowka" class="form-control" required>
-                                                                    @foreach($placowki ?? [] as $placowka)
-                                                                        <option value="{{ $placowka->id }}">{{ $placowka->nazwa }}</option>
-                                                                    @endforeach
-                                                                </select>--}}{{--
-                                                                <select name="placowka_id" id="edit_placowka{{$hulajnoga->id}}" class="form-control" required>
-                                                                @foreach($placowki ?? [] as $placowka)
-                                                                        <option value="{{ $placowka->id }}" {{ $hulajnoga->placowka_id == $placowka->id ? 'selected' : '' }}>
-                                                                            {{ $placowka->nazwa }}
-                                                                        </option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>--}}
                                                             <select name="placowka_id" id="edit_placowka{{$hulajnoga->id}}" class="form-control" required>
                                                                 @foreach($placowki ?? [] as $placowka)
                                                                     <option value="{{ $placowka->id }}" {{ $hulajnoga->placowka_id == $placowka->id ? 'selected' : '' }}>
@@ -104,7 +86,6 @@
                                                                     </option>
                                                                 @endforeach
                                                             </select>
-
                                                             <button type="submit" class="btn btn-success">Zapisz</button>
                                                         </form>
                                                     </div>

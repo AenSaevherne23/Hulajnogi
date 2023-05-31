@@ -15,9 +15,4 @@ class Placowki extends Model
 
     protected $fillable = ['nazwa', 'adres'];
     protected $dates = ['created_at', 'updated_at'];
-
-    /*public function hulajnogi()
-    {
-        return $this->belongsToMany(Hulajnogi::class, 'placowki_hulajnogi', 'placowka_id', 'hulajnoga_id');
-    }*/
 }

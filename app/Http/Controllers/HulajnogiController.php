@@ -24,9 +24,6 @@ class HulajnogiController extends Controller
         $hulajnoga->placowka_id = $request->input('placowka_id');
         $hulajnoga->save();
 
-        //$placowka = Placowki::find($request->input('placowka_id'));
-        //$placowka->hulajnogi()->attach($hulajnoga);
-
         return redirect('/hulajnogi');
     }
 
