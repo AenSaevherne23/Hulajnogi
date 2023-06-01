@@ -8,8 +8,8 @@
         <div>
             <h1 class="text-3xl font-bold text-left mb-14 cursor-pointer">Hulajnogi!</h1>
 
-            <h1 class="text-4xl font-bold text-left mb-4 cursor-pointer">Welcome back</h1>
-            <p class="w-80 text-start text-sm mb-8 font-semibold text-gray-700 tracking-wide cursor-pointer">New to Hulajnogi? <a href="#" class="text-purple-800 font-bold">Create an account.</a></p>
+            <h1 class="text-4xl font-bold text-left mb-4 cursor-pointer">Witamy ponownie</h1>
+            <p id="newUserLabel" class="w-80 text-start text-sm mb-8 font-semibold text-gray-700 tracking-wide cursor-pointer">Jesteś tu nowy? <a href="#" class="text-purple-800 font-bold">Stwórz konto.</a></p>
         </div>
         <form id="login-form" method="POST" action="{{ route('login') }}">
             @csrf
@@ -32,11 +32,11 @@
                 @enderror
                 <div class="flex items-center justify-between">
                     <div class="flex items-center">
-                        <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>                    <label for="remember" class="text-sm font-bold text-gray-700">Remember me</label>
+                        <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>                    <label for="remember" class="pl-2 text-sm font-bold text-gray-700">Zapamiętaj mnie</label>
                     </div>
                     @if (Route::has('password.request'))
                         <a class="text-sm font-bold  text-purple-800" href="{{ route('password.request') }}">
-                            {{ __('Forgot Your Password?') }}
+                            {{ __('Zapomniałeś hasła?') }}
                         </a>
                     @endif
                 </div>
@@ -47,7 +47,7 @@
                     <a class="relative inline-flex items-center justify-center w-full p-4 px-5 py-3 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-full shadow-xl group hover:ring-1 hover:ring-purple-500">
                         <span class="absolute inset-0 w-full h-full bg-gradient-to-br from-blue-600 via-purple-600 to-pink-700"></span>
                         <span class="absolute bottom-20 right-5 block w-80 h-80 mb-10 mr-30 transition duration-500 origin-bottom-left transform rotate-45 translate-x-0 bg-pink-500 rounded-full opacity-30 group-hover:rotate-90 group-hover:scale-125 ease"></span>
-                        <span class="relative text-white"> {{ __('Login') }}</span>
+                        <span class="relative text-white"> {{ __('Zaloguj') }}</span>
                     </a>
                 </button>
             </div>
@@ -56,10 +56,11 @@
             @csrf
 
             <div class="row mb-3">
-                <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+                <label for="name" class="block
+             text-sm font-bold text-gray-700 tracking-wide mb-1">{{ __('Nazwa') }}</label>
 
                 <div class="col-md-6">
-                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror block text-sm py-3 px-4 rounded-lg w-full border outline-none" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                     @error('name')
                     <span class="invalid-feedback" role="alert">
@@ -70,10 +71,11 @@
             </div>
 
             <div class="row mb-3">
-                <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                <label for="email" class="block
+             text-sm font-bold text-gray-700 tracking-wide mb-1">{{ __('Adres Email') }}</label>
 
                 <div class="col-md-6">
-                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror block text-sm py-3 px-4 rounded-lg w-full border outline-none" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                     @error('email')
                     <span class="invalid-feedback" role="alert">
@@ -84,10 +86,11 @@
             </div>
 
             <div class="row mb-3">
-                <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                <label for="password" class="block
+             text-sm font-bold text-gray-700 tracking-wide mb-1">{{ __('Hasło') }}</label>
 
                 <div class="col-md-6">
-                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror block text-sm py-3 px-4 rounded-lg w-full border outline-none" name="password" required autocomplete="new-password">
 
                     @error('password')
                     <span class="invalid-feedback" role="alert">
@@ -98,10 +101,11 @@
             </div>
 
             <div class="row mb-3">
-                <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
+                <label for="password-confirm" class="block
+             text-sm font-bold text-gray-700 tracking-wide mb-1">{{ __('Powtórz hasło') }}</label>
 
                 <div class="col-md-6">
-                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                    <input id="password-confirm" type="password" class="form-control mb-8 block text-sm py-3 px-4 rounded-lg w-full border outline-none" name="password_confirmation" required autocomplete="new-password">
                 </div>
             </div>
 
@@ -114,9 +118,10 @@
                 </a>
             </button>
         </form>
-        <button id="register-button" class="py-2 w-full text-xl text-black bg-white border border-black rounded-2xl">Register</button>
 
-        <p id="signin-link" class="mt-4 text-sm" style="display: none;">Already Have An Account? <span class="underline cursor-pointer">Sign In</span></p>
+        <button id="register-button" class="py-2 w-full text-xl text-black bg-white border border-black rounded-2xl">Zarejestruj</button>
+
+        <p id="signin-link" class="mt-4 text-sm" style="display: none;">Masz już konto? <span class="underline cursor-pointer">Zaloguj się</span></p>
 
     </div>
 
@@ -169,13 +174,17 @@
 
         // Get "Sign In" link element
         const signInLink = document.getElementById("signin-link");
-
+        const newUserLabel = document.getElementById("newUserLabel");
+        const welcomeText = document.querySelector(".text-4xl.font-bold.text-left.mb-4.cursor-pointer");
         // Add event listener to register button
-        registerButton.addEventListener("click", function() {
+
+        newUserLabel.addEventListener("click", function() {
             // Toggle form display
             loginForm.style.display = "none";
             registerForm.style.display = "block";
+
             signInLink.style.display = "block";
+            newUserLabel.style.opacity = "0"
             registerSubmit.style.display = "block";
             registerButton.style.display = "none";
 
@@ -187,6 +196,27 @@
                 registerForm.style.opacity = "1";
                 registerForm.style.transform = "translateY(0)";
             }, 50);
+            welcomeText.textContent = "Stwórz konto";
+        });
+        registerButton.addEventListener("click", function() {
+            // Toggle form display
+            loginForm.style.display = "none";
+            registerForm.style.display = "block";
+
+            signInLink.style.display = "block";
+            newUserLabel.style.opacity = "0"
+            registerSubmit.style.display = "block";
+            registerButton.style.display = "none";
+
+            // Animate form switch
+            registerForm.style.opacity = "0";
+            registerForm.style.transform = "translateY(-20px)";
+            registerForm.style.transition = "opacity 0.3s ease, transform 0.3s ease";
+            setTimeout(function() {
+                registerForm.style.opacity = "1";
+                registerForm.style.transform = "translateY(0)";
+            }, 50);
+            welcomeText.textContent = "Stwórz konto";
         });
 
         // Add event listener to "Sign In" link
@@ -195,8 +225,12 @@
             loginForm.style.display = "block";
             registerForm.style.display = "none";
             signInLink.style.display = "none";
+            newUserLabel.style.opacity = "100"
+
             registerSubmit.style.display = "none";
             registerButton.style.display = "block";
+            welcomeText.textContent = "Witamy ponownie";
+
         });
     });
 

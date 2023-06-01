@@ -1,8 +1,13 @@
-<html>
+@extends('layouts.app')
+
+@section('content')
+
+    <html>
 <head>
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>KLIENICI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
 </head>
 <body>
 <div style="display:flex; align-items: center; justify-content: center; flex-direction: column; margin-bottom: 2.5rem;">
@@ -110,3 +115,4 @@ use App\Models\Klienci;
 ?>
 </body>
 </html>
+@endsection

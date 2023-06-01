@@ -5,6 +5,7 @@
 @php
     use App\Models\Placowki;
 @endphp
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <div style="display:flex; align-items: center; justify-content: center; flex-direction: column; margin-bottom: 2.5rem;">
     <h2>Dodaj nowego pracownika</h2>
@@ -16,7 +17,6 @@
 </div>
 
 <div style="display:flex; align-items: center; justify-content: center; flex-direction: column;">
-    <h1>Lista pracowników</h1>
     <table class="table table-striped table-bordered w-50">
         <thead>
         <tr>

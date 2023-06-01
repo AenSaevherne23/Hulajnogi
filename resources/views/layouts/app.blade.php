@@ -28,111 +28,54 @@
     </div>
     <ul class="nav-links">
         <li>
-            <a href="#">
-                <i class='bx bx-grid-alt' ></i>
-                <span class="link_name">Dashboard</span>
+            <a href="{{ route('placowki.index') }}">
+                <i class="bx bx-home"></i>
+                <span class="link_name">Placowki</span>
             </a>
-            <ul class="sub-menu blank">
-                <li><a class="link_name" href="#">Category</a></li>
-            </ul>
         </li>
         <li>
-            <div class="iocn-link">
-                <a href="#">
-                    <i class='bx bx-collection' ></i>
-                    <span class="link_name">Category</span>
-                </a>
-                <i class='bx bxs-chevron-down arrow' ></i>
-            </div>
-            <ul class="sub-menu">
-                <li><a class="link_name" href="#">Category</a></li>
-                <li><a href="#">HTML & CSS</a></li>
-                <li><a href="#">JavaScript</a></li>
-                <li><a href="#">PHP & MySQL</a></li>
-            </ul>
-        </li>
-        <li>
-            <div class="iocn-link">
-                <a href="#">
-                    <i class='bx bx-book-alt' ></i>
-                    <span class="link_name">Posts</span>
-                </a>
-                <i class='bx bxs-chevron-down arrow' ></i>
-            </div>
-            <ul class="sub-menu">
-                <li><a class="link_name" href="#">Posts</a></li>
-                <li><a href="#">Web Design</a></li>
-                <li><a href="#">Login Form</a></li>
-                <li><a href="#">Card Design</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="#">
-                <i class='bx bx-pie-chart-alt-2' ></i>
-                <span class="link_name">Analytics</span>
+            <a href="{{ route('pracownicy.index') }}">
+                <i class="bx bx-group"></i>
+                <span class="link_name">Pracownicy</span>
             </a>
-            <ul class="sub-menu blank">
-                <li><a class="link_name" href="#">Analytics</a></li>
-            </ul>
         </li>
         <li>
-            <a href="#">
-                <i class='bx bx-line-chart' ></i>
-                <span class="link_name">Chart</span>
+            <a href="{{ route('hulajnogi.index') }}">
+                <i class="bx bx-map"></i>
+                <span class="link_name">Hulajnogi</span>
             </a>
-            <ul class="sub-menu blank">
-                <li><a class="link_name" href="#">Chart</a></li>
-            </ul>
         </li>
         <li>
-            <div class="iocn-link">
-                <a href="#">
-                    <i class='bx bx-plug' ></i>
-                    <span class="link_name">Plugins</span>
-                </a>
-                <i class='bx bxs-chevron-down arrow' ></i>
-            </div>
-            <ul class="sub-menu">
-                <li><a class="link_name" href="#">Plugins</a></li>
-                <li><a href="#">UI Face</a></li>
-                <li><a href="#">Pigments</a></li>
-                <li><a href="#">Box Icons</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="#">
-                <i class='bx bx-compass' ></i>
-                <span class="link_name">Explore</span>
+            <a href="{{ route('klienci.index') }}">
+                <i class="bx bx-user"></i>
+                <span class="link_name">Klienci</span>
             </a>
-            <ul class="sub-menu blank">
-                <li><a class="link_name" href="#">Explore</a></li>
-            </ul>
         </li>
         <li>
-            <a href="#">
-                <i class='bx bx-history'></i>
-                <span class="link_name">History</span>
-            </a>
-            <ul class="sub-menu blank">
-                <li><a class="link_name" href="#">History</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="#">
-                <i class='bx bx-cog' ></i>
-                <span class="link_name">Settings</span>
-            </a>
-            <ul class="sub-menu blank">
-                <li><a class="link_name" href="#">Settings</a></li>
-            </ul>
-        </li>
-        <li>
+
+            <!-- nav link with dropdown menu example
+      <li>
+          <div class="iocn-link">
+              <a href="#">
+                  <i class='bx bx-collection' ></i>
+                  <span class="link_name">Category</span>
+              </a>
+              <i class='bx bxs-chevron-down arrow' ></i>
+          </div>
+          <ul class="sub-menu">
+              <li><a class="link_name" href="#">Category</a></li>
+              <li><a href="#">HTML & CSS</a></li>
+              <li><a href="#">JavaScript</a></li>
+              <li><a href="#">PHP & MySQL</a></li>
+          </ul>
+      </li>
+       -->
             <div class="profile-details">
                 <div class="profile-content">
                     <img src="/images/totallyImportant.jpg" alt="profileImg">
                 </div>
                 <div class="name-job">
-                    <div class="profile_name">{{ Auth::user()->name }}</div>
+                    <div class="profile_name">{{ optional(Auth::user())->name }}</div>
                     <div class="job">otaku retard</div>
                 </div>
 
@@ -160,21 +103,95 @@
 
                 <div class="flex-grow border-gray-200  dark:bg-gray-900 overflow-y-hidden">
                     <div class="h-16 lg:flex w-full border-b border-gray-200 dark:border-gray-800 hidden px-10">
-                        <div class="flex h-full text-gray-600 dark:text-gray-400">
-                            <a href="#" class="cursor-pointer h-full border-b-2 border-blue-500 text-blue-500 dark:text-white dark:border-white inline-flex mr-8 items-center">Placówki</a>
-                        </div>
-                        <div class="ml-auto flex items-center space-x-7">
-                            <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-modal-target="defaultModal" data-modal-toggle="defaultModal"   >Dodaj placówke</button>
 
+
+                        @php
+                            $currentRoute = \Illuminate\Support\Facades\Route::currentRouteName();
+                        @endphp
+
+                        @if($currentRoute === 'placowki.index')
+                            <div class="flex h-full text-gray-600 dark:text-gray-400">
+                                <a href="#" class="cursor-pointer h-full border-b-2 border-blue-500 text-blue-500 dark:text-white dark:border-white inline-flex mr-8 items-center">
+                                    Placowki
+                                </a>
+                            </div>
+                            <div class="ml-auto flex items-center space-x-7">
+                                <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-modal-target="defaultModal" data-modal-toggle="defaultModal">Dodaj placówke</button>
+                            </div>
+                        @elseif($currentRoute === 'hulajnogi.index')
+                            <div class="flex h-full text-gray-600 dark:text-gray-400">
+                                <a href="#" class="cursor-pointer h-full border-b-2 border-blue-500 text-blue-500 dark:text-white dark:border-white inline-flex mr-8 items-center">
+                                    Hulajnogi
+                                </a>
+                            </div>
+                            <div class="ml-auto flex items-center space-x-7">
+                                <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-modal-target="defaultModal" data-modal-toggle="defaultModal">Dodaj hulajnoge</button>
+                            </div>
+                        @elseif($currentRoute === 'pracownicy.index')
+                            <div class="flex h-full text-gray-600 dark:text-gray-400">
+                                <a href="#" class="cursor-pointer h-full border-b-2 border-blue-500 text-blue-500 dark:text-white dark:border-white inline-flex mr-8 items-center">
+                                    Pracownicy
+                                </a>
+                            </div>
+                            <div class="ml-auto flex items-center space-x-7">
+                                <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-bs-toggle="modal" data-bs-target="#addRecordModal">Dodaj pracownika</button>
+                            </div>
+                        @elseif($currentRoute === 'klienci.index')
+                            <div class="flex h-full text-gray-600 dark:text-gray-400">
+                                <a href="#" class="cursor-pointer h-full border-b-2 border-blue-500 text-blue-500 dark:text-white dark:border-white inline-flex mr-8 items-center">
+                                    Klienci
+                                </a>
+                            </div>
+                            <div class="ml-auto flex items-center space-x-7">
+                                <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-modal-target="defaultModal" data-modal-toggle="defaultModal">Dodaj klienta</button>
+                            </div>
+                        @endif
+
+                    </div>
+                    <div class="flex-grow overflow-hidden h-full flex flex-col">
+                        <div class="sm:p-7 p-4 overflow-y-auto">
+                    <div class="flex w-full items-center mb-7 ">
+                        <button class="inline-flex mr-3 items-center h-8 pl-2.5 pr-2 rounded-md shadow text-gray-700 dark:text-gray-400 dark:border-gray-800 border border-gray-200 leading-none py-0">
+                            <svg viewBox="0 0 24 24" class="w-4 mr-2 text-gray-400 dark:text-gray-600" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                            Last 30 days
+                            <svg viewBox="0 0 24 24" class="w-4 ml-1.5 text-gray-400 dark:text-gray-600" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <button class="inline-flex items-center h-8 pl-2.5 pr-2 rounded-md shadow text-gray-700 dark:text-gray-400 dark:border-gray-800 border border-gray-200 leading-none py-0">
+                            Filter by
+                            <svg viewBox="0 0 24 24" class="w-4 ml-1.5 text-gray-400 dark:text-gray-600" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="ml-auto text-gray-500 text-xs sm:inline-flex hidden items-center">
+                            <span class="mr-3">Page 1 of 4</span>
+                            <button class="inline-flex mr-2 items-center h-8 w-8 justify-center text-gray-400 rounded-md shadow border border-gray-200 dark:border-gray-800 leading-none py-0">
+                                <svg class="w-4" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="15 18 9 12 15 6"></polyline>
+                                </svg>
+                            </button>
+                            <button class="inline-flex items-center h-8 w-8 justify-center text-gray-400 rounded-md shadow border border-gray-200 dark:border-gray-800 leading-none py-0">
+                                <svg class="w-4" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    @yield("content")
 
                         </div>
                     </div>
-                    @yield("content")
                 </div>
             </div>
-            </div>
         </div>
-
+    </div>
 
 </section>
 <script>
@@ -194,5 +211,6 @@
         sidebarBtn.classList.toggle("translated");
     });
 </script>
+
 </body>
 </html>
