@@ -23,8 +23,9 @@
         <tr>
             <th>Data</th>
             <th>Czy uszkodzona</th>
-            <th>Koszt uszkodzeń</th>
             <th>Opis</th>
+            <th>Koszt uszkodzeń</th>
+            <th>Hulajnoga ID</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -35,6 +36,7 @@
                 <td>{{$rewizja->Czy_uszkodzona}}</td>
                 <td>{{$rewizja->Opis}}</td>
                 <td>{{$rewizja->Koszt_uszkodzen}}</td>
+                <td>{{$rewizja->hulajnoga_id}}</td>
                 <td>
                     <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editRecordModal{{$rewizja->id}}">
                         Edytuj
@@ -52,7 +54,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="editRecordModalLabel{{$rewizja->id}}">Edytuj rewizje</h5>
+                            <h5 class="modal-title" id="editRecordModalLabel{{$rewizja->id}}">Edytuj rewizję</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -60,22 +62,26 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="mb-3">
-                                    <label for="edit_nazwa{{$rewizja->id}}" class="form-label">Data:</label>
-                                    <input type="text" class="form-control" id="edit_nazwa{{$rewizja->id}}" name="data" value="{{$rewizja->Data}}" required>
+                                    <label for="data" class="form-label">Data</label>
+                                    <input type="date" class="form-control" id="data" name="data" value="{{$rewizja->Data}}">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="edit_adres{{$rewizja->id}}" class="form-label">Czy uszkodzona:</label>
-                                    <input type="text" class="form-control" id="edit_adres{{$rewizja->id}}" name="czy_uszkodzona" value="{{$rewizja->Czy_uszkodzona}}" required>
+                                    <label for="czy_uszkodzona" class="form-label">Czy uszkodzona</label>
+                                    <input type="checkbox" class="form-check-input" id="czy_uszkodzona" name="czy_uszkodzona" {{$rewizja->Czy_uszkodzona ? 'checked' : ''}}>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="edit_adres{{$rewizja->id}}" class="form-label">Opis:</label>
-                                    <input type="text" class="form-control" id="edit_adres{{$rewizja->id}}" name="opis" value="{{$rewizja->Opis}}" required>
+                                    <label for="opis" class="form-label">Opis</label>
+                                    <textarea class="form-control" id="opis" name="opis" rows="3">{{$rewizja->Opis}}</textarea>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="edit_adres{{$rewizja->id}}" class="form-label">Koszt uszkodzenia:</label>
-                                    <input type="text" class="form-control" id="edit_adres{{$rewizja->id}}" name="koszt_uszkodzen" value="{{$rewizja->Koszt_uszkodzen}}" required>
+                                    <label for="koszt_uszkodzen" class="form-label">Koszt uszkodzeń</label>
+                                    <input type="number" class="form-control" id="koszt_uszkodzen" name="koszt_uszkodzen" value="{{$rewizja->Koszt_uszkodzen}}">
                                 </div>
-                                <button type="submit" class="btn btn-success">Zapisz</button>
+                                <div class="mb-3">
+                                    <label for="hulajnoga_id" class="form-label">Hulajnoga ID</label>
+                                    <input type="number" class="form-control" id="hulajnoga_id" name="hulajnoga_id" value="{{$rewizja->hulajnoga_id}}">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Zapisz</button>
                             </form>
                         </div>
                     </div>
@@ -86,37 +92,38 @@
     </table>
 </div>
 
-
-
-
-<!-- Form Popup Modal -->
+<!-- Add Record Modal -->
 <div class="modal fade" id="addRecordModal" tabindex="-1" aria-labelledby="addRecordModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addRecordModalLabel">Dodaj rewizję</h5>
+                <h5 class="modal-title" id="addRecordModalLabel">Dodaj nową rewizję</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form action="{{ route('rewizje.store') }}" method="POST">
                     @csrf
                     <div class="mb-3">
-                        <label for="data" class="form-label">Data:</label>
-                        <input type="text" class="form-control" id="data" name="data" required>
+                        <label for="data" class="form-label">Data</label>
+                        <input type="date" class="form-control" id="data" name="data" required>
                     </div>
                     <div class="mb-3">
-                        <label for="czy_uszkodzona" class="form-label">Czy uszkodzona:</label>
-                        <input type="text" class="form-control" id="czy_uszkodzona" name="czy_uszkodzona" required>
+                        <label for="czy_uszkodzona" class="form-label">Czy uszkodzona</label>
+                        <input type="checkbox" class="form-check-input" id="czy_uszkodzona" name="czy_uszkodzona">
                     </div>
                     <div class="mb-3">
-                        <label for="opis" class="form-label">Opis:</label>
-                        <input type="text" class="form-control" id="opis" name="opis" required>
+                        <label for="opis" class="form-label">Opis</label>
+                        <textarea class="form-control" id="opis" name="opis" rows="3" required></textarea>
                     </div>
                     <div class="mb-3">
-                        <label for="koszt_uszkodzen" class="form-label">Koszt uszkodzeń:</label>
-                        <input type="text" class="form-control" id="koszt_uszkodzen" name="koszt_uszkodzen" required>
+                        <label for="koszt_uszkodzen" class="form-label">Koszt uszkodzeń</label>
+                        <input type="number" class="form-control" id="koszt_uszkodzen" name="koszt_uszkodzen" required>
                     </div>
-                    <button type="submit" class="btn btn-success">Dodaj</button>
+                    <div class="mb-3">
+                        <label for="hulajnoga_id" class="form-label">Hulajnoga ID</label>
+                        <input type="number" class="form-control" id="hulajnoga_id" name="hulajnoga_id" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Dodaj</button>
                 </form>
             </div>
         </div>
