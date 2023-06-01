@@ -10,7 +10,7 @@
 </head>
 <body>
 <div style="display:flex; align-items: center; justify-content: center; flex-direction: column; margin-bottom: 2.5rem;">
-    <h2>Dodaj nową placówkę</h2>
+    <h2>Dodaj nową rewizję</h2>
     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addRecordModal">
         Dodaj
     </button>
@@ -25,8 +25,8 @@
             <th>Czy uszkodzona</th>
             <th>Opis</th>
             <th>Koszt uszkodzeń</th>
-            <th>Hulajnoga ID</th>
-            <th>Actions</th>
+            <th>Hulajnoga</th>
+            <th>Akcje</th>
         </tr>
         </thead>
         <tbody>
@@ -36,7 +36,13 @@
                 <td>{{$rewizja->Czy_uszkodzona}}</td>
                 <td>{{$rewizja->Opis}}</td>
                 <td>{{$rewizja->Koszt_uszkodzen}}</td>
-                <td>{{$rewizja->hulajnoga_id}}</td>
+                <td>
+                    @if($rewizja->hulajnoga)
+                        {{ $rewizja->hulajnoga->Nazwa }}
+                    @else
+                        Brak przypisanej hulajnogi
+                    @endif
+                </td>
                 <td>
                     <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editRecordModal{{$rewizja->id}}">
                         Edytuj
@@ -78,8 +84,14 @@
                                     <input type="number" class="form-control" id="koszt_uszkodzen" name="koszt_uszkodzen" value="{{$rewizja->Koszt_uszkodzen}}">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="hulajnoga_id" class="form-label">Hulajnoga ID</label>
-                                    <input type="number" class="form-control" id="hulajnoga_id" name="hulajnoga_id" value="{{$rewizja->hulajnoga_id}}">
+                                    <label for="hulajnoga">Przypisz do hulajnogi:</label>
+                                    <select name="hulajnoga_id" id="edit_rewizja{{$rewizja->id}}" class="form-control" required>
+                                        @foreach($hulajnogi ?? [] as $hulajnoga)
+                                            <option value="{{ $hulajnoga->id }}" {{ $rewizja->hulajnoga_id == $hulajnoga->id ? 'selected' : '' }}>
+                                                {{ $hulajnoga->Nazwa }}
+                                            </option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Zapisz</button>
                             </form>
@@ -120,8 +132,13 @@
                         <input type="number" class="form-control" id="koszt_uszkodzen" name="koszt_uszkodzen" required>
                     </div>
                     <div class="mb-3">
-                        <label for="hulajnoga_id" class="form-label">Hulajnoga ID</label>
-                        <input type="number" class="form-control" id="hulajnoga_id" name="hulajnoga_id" required>
+                        <label for="hulajnoga">Przypisz do hulajnogi:</label>
+                        <select name="hulajnoga_id" id="hulajnoga" class="form-control" required>
+                            @foreach($hulajnogi ?? [] as $hulajnoga)
+                                <option value="{{ $hulajnoga->id }}">{{ $hulajnoga->Nazwa }}</option>
+                            @endforeach
+                        </select>
+
                     </div>
                     <button type="submit" class="btn btn-primary">Dodaj</button>
                 </form>

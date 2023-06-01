@@ -12,10 +12,10 @@ class Rewizje extends Model
     protected $primaryKey = 'id';
     public $timestamps = true;
 
-    protected $fillable = ['Data', 'Czy_uszkodzona', 'Opis', 'Koszt_uszkodzen'];
+    protected $fillable = ['Data', 'Czy_uszkodzona', 'Opis', 'Koszt_uszkodzen', 'hulajnoga_id'];
     protected $dates = ['created_at', 'updated_at'];
 
-    public function hulajnogi()
+    public function hulajnoga()
     {
         return $this->belongsTo(Hulajnogi::class, 'hulajnoga_id');
     }

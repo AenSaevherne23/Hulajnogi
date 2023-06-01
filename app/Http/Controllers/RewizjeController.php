@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Hulajnogi;
 use App\Models\Rewizje;
 use Illuminate\Http\Request;
 
@@ -9,9 +10,10 @@ class RewizjeController extends Controller
 {
     public function index()
     {
+        $hulajnogi = Hulajnogi::all();
         $rewizje = Rewizje::all();
 
-        return view('rewizje', compact('rewizje'));
+        return view('rewizje', compact('rewizje', 'hulajnogi'));
     }
 
     public function store(Request $request)
