@@ -4,16 +4,7 @@
 
 
     <div class="flex-grow overflow-hidden h-full flex flex-col">
-        <div class="h-16 lg:flex w-full border-b border-gray-200 dark:border-gray-800 hidden px-10">
-            <div class="flex h-full text-gray-600 dark:text-gray-400">
-                <a href="#" class="cursor-pointer h-full border-b-2 border-blue-500 text-blue-500 dark:text-white dark:border-white inline-flex mr-8 items-center">Placówki</a>
-            </div>
-            <div class="ml-auto flex items-center space-x-7">
-                <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-modal-target="defaultModal" data-modal-toggle="defaultModal"   >Dodaj placówke</button>
 
-
-            </div>
-        </div>
     <div class="sm:p-7 p-4 overflow-y-auto">
 
         <div class="flex w-full items-center mb-7 ">
@@ -81,29 +72,32 @@
                         </div>
                     </td>
                     <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800">
-                        <div class="flex items-center">
+                        <div class="flex items-center justify-between">
                             <div class="sm:flex hidden flex-col">
                                 {{$placowka->updated_at->format('Y-m-d')}}
                             </div>
 
-                                <button data-modal-target="editRecordModal{{$placowka->id}}" data-modal-toggle="editRecordModal{{$placowka->id}}" class="w-8 h-8 inline-flex items-center justify-center text-gray-400 ml-auto" onclick="toggleMenu()" id="toggleButton">
-                                    <svg viewBox="0 0 24 24" class="w-5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                        <circle cx="12" cy="12" r="1"></circle>
-                                        <circle cx="19" cy="12" r="1"></circle>
-                                        <circle cx="5" cy="12" r="1"></circle>
-                                    </svg>
-                                </button>
 
                             <div class="table_center">
                                 <div id="dropdown{{$placowka->id}}" class="drop-down">
                                     <div class="drop-down__button">
-                                        <span class="drop-down__name">Account settings</span>
+                                        <span class="drop-down__name w-8 h-8 inline-flex items-center justify-center text-gray-400 ml-auto">
+                                            <svg viewBox="0 0 24 24" class="w-5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="1"></circle>
+                                        <circle cx="19" cy="12" r="1"></circle>
+                                        <circle cx="5" cy="12" r="1"></circle>
+                                    </svg></span>
                                     </div>
                                     <div class="drop-down__menu-box">
                                         <ul class="drop-down__menu">
-                                            <li data-name="profile" class="drop-down__item">Your Profile</li>
-                                            <li data-name="dashboard" class="drop-down__item">Your Dashboard</li>
-                                            <li data-name="activity" class="drop-down__item">Recent activity</li>
+                                            <li data-name="profile" class="drop-down__item" data-modal-target="editRecordModal{{$placowka->id}}" data-modal-toggle="editRecordModal{{$placowka->id}}">Edytuj</li>
+                                            <li data-name="dashboard" class="drop-down__item">
+                                                <form id="deleteForm" action="{{ route('placowki.destroy', $placowka->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm">Usuń</button>
+                                                </form>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -119,7 +113,7 @@
                             <!-- Modal header -->
                             <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
                                 <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                                    Dodaj placówke
+                                    Edytuj placówke
                                 </h3>
                                 <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-bs-dismiss="modal">
                                     <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -130,7 +124,7 @@
                             </div>
                             <!-- Modal body -->
                             <div class="space-y-6">
-                                <form action="{{ route('placowki.update', $placowka->id) }}" method="POST">
+                                <form id="editForm" action="{{ route('placowki.update', $placowka->id) }}" method="POST">
                                     @csrf
                                     @method('PUT')
                                     <div class="p-6">
@@ -142,7 +136,7 @@
                                         <input type="text" id="edit_adres{{$placowka->id}}" value="{{$placowka->adres}}" name="adres" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
                                     </div>
                                     <div class="p-6 flex items-center justify-center pt-6 border-t border-gray-200 rounded-b dark:border-gray-600">
-                                        <button type="submit" class="text-white w-full bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Dodaj</button>
+                                        <button type="submit" class="text-white w-full bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Edytuj</button>
                                     </div>
                                 </form>
                             </div>
@@ -210,7 +204,7 @@
             </div>
             <!-- Modal body -->
             <div class="space-y-6">
-                <form action="{{ route('placowki.store') }}" method="POST">
+                <form id="addForm" action="{{ route('placowki.store') }}" method="POST">
                     @csrf
                 <div class="p-6">
                     <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nazwa</label>
@@ -228,5 +222,4 @@
         </div>
     </div>
 </div>
-
 
