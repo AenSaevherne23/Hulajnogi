@@ -34,9 +34,9 @@
             </a>
         </li>
         <li>
-            <a href="{{ route('pracownicy.index') }}">
+            <a href="{{ route('users.index') }}">
                 <i class="bx bx-group"></i>
-                <span class="link_name">Pracownicy</span>
+                <span class="link_name">Uzytkownicy</span>
             </a>
         </li>
         <li>
@@ -127,10 +127,10 @@
                             <div class="ml-auto flex items-center space-x-7">
                                 <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-modal-target="defaultModal" data-modal-toggle="defaultModal">Dodaj hulajnoge</button>
                             </div>
-                        @elseif($currentRoute === 'pracownicy.index')
+                        @elseif($currentRoute === 'users.index')
                             <div class="flex h-full text-gray-600 dark:text-gray-400">
                                 <a href="#" class="cursor-pointer h-full border-b-2 border-blue-500 text-blue-500 dark:text-white dark:border-white inline-flex mr-8 items-center">
-                                    Pracownicy
+                                    Uzytkownicy
                                 </a>
                             </div>
                             <div class="ml-auto flex items-center space-x-7">
@@ -214,5 +214,3 @@
 
 </body>
 </html>
-
-

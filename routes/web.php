@@ -41,15 +41,20 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::post('/placowki', [PlacowkiController::class, 'store'])->name('placowki.store');
     Route::put('/placowki/{placowka}', [PlacowkiController::class, 'update'])->name('placowki.update');
     Route::delete('/placowki/{placowka}', [PlacowkiController::class, 'destroy'])->name('placowki.destroy');
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+    Route::post('/users', [UserController::class, 'store'])->name('users.store');
+    Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::put('/users/{id}', [UserController::class,'update'])->name('users.update');
+    Route::put('/employees/{employee}',[UserController::class,'update'])->name('employees.update');
+    Route::put('/employees/{employee}',[UserController::class,'update'])->name('employees.update');
+    Route::put('/admins/{admin}', [UserController::class,'update'])->name('admins.update');
+    Route::put('/clients/{id}', [UserController::class,'update'])->name('clients.update');
 
-    Route::get('/pracownicy', [UserController::class, 'index'])->name('pracownicy.index');
-    Route::get('/pracownicy/create', [UserController::class, 'create'])->name('pracownicy.create');
-    Route::post('/pracownicy', [UserController::class, 'store'])->name('pracownicy.store');
-    Route::get('/pracownicy/{user}/edit', [UserController::class, 'edit'])->name('pracownicy.edit');
-    Route::put('/pracownicy/{user}', [UserController::class, 'update'])->name('pracownicy.update');
-    Route::delete('/pracownicy/{user}', [UserController::class, 'destroy'])->name('pracownicy.destroy');
 
-  	Route::get('/hulajnogi', [\App\Http\Controllers\HulajnogiController::class, 'index'])->name('hulajnogi.index');
+    Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+
+    Route::get('/hulajnogi', [\App\Http\Controllers\HulajnogiController::class, 'index'])->name('hulajnogi.index');
 	Route::post('/hulajnogi',[\App\Http\Controllers\HulajnogiController::class, 'store'])->name('hulajnogi.store');
 	Route::delete('/hulajnogi/{id}', [\App\Http\Controllers\HulajnogiController::class, 'destroy'])->name('hulajnogi.destroy');
 	Route::put('/hulajnogi/{hulajnoga}', [\App\Http\Controllers\HulajnogiController::class, 'update'])->name('hulajnogi.update');
