@@ -131,23 +131,23 @@
         <div class="relative h-screen overflow-hidden">
             <!-- Item 1 -->
             <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <img src="/images/unsplash1.jpg" class="absolute block w-full h-full object-cover" alt="...">
+                <img src="../public/images/unsplash1.jpg" class="absolute block w-full h-full object-cover" alt="...">
             </div>
             <!-- Item 2 -->
             <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <img src="/images/unsplash2.jpg" class="absolute block w-full h-full object-cover" alt="...">
+                <img src="../public/images/unsplash2.jpg" class="absolute block w-full h-full object-cover" alt="...">
             </div>
             <!-- Item 3 -->
             <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <img src="/images/unsplash6.jpg" class="absolute block w-full h-full object-cover" alt="...">
+                <img src="../public/images/unsplash6.jpg" class="absolute block w-full h-full object-cover" alt="...">
             </div>
             <!-- Item 4 -->
             <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <img src="/images/unsplash4.jpg" class="absolute block w-full h-full object-cover" alt="...">
+                <img src="../public/images/unsplash4.jpg" class="absolute block w-full h-full object-cover" alt="...">
             </div>
             <!-- Item 5 -->
             <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <img src="/images/unsplash5.jpg" class="absolute block w-full h-full object-cover" alt="...">
+                <img src="../public/images/unsplash5.jpg" class="absolute block w-full h-full object-cover" alt="...">
             </div>
         </div>
         <!-- Slider indicators -->
