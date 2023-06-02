@@ -18,7 +18,7 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
@@ -36,12 +36,12 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
     return redirect('/home');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
+
 Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/placowki', [PlacowkiController::class, 'index'])->name('placowki.index');
     Route::post('/placowki', [PlacowkiController::class, 'store'])->name('placowki.store');
     Route::put('/placowki/{placowka}', [PlacowkiController::class, 'update'])->name('placowki.update');
     Route::delete('/placowki/{placowka}', [PlacowkiController::class, 'destroy'])->name('placowki.destroy');
-
     Route::get('/pracownicy', [UserController::class, 'index'])->name('pracownicy.index');
     Route::get('/pracownicy/create', [UserController::class, 'create'])->name('pracownicy.create');
     Route::post('/pracownicy', [UserController::class, 'store'])->name('pracownicy.store');
@@ -55,12 +55,12 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 
     Route::delete('/pracownicy/{user}', [UserController::class, 'destroy'])->name('pracownicy.destroy');
   
-  	Route::get('/hulajnogi', [\App\Http\Controllers\HulajnogiController::class, 'index']);
+    Route::get('/hulajnogi', [\App\Http\Controllers\HulajnogiController::class, 'index'])->name('hulajnogi.index');
 	Route::post('/hulajnogi',[\App\Http\Controllers\HulajnogiController::class, 'store'])->name('hulajnogi.store');
 	Route::delete('/hulajnogi/{id}', [\App\Http\Controllers\HulajnogiController::class, 'destroy'])->name('hulajnogi.destroy');
 	Route::put('/hulajnogi/{hulajnoga}', [\App\Http\Controllers\HulajnogiController::class, 'update'])->name('hulajnogi.update');
-  
-	Route::get('/klienci', [\App\Http\Controllers\KlienciController::class, 'index']);
+
+	Route::get('/klienci', [\App\Http\Controllers\KlienciController::class, 'index'])->name('klienci.index');
 	Route::post('/klienci',[\App\Http\Controllers\KlienciController::class, 'store'])->name('klienci.store');
 	Route::delete('/klienci/{id}', [\App\Http\Controllers\KlienciController::class, 'destroy'])->name('klienci.destroy');
 	Route::put('/klienci/{klient}', [\App\Http\Controllers\KlienciController::class, 'update'])->name('klienci.update');

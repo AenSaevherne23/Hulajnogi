@@ -14,8 +14,4 @@ class Placowki extends Model
 
     protected $fillable = ['nazwa', 'adres'];
     protected $dates = ['created_at', 'updated_at'];
-    public function employees()
-    {
-        return $this->hasMany(User::class, 'id_placowki');
-    }
 }

@@ -1,3 +1,6 @@
+@extends('layouts.app')
+
+@section('content')
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -219,3 +222,4 @@ Edytuj
 </script>
 </body>
 </html>
+@endsection
