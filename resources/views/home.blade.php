@@ -22,9 +22,9 @@
                             <div class="col-md-6">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="card-title">Pracownicy</h5>
+                                        <h5 class="card-title">users</h5>
                                         <p class="card-text">Panel edycyjny pracownikow</p>
-                                        <a href="pracownicy" class="btn btn-primary">Edytuj pracownikow</a>
+                                        <a href="users" class="btn btn-primary">Edytuj pracownikow</a>
                                     </div>
                                 </div>
                             </div>
