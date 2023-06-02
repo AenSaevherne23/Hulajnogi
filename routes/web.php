@@ -48,14 +48,19 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/pracownicy/{user}/edit', [UserController::class, 'edit'])->name('pracownicy.edit');
     Route::put('/pracownicy/{user}', [UserController::class, 'update'])->name('pracownicy.update');
     Route::delete('/pracownicy/{user}', [UserController::class, 'destroy'])->name('pracownicy.destroy');
-  
+
   	Route::get('/hulajnogi', [\App\Http\Controllers\HulajnogiController::class, 'index']);
 	Route::post('/hulajnogi',[\App\Http\Controllers\HulajnogiController::class, 'store'])->name('hulajnogi.store');
 	Route::delete('/hulajnogi/{id}', [\App\Http\Controllers\HulajnogiController::class, 'destroy'])->name('hulajnogi.destroy');
 	Route::put('/hulajnogi/{hulajnoga}', [\App\Http\Controllers\HulajnogiController::class, 'update'])->name('hulajnogi.update');
-  
+
 	Route::get('/klienci', [\App\Http\Controllers\KlienciController::class, 'index']);
 	Route::post('/klienci',[\App\Http\Controllers\KlienciController::class, 'store'])->name('klienci.store');
 	Route::delete('/klienci/{id}', [\App\Http\Controllers\KlienciController::class, 'destroy'])->name('klienci.destroy');
 	Route::put('/klienci/{klient}', [\App\Http\Controllers\KlienciController::class, 'update'])->name('klienci.update');
 });
+
+Route::get('/rewizje', [\App\Http\Controllers\RewizjeController::class, 'index'])->name('rewizje.index');
+Route::post('/rewizje', [\App\Http\Controllers\RewizjeController::class, 'store'])->name('rewizje.store');
+Route::put('/rewizje/{rewizja}', [\App\Http\Controllers\RewizjeController::class, 'update'])->name('rewizje.update');
+Route::delete('/rewizje/{rewizja}', [\App\Http\Controllers\RewizjeController::class, 'destroy'])->name('rewizje.destroy');
