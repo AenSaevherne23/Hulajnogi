@@ -13,8 +13,8 @@
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css"
     />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="{{ asset('public/css/navbar.css') }}" rel="stylesheet"/>
-    <link href="{{ asset('public/css/dropdown.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('../public/css/navbar.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('../public/css/dropdown.css') }}" rel="stylesheet"/>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
