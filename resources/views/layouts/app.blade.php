@@ -39,22 +39,32 @@
                 <span class="link_name">Placowki</span>
             </a>
         </li>
+
         <li>
             <a href="{{ route('users.index') }}">
                 <i class="bx bx-group"></i>
                 <span class="link_name">Uzytkownicy</span>
             </a>
         </li>
+
         <li>
             <a href="{{ route('hulajnogi.index') }}">
                 <i class="bx bx-map"></i>
                 <span class="link_name">Hulajnogi</span>
             </a>
         </li>
+
         <li>
             <a href="{{ route('klienci.index') }}">
                 <i class="bx bx-user"></i>
                 <span class="link_name">Klienci</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ route('wypozyczenia.index') }}">
+                <i class='bx bx-calendar'></i>
+                <span class="link_name">Wypożyczenia</span>
             </a>
         </li>
 
@@ -158,6 +168,15 @@
                             </div>
                             <div class="ml-auto flex items-center space-x-7">
                                 <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-modal-target="addClient" data-modal-toggle="addClient">Dodaj klienta</button>
+                            </div>
+                        @elseif($currentRoute === 'wypozyczenia.index')
+                            <div class="flex h-full text-gray-600 dark:text-gray-400">
+                                <a href="#" class="cursor-pointer h-full border-b-2 border-blue-500 text-blue-500 dark:text-white dark:border-white inline-flex mr-8 items-center">
+                                    Wypożyczenia
+                                </a>
+                            </div>
+                            <div class="ml-auto flex items-center space-x-7">
+                                <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-modal-target="addWypozyczenie" data-modal-toggle="addWypozyczenie">Dodaj wypożyczenie</button>
                             </div>
                         @elseif($currentRoute === 'rewizje.index')
                             <div class="flex h-full text-gray-600 dark:text-gray-400">

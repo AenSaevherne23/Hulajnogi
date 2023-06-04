@@ -64,8 +64,6 @@ class WypozyczeniaController extends Controller
         $wypozyczenie->data_wypozyczenia = $dataWypozyczenia;
         $wypozyczenie->data_zakonczenia = $dataZakonczenia;
 
-        $wypozyczenie->punkt_id = $request->input('punkt_id');
-        $wypozyczenie->hulajnogi()->sync($request->input('hulajnogi'));
         $wypozyczenie->pracownik_id = Auth::id();
 
         $wypozyczenie->save();
