@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+<title>Hulajnogi</title>
 @section('content')
 
     <html>
