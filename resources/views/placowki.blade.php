@@ -11,23 +11,18 @@
 
         <table class="w-full text-left transition-opacity ease-in-out duration-100">
             <thead>
-            <tr class="text-gray-400">
+            <tr class="text-black">
                 <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800">Nazwa</th>
                 <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800">Adres</th>
-                <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800 sm:text-gray-400 text-white">Data dodania</th>
+                <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800">Data dodania</th>
             </tr>
             </thead>
-            <tbody class="text-gray-600 dark:text-gray-100 ">
+            <tbody class="text-gray-500 dark:text-gray-100 ">
             @foreach($placowki as $placowka)
 
                 <tr class="  hover:bg-zinc-600 hover:bg-opacity-10 transition-colors duration-300 ease-in-out">
                     <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800">
                         <div class="flex items-center">
-                            <svg viewBox="0 0 24 24" class="w-4 mr-5 text-yellow-500" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <line x1="12" y1="8" x2="12" y2="12"></line>
-                                <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                            </svg>
                             {{$placowka->nazwa}}
                         </div>
                     </td>
@@ -60,11 +55,13 @@
                                             <form id="deleteForm" action="{{ route('placowki.destroy', $placowka->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit">
-                                            <li data-name="dashboard" class="drop-down__item">
-                                                    Usuń
-                                            </li>
-                                                </button>
+                                                <div class="flex items-center">
+                                                    <button type="submit" class="w-full">
+                                                        <li data-name="dashboard" class="drop-down__item">
+                                                            Usuń
+                                                        </li>
+                                                    </button>
+                                                </div>
                                             </form>
                                         </ul>
                                     </div>
@@ -146,7 +143,7 @@
                 <!-- Modal header -->
                 <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                        Dodaj placówke
+                        Dodaj placówkę
                     </h3>
                     <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="defaultModal">
                         <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
@@ -171,7 +168,8 @@
                     </form>
                 </div>
             </div>
-
 @endsection
+
+
     </body>
     </html>

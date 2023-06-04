@@ -3,12 +3,16 @@
 <link href="/dist/tailwind.css" rel="stylesheet" />
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+
+<style>
+
+</style>
 <div class="min-h-screen bg-purple-800 flex justify-start items-center">
     <div class="h-screen py-12 px-16 bg-white z-20 w-100 flex flex-col justify-center">
         <div>
             <h1 class="text-3xl font-bold text-left mb-14 cursor-pointer">Hulajnogi!</h1>
 
-            <h1 class="text-4xl font-bold text-left mb-4 cursor-pointer">Witamy ponownie</h1>
+            <h1 class="w-80 text-4xl font-bold text-left mb-4 cursor-pointer">Witamy ponownie</h1>
             <p id="newUserLabel" class="w-80 text-start text-sm mb-8 font-semibold text-gray-700 tracking-wide cursor-pointer">Jesteś tu nowy? <a href="#" class="text-purple-800 font-bold">Stwórz konto.</a></p>
         </div>
         <form id="login-form" method="POST" action="{{ route('login') }}">
@@ -43,7 +47,7 @@
             </div>
 
             <div class="text-center mt-6 space-y-2">
-                <button type="submit" class="w-full">
+                <button type="submit" class="w-full" onclick="animateRouteTransition(event)">
                     <a class="relative inline-flex items-center justify-center w-full p-4 px-5 py-3 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-full shadow-xl group hover:ring-1 hover:ring-purple-500">
                         <span class="absolute inset-0 w-full h-full bg-gradient-to-br from-blue-600 via-purple-600 to-pink-700"></span>
                         <span class="absolute bottom-20 right-5 block w-80 h-80 mb-10 mr-30 transition duration-500 origin-bottom-left transform rotate-45 translate-x-0 bg-pink-500 rounded-full opacity-30 group-hover:rotate-90 group-hover:scale-125 ease"></span>
@@ -114,7 +118,7 @@
                 <a class="relative inline-flex items-center justify-center w-full p-4 px-5 py-3 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-full shadow-xl group hover:ring-1 hover:ring-purple-500">
                     <span class="absolute inset-0 w-full h-full bg-gradient-to-br from-blue-600 via-purple-600 to-pink-700"></span>
                     <span class="absolute bottom-20 right-5 block w-80 h-80 mb-10 mr-30 transition duration-500 origin-bottom-left transform rotate-45 translate-x-0 bg-pink-500 rounded-full opacity-30 group-hover:rotate-90 group-hover:scale-125 ease"></span>
-                    <span class="relative text-white"> {{ __('Create an account!') }}</span>
+                    <span class="relative text-white"> {{ __('Stwórz konto!') }}</span>
                 </a>
             </button>
         </form>
@@ -131,23 +135,23 @@
         <div class="relative h-screen overflow-hidden">
             <!-- Item 1 -->
             <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <img src="../public/images/unsplash1.jpg" class="absolute block w-full h-full object-cover" alt="...">
+                <img src="/images/unsplash1.jpg" class="absolute block w-full h-full object-cover" alt="...">
             </div>
             <!-- Item 2 -->
             <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <img src="../public/images/unsplash2.jpg" class="absolute block w-full h-full object-cover" alt="...">
+                <img src="/images/unsplash2.jpg" class="absolute block w-full h-full object-cover" alt="...">
             </div>
             <!-- Item 3 -->
             <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <img src="../public/images/unsplash6.jpg" class="absolute block w-full h-full object-cover" alt="...">
+                <img src="/images/unsplash6.jpg" class="absolute block w-full h-full object-cover" alt="...">
             </div>
             <!-- Item 4 -->
             <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <img src="../public/images/unsplash4.jpg" class="absolute block w-full h-full object-cover" alt="...">
+                <img src="/images/unsplash4.jpg" class="absolute block w-full h-full object-cover" alt="...">
             </div>
             <!-- Item 5 -->
             <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <img src="../public/images/unsplash5.jpg" class="absolute block w-full h-full object-cover" alt="...">
+                <img src="/images/unsplash5.jpg" class="absolute block w-full h-full object-cover" alt="...">
             </div>
         </div>
         <!-- Slider indicators -->
@@ -192,10 +196,12 @@
             registerForm.style.opacity = "0";
             registerForm.style.transform = "translateY(-20px)";
             registerForm.style.transition = "opacity 0.3s ease, transform 0.3s ease";
+
             setTimeout(function() {
                 registerForm.style.opacity = "1";
                 registerForm.style.transform = "translateY(0)";
             }, 50);
+
             welcomeText.textContent = "Stwórz konto";
         });
         registerButton.addEventListener("click", function() {
@@ -204,7 +210,7 @@
             registerForm.style.display = "block";
 
             signInLink.style.display = "block";
-            newUserLabel.style.opacity = "0"
+            newUserLabel.style.display = "none"
             registerSubmit.style.display = "block";
             registerButton.style.display = "none";
 
@@ -225,7 +231,26 @@
             loginForm.style.display = "block";
             registerForm.style.display = "none";
             signInLink.style.display = "none";
-            newUserLabel.style.opacity = "100"
+            newUserLabel.style.display = "block"
+
+            // animate login form switch
+            loginForm.style.opacity = "0";
+            loginForm.style.transform = "translateY(-20px)";
+            loginForm.style.transition = "opacity 0.3s ease, transform 0.3s ease";
+            setTimeout(function() {
+                loginForm.style.opacity = "1";
+                loginForm.style.transform = "translateY(0)";
+            }, 50);
+
+            // Animate register button
+            registerButton.style.opacity = "0";
+            registerButton.style.transform = "translateY(-20px)";
+            registerButton.style.transition = "opacity 0.3s ease, transform 0.3s ease";
+
+            setTimeout(function() {
+                registerButton.style.opacity = "1";
+                registerButton.style.transform = "translateY(0)";
+            }, 50);
 
             registerSubmit.style.display = "none";
             registerButton.style.display = "block";
@@ -235,4 +260,5 @@
     });
 
 </script>
+
 </div>

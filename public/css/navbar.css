@@ -65,6 +65,7 @@
     position: relative;
     list-style: none;
     transition: all 0.4s ease;
+
 }
 .sidebar .nav-links li:hover{
     background: #1d1b31;
@@ -111,6 +112,22 @@
     color: #fff;
 
 }
+    .sidebar .nav-links li:hover i {
+        animation: swingIcon 0.6s ease-in-out;
+    }
+
+    @keyframes swingIcon {
+        0% {
+            transform: rotate(-20deg);
+        }
+        50% {
+            transform: rotate(10deg);
+        }
+        100% {
+            transform: rotate(-5deg);
+        }
+    }
+
 .sidebar.close .nav-links li a .link_name{
     opacity: 0;
     pointer-events: none;
