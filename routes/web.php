@@ -69,4 +69,9 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::post('/rewizje', [\App\Http\Controllers\RewizjeController::class, 'store'])->name('rewizje.store');
     Route::put('/rewizje/{rewizja}', [\App\Http\Controllers\RewizjeController::class, 'update'])->name('rewizje.update');
     Route::delete('/rewizje/{rewizja}', [\App\Http\Controllers\RewizjeController::class, 'destroy'])->name('rewizje.destroy');
+
+    Route::get('/wypozyczenia', [\App\Http\Controllers\WypozyczeniaController::class, 'index'])->name('wypozyczenia.index');
+    Route::post('/wypozyczenia', [\App\Http\Controllers\WypozyczeniaController::class, 'store'])->name('wypozyczenia.store');
+    Route::put('/wypozyczenia/{wypozyczenia}', [\App\Http\Controllers\WypozyczeniaController::class, 'update'])->name('wypozyczenia.update');
+    Route::delete('/wypozyczenia/{wypozyczenia}', [\App\Http\Controllers\WypozyczeniaController::class, 'destroy'])->name('wypozyczenia.destroy');
 });
