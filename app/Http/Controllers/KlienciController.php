@@ -6,12 +6,14 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Placowki;
 use Illuminate\Support\Facades\Gate;
+use App\Models\Klienci;
+
 
 class KlienciController extends Controller
 {
     public function index()
     {
-        $clients = User::where('role', 'client')->get();
+        $clients = Klienci::all();
         $employees = User::where('role', 'employee')->get();
         $admins = User::where('role', 'admin')->get();
 
@@ -24,66 +26,42 @@ class KlienciController extends Controller
         if (Gate::allows('create-employee', auth()->user())) {
             // Użytkownik ma uprawnienia do tworzenia pracownika
             $placowki = Placowki::all();
-            return view('users.create', compact('placowki'));
+            return view('klienci.create', compact('placowki'));
         } else {
             // Użytkownik nie ma uprawnień, przekieruj lub zwróć odpowiedni komunikat
         }
     }
+
 
     public function store(Request $request)
     {
-        if (Gate::allows('create-employee', auth()->user())) {
-            // Użytkownik ma uprawnienia do tworzenia pracownika
-            $employee = new User;
-            $employee->name = $request->input('name');
-            $employee->email = $request->input('email');
-            $employee->password = bcrypt($request->input('password'));
-            $employee->salary = $request->input('salary');
-            $employee->role = 'employee';
-            $employee->id_placowki = $request->input('id_placowki');
-            $employee->save();
+        $klient = new Klienci;
+        $klient->Imie = $request->input('imie');
+        $klient->Nazwisko = $request->input('nazwisko');
+        $klient->Telefon = $request->input('telefon');
+        $klient->save();
 
-            return redirect('/users'); // Zmieniono ścieżkę przekierowania
-        } else {
-            // Użytkownik nie ma uprawnień, przekieruj lub zwróć odpowiedni komunikat
-        }
+        return redirect('/klienci');
     }
 
-    public function edit(User $employee)
+    public function destroy($id)
     {
-        if (Gate::allows('edit-employee', [auth()->user(), $employee])) {
-            // Użytkownik ma uprawnienia do edycji pracownika
-            $placowki = Placowki::all();
-            return view('users.edit', compact('employee', 'placowki'));
-        } else {
-            // Użytkownik nie ma uprawnień, przekieruj lub zwróć odpowiedni komunikat
-        }
+        $klient = Klienci::findOrFail($id);
+        $klient->delete();
+
+        return redirect('/klienci');
     }
-    public function update(Request $request, $id)
+
+    public function update(Request $request, Klienci $klient)
     {
-        $employee = User::findOrFail($id);
-        $employee->name = $request->input('name');
-        $employee->email = $request->input('email');
-        $employee->salary = $request->input('salary');
-        $employee->id_placowki = $request->input('id_placowki');
-        $employee->role = $request->input('role'); // Dodajanie roli pracownika
-        $employee->save();
+        $klient->Imie = $request->input('imie');
+        $klient->Nazwisko = $request->input('nazwisko');
+        $klient->Telefon = $request->input('telefon');
+        $klient->save();
 
-        return redirect('/users');
+        return redirect('/klienci');
     }
 
 
 
-    public function destroy(User $employee)
-    {
-        if (Gate::allows('delete-employee', auth()->user())) {
-            // Użytkownik ma uprawnienia do usunięcia pracownika
-            $employee->delete();
-            //...
-        } else {
-            // Użytkownik nie ma uprawnień, przekieruj lub zwróć odpowiedni komunikat
-        }
-
-        return redirect('/users'); // Zmieniono ścieżkę przekierowania
-    }
 }

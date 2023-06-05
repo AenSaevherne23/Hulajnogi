@@ -161,6 +161,24 @@
                             <div class="ml-auto flex items-center space-x-7">
                                 <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-modal-target="addClient" data-modal-toggle="addClient">Dodaj klienta</button>
                             </div>
+                        @elseif($currentRoute === 'pracownicy.index')
+                            <div class="flex h-full text-gray-600 dark:text-gray-400">
+                                <a href="#" class="cursor-pointer h-full border-b-2 border-blue-500 text-blue-500 dark:text-white dark:border-white inline-flex mr-8 items-center">
+                                    Pracownicy
+                                </a>
+                            </div>
+                            <div class="ml-auto flex items-center space-x-7">
+                                <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-modal-target="addClient" data-modal-toggle="addClient">Dodaj pracownika</button>
+                            </div>
+                        @elseif($currentRoute === 'kierownicy.index')
+                            <div class="flex h-full text-gray-600 dark:text-gray-400">
+                                <a href="#" class="cursor-pointer h-full border-b-2 border-blue-500 text-blue-500 dark:text-white dark:border-white inline-flex mr-8 items-center">
+                                    Kierownicy
+                                </a>
+                            </div>
+                            <div class="ml-auto flex items-center space-x-7">
+                                <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-modal-target="addClient" data-modal-toggle="addClient">Dodaj kierownika</button>
+                            </div>
                         @elseif($currentRoute === 'wypozyczenia.index')
                             <div class="flex h-full text-gray-600 dark:text-gray-400">
                                 <a href="#" class="cursor-pointer h-full border-b-2 border-blue-500 text-blue-500 dark:text-white dark:border-white inline-flex mr-8 items-center">
