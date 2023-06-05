@@ -14,8 +14,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="{{ '/css/navbar.css' }}" rel="stylesheet"/>
     <link href="{{'/css/dropdown.css' }}" rel="stylesheet"/>
-    <link href="{{ asset('../public/css/navbar.css') }}" rel="stylesheet"/>
-    <link href="{{ asset('../public/css/dropdown.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('/css/navbar.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('/css/dropdown.css') }}" rel="stylesheet"/>
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -75,24 +75,26 @@
             </a>
         </li>
         <li>
+            <div class="iocn-link">
+                <a href="#">
+                    <i class='bx bx-collection' ></i>
+                    <span class="link_name">Uzytkownicy</span>
+                </a>
+                <i class='bx bxs-chevron-down arrow' ></i>
+            </div>
+            <ul class="sub-menu">
+                <li><a class="link_name" href="#">Category</a></li>
+                <li><a href="#">Pracownicy</a></li>
+                <li><a href="{{ route('klienci.index') }}">Klienci</a></li>
+                <li><a href="{{ route('kierownicy.index') }}">Kierownicy</a></li>
+            </ul>
+        </li>
+        <li>
 
-            <!-- nav link with dropdown menu example
-      <li>
-          <div class="iocn-link">
-              <a href="#">
-                  <i class='bx bx-collection' ></i>
-                  <span class="link_name">Category</span>
-              </a>
-              <i class='bx bxs-chevron-down arrow' ></i>
-          </div>
-          <ul class="sub-menu">
-              <li><a class="link_name" href="#">Category</a></li>
-              <li><a href="#">HTML & CSS</a></li>
-              <li><a href="#">JavaScript</a></li>
-              <li><a href="#">PHP & MySQL</a></li>
-          </ul>
-      </li>
-       -->
+
+
+
+
             <div class="profile-details">
                 <div class="profile-content">
                     <img src="/images/totallyImportant.jpg" alt="profileImg">

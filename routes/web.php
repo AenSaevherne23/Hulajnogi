@@ -48,6 +48,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::put('/users/{id}', [UserController::class,'update'])->name('users.update');
     Route::put('/employees/{employee}',[UserController::class,'update'])->name('employees.update');
     Route::put('/employees/{employee}',[UserController::class,'update'])->name('employees.update');
+
     Route::put('/admins/{admin}', [UserController::class,'update'])->name('admins.update');
     Route::put('/clients/{id}', [UserController::class,'update'])->name('clients.update');
 
@@ -58,6 +59,11 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 	Route::post('/hulajnogi',[\App\Http\Controllers\HulajnogiController::class, 'store'])->name('hulajnogi.store');
 	Route::delete('/hulajnogi/{id}', [\App\Http\Controllers\HulajnogiController::class, 'destroy'])->name('hulajnogi.destroy');
 	Route::put('/hulajnogi/{hulajnoga}', [\App\Http\Controllers\HulajnogiController::class, 'update'])->name('hulajnogi.update');
+
+    Route::get('/kierownicy', [\App\Http\Controllers\KlienciController::class, 'index'])->name('kierownicy.index');
+    Route::post('/kierownicy',[\App\Http\Controllers\KlienciController::class, 'store'])->name('kierownicy.store');
+    Route::delete('/kierownicy/{id}', [\App\Http\Controllers\KlienciController::class, 'destroy'])->name('kierownicy.destroy');
+    Route::put('/kierownicy/{kierownicy}', [\App\Http\Controllers\KlienciController::class, 'update'])->name('kierownicy.update');
 
 	Route::get('/klienci', [\App\Http\Controllers\KlienciController::class, 'index'])->name('klienci.index');
 	Route::post('/klienci',[\App\Http\Controllers\KlienciController::class, 'store'])->name('klienci.store');
