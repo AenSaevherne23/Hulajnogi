@@ -55,10 +55,19 @@
         </li>
 
         <li>
-            <a href="{{ route('klienci.index') }}">
-                <i class="bx bx-user"></i>
-                <span class="link_name">Klienci</span>
-            </a>
+            <div class="iocn-link">
+                <a href="#">
+                    <i class="bx bx-group"></i>
+                    <span class="link_name">Uzytkownicy</span>
+                </a>
+                <i class='bx bxs-chevron-down arrow' ></i>
+            </div>
+            <ul class="sub-menu">
+                <li><a class="link_name" href="#">Category</a></li>
+                <li><a href="#">Pracownicy</a></li>
+                <li><a href="{{ route('klienci.index') }}">Klienci</a></li>
+                <li><a href="{{ route('kierownicy.index') }}">Kierownicy</a></li>
+            </ul>
         </li>
 
         <li>
@@ -74,21 +83,7 @@
                 <span class="link_name">Rewizje</span>
             </a>
         </li>
-        <li>
-            <div class="iocn-link">
-                <a href="#">
-                    <i class='bx bx-collection' ></i>
-                    <span class="link_name">Uzytkownicy</span>
-                </a>
-                <i class='bx bxs-chevron-down arrow' ></i>
-            </div>
-            <ul class="sub-menu">
-                <li><a class="link_name" href="#">Category</a></li>
-                <li><a href="#">Pracownicy</a></li>
-                <li><a href="{{ route('klienci.index') }}">Klienci</a></li>
-                <li><a href="{{ route('kierownicy.index') }}">Kierownicy</a></li>
-            </ul>
-        </li>
+
         <li>
 
 
