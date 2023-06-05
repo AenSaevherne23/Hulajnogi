@@ -41,20 +41,6 @@
         </li>
 
         <li>
-            <a href="{{ route('users.index') }}">
-                <i class="bx bx-group"></i>
-                <span class="link_name">Uzytkownicy</span>
-            </a>
-        </li>
-
-        <li>
-            <a href="{{ route('hulajnogi.index') }}">
-                <i class="bx bx-map"></i>
-                <span class="link_name">Hulajnogi</span>
-            </a>
-        </li>
-
-        <li>
             <div class="iocn-link">
                 <a href="#">
                     <i class="bx bx-group"></i>
@@ -64,11 +50,20 @@
             </div>
             <ul class="sub-menu">
                 <li><a class="link_name" href="#">Category</a></li>
-                <li><a href="#">Pracownicy</a></li>
+                <li><a href="{{ route('pracownicy.index') }}">Pracownicy</a></li>
                 <li><a href="{{ route('klienci.index') }}">Klienci</a></li>
                 <li><a href="{{ route('kierownicy.index') }}">Kierownicy</a></li>
             </ul>
         </li>
+
+        <li>
+            <a href="{{ route('hulajnogi.index') }}">
+                <i class="bx bx-map"></i>
+                <span class="link_name">Hulajnogi</span>
+            </a>
+        </li>
+
+
 
         <li>
             <a href="{{ route('wypozyczenia.index') }}">
