@@ -8,7 +8,7 @@ class AdminMiddleware
 {
     public function handle($request, Closure $next)
     {
-        if (!auth()->user()->isAdmin()) {
+        if (!auth()->user()->isAdmin() && !auth()->user()->isEmployee()) {
             abort(403, 'Unauthorized');
         }
 

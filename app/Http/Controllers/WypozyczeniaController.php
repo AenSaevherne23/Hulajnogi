@@ -56,19 +56,25 @@ class WypozyczeniaController extends Controller
 
     public function update(Request $request, Wypozyczenia $wypozyczenie)
     {
-        $wypozyczenie->klient_id = $request->input('klient_id');
+        /*Wypozyczenia::find($wypozyczenie->id)->forceDelete();*/
+        $nr=Wypozyczenia::find($wypozyczenie->id);
+        Wypozyczenia::destroy($nr);
+        $wypozyczenie2= new Wypozyczenia;
+        $wypozyczenie2->klient_id = $request->input('klient_id');
 
         $dataWypozyczenia = $request->input('data_wyp');
         $dataZakonczenia = $request->input('data_zak');
 
-        $wypozyczenie->data_wypozyczenia = $dataWypozyczenia;
-        $wypozyczenie->data_zakonczenia = $dataZakonczenia;
+        $wypozyczenie2->data_wypozyczenia = $dataWypozyczenia;
+        $wypozyczenie2->data_zakonczenia = $dataZakonczenia;
 
-        $wypozyczenie->pracownik_id = Auth::id();
+        $wypozyczenie2->pracownik_id = Auth::id();
 
-        $wypozyczenie->save();
-        $nr=Wypozyczenia::find($wypozyczenie->id);
+        $wypozyczenie2->save();
+        $nr=Wypozyczenia::find($wypozyczenie2->id);
         $nr->hulajnogi()->attach($request->input('hulajnogi'));
+        /*$wypozyczenie->hulajnogi()->sync($request->input('hulajnogi'));*/
+        /*$wypozyczenie->hulajnogi()->attach($request->input('hulajnogi'));*/
 
         return redirect('/wypozyczenia');
     }
