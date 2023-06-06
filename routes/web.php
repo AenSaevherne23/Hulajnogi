@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\PlacowkiController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\KierownicyController;
+use App\Http\Controllers\KlienciController;
+use App\Http\Controllers\PracownicyController;
 
 
 /*
@@ -46,27 +49,53 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::post('/users', [UserController::class, 'store'])->name('users.store');
     Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::put('/users/{id}', [UserController::class,'update'])->name('users.update');
-    Route::put('/employees/{employee}',[UserController::class,'update'])->name('employees.update');
-    Route::put('/employees/{employee}',[UserController::class,'update'])->name('employees.update');
+    Route::put('/employees/{employee}',[PracownicyController::class,'update'])->name('employees.update');
+    Route::put('/employees/{employee}',[PracownicyController::class,'update'])->name('employees.update');
+
     Route::put('/admins/{admin}', [UserController::class,'update'])->name('admins.update');
     Route::put('/clients/{id}', [UserController::class,'update'])->name('clients.update');
 
 
-    Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+    Route::get('/kierownicy', [KierownicyController::class, 'index'])->name('kierownicy.index');
+    Route::get('/kierownicy/create', [KierownicyController::class, 'create'])->name('kierownicy.create');
+    Route::post('/kierownicy', [KierownicyController::class, 'store'])->name('kierownicy.store');
+    Route::get('/kierownicy/{kierownicy}/edit', [KierownicyController::class, 'edit'])->name('kierownicy.edit');
+    Route::put('/kierownicy/{id}', [KierownicyController::class,'update'])->name('kierownicy.update');
+    Route::delete('/kierownicy/{kierownicy}', [KierownicyController::class, 'destroy'])->name('kierownicy.destroy');
+
+    Route::get('/klienci', [\App\Http\Controllers\KlienciController::class, 'index'])->name('klienci.index');
+    Route::post('/klienci',[\App\Http\Controllers\KlienciController::class, 'store'])->name('klienci.store');
+    Route::delete('/klienci/{id}', [\App\Http\Controllers\KlienciController::class, 'destroy'])->name('klienci.destroy');
+    Route::put('/klienci/{klient}', [\App\Http\Controllers\KlienciController::class, 'update'])->name('klienci.update');
+
+    Route::get('/pracownicy', [PracownicyController::class, 'index'])->name('pracownicy.index');
+    Route::get('/pracownicy/create', [PracownicyController::class, 'create'])->name('pracownicy.create');
+    Route::post('/pracownicy', [PracownicyController::class, 'store'])->name('pracownicy.store');
+    Route::get('/pracownicy/{pracownicy}/edit', [PracownicyController::class, 'edit'])->name('pracownicy.edit');
+    Route::delete('/pracownicy/{pracownicy}', [PracownicyController::class, 'destroy'])->name('pracownicy.destroy');
+    Route::put('/pracownicy/{id}/changerole', [PracownicyController::class, 'changeRole'])->name('pracownicy.changerole');
+    Route::put('/pracownicy/{id}', [PracownicyController::class,'update'])->name('pracownicy.update');
 
     Route::get('/hulajnogi', [\App\Http\Controllers\HulajnogiController::class, 'index'])->name('hulajnogi.index');
 	Route::post('/hulajnogi',[\App\Http\Controllers\HulajnogiController::class, 'store'])->name('hulajnogi.store');
 	Route::delete('/hulajnogi/{id}', [\App\Http\Controllers\HulajnogiController::class, 'destroy'])->name('hulajnogi.destroy');
 	Route::put('/hulajnogi/{hulajnoga}', [\App\Http\Controllers\HulajnogiController::class, 'update'])->name('hulajnogi.update');
 
+    /*
 	Route::get('/klienci', [\App\Http\Controllers\KlienciController::class, 'index'])->name('klienci.index');
 	Route::post('/klienci',[\App\Http\Controllers\KlienciController::class, 'store'])->name('klienci.store');
 	Route::delete('/klienci/{id}', [\App\Http\Controllers\KlienciController::class, 'destroy'])->name('klienci.destroy');
 	Route::put('/klienci/{klient}', [\App\Http\Controllers\KlienciController::class, 'update'])->name('klienci.update');
+    */
 
 
     Route::get('/rewizje', [\App\Http\Controllers\RewizjeController::class, 'index'])->name('rewizje.index');
     Route::post('/rewizje', [\App\Http\Controllers\RewizjeController::class, 'store'])->name('rewizje.store');
     Route::put('/rewizje/{rewizja}', [\App\Http\Controllers\RewizjeController::class, 'update'])->name('rewizje.update');
     Route::delete('/rewizje/{rewizja}', [\App\Http\Controllers\RewizjeController::class, 'destroy'])->name('rewizje.destroy');
+
+    Route::get('/wypozyczenia', [\App\Http\Controllers\WypozyczeniaController::class, 'index'])->name('wypozyczenia.index');
+    Route::post('/wypozyczenia', [\App\Http\Controllers\WypozyczeniaController::class, 'store'])->name('wypozyczenia.store');
+    Route::put('/wypozyczenia/{wypozyczenia}', [\App\Http\Controllers\WypozyczeniaController::class, 'update'])->name('wypozyczenia.update');
+    Route::delete('/wypozyczenia/{wypozyczenia}', [\App\Http\Controllers\WypozyczeniaController::class, 'destroy'])->name('wypozyczenia.destroy');
 });

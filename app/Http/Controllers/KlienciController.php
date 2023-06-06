@@ -2,16 +2,36 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Klienci;
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Placowki;
+use Illuminate\Support\Facades\Gate;
+use App\Models\Klienci;
+
 
 class KlienciController extends Controller
 {
     public function index()
     {
-        $klienci = Klienci::all();
-        return view('klienci', compact('klienci'));
+        $clients = Klienci::all();
+        $employees = User::where('role', 'employee')->get();
+        $admins = User::where('role', 'admin')->get();
+
+        return view('klienci', compact('clients', 'employees', 'admins'));
     }
+
+
+    public function create()
+    {
+        if (Gate::allows('create-employee', auth()->user())) {
+            // Użytkownik ma uprawnienia do tworzenia pracownika
+            $placowki = Placowki::all();
+            return view('klienci.create', compact('placowki'));
+        } else {
+            // Użytkownik nie ma uprawnień, przekieruj lub zwróć odpowiedni komunikat
+        }
+    }
+
 
     public function store(Request $request)
     {
@@ -41,4 +61,7 @@ class KlienciController extends Controller
 
         return redirect('/klienci');
     }
+
+
+
 }

@@ -1,9 +1,10 @@
 @extends('layouts.app')
-<title>Hulajnogi</title>
+
 @section('content')
 
     <html>
     <head>
+        <title>Kierownicy</title>
 
     </head>
     <body>
@@ -12,44 +13,35 @@
         <thead>
         <tr class="text-black">
             <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800">Nazwa</th>
-            <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800">Model</th>
-            <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800">Placowka</th>
+            <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800">Email</th>
+            <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800">Placówka</th>
+            <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800">Wypłata</th>
             <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800">Data dodania</th>
         </tr>
         </thead>
         <tbody class="text-gray-500 dark:text-gray-100 ">
-        @foreach($hulajnogi ?? [] as $hulajnoga)
+        @foreach($admins as $admin)
             <tr class="  hover:bg-zinc-600 hover:bg-opacity-10 transition-colors duration-300 ease-in-out">
                 <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800">
                     <div class="flex items-center">
-                        {{ $hulajnoga->Nazwa }}
+                        {{ $admin->name }}
                     </div>
                 </td>
                 <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800">
                     <div class="flex items-center">
 
-                        {{ $hulajnoga->Model }}
+                        {{ $admin->email }}
                     </div>
                 </td>
-                <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800">
-                    <div class="flex items-center">
 
-                        @if($hulajnoga->placowka)
-                            {{ $hulajnoga->placowka->nazwa }}
-                        @else
-                            Brak przypisanej placówki
-                        @endif
-                    </div>
-                </td>
                 <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800">
                     <div class="flex items-center justify-between">
                         <div class="sm:flex hidden flex-col">
-                            {{$hulajnoga->updated_at->format('Y-m-d')}}
+                            {{$admin->updated_at->format('Y-m-d')}}
                         </div>
 
-
                         <div class="table_center">
-                            <div id="dropdown{{$hulajnoga->id}}" class="drop-down">
+                            <div id="dropdown{{$admin->id}}" class="drop-down">
                                 <div class="drop-down__button">
                                         <span class="drop-down__name w-8 h-8 inline-flex items-center justify-center text-gray-400 ml-auto">
                                             <svg viewBox="0 0 24 24" class="w-5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -60,8 +52,8 @@
                                 </div>
                                 <div class="drop-down__menu-box">
                                     <ul class="drop-down__menu">
-                                        <li data-name="profile" class="drop-down__item" data-modal-target="editRecordModal{{$hulajnoga->id}}" data-modal-toggle="editRecordModal{{$hulajnoga->id}}">Edytuj</li>
-                                        <form id="deleteForm" action="{{ route('hulajnogi.destroy', $hulajnoga->id) }}" method="POST">
+                                        <li data-name="profile" class="drop-down__item" data-modal-target="editRecordModal{{$admin->id}}" data-modal-toggle="editRecordModal{{$admin->id}}">Edytuj</li>
+                                        <form id="deleteForm" action="{{ route('pracownicy.destroy', $admin->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <div class="flex items-center">
@@ -80,14 +72,14 @@
                 </td>
             </tr>
             <!-- Edit modal -->
-            <div id="editRecordModal{{$hulajnoga->id}}" tabindex="-1" aria-hidden="true" class="editRecordModal fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+            <div id="editRecordModal{{$admin->id}}" tabindex="-1" aria-hidden="true" class="editRecordModal fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
                 <div class="relative w-full max-w-md max-h-full">
                     <!-- Modal content -->
                     <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                         <!-- Modal header -->
                         <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
                             <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                                Edytuj placówke
+                                Edytuj klienta
                             </h3>
                             <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-bs-dismiss="modal">
                                 <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -98,29 +90,21 @@
                         </div>
                         <!-- Modal body -->
                         <div class="space-y-6">
-                            <form id="editForm" action="{{ route('hulajnogi.update', $hulajnoga->id) }}" method="POST">
+                            <form id="editForm" action="{{ route('pracownicy.update', $admin->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <div class="p-6">
-                                    <label for="edit_nazwa{{$hulajnoga->id}}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nazwa</label>
-                                    <input type="text" id="edit_nazwa{{$hulajnoga->id}}" value="{{$hulajnoga->Nazwa}}" name="nazwa" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
+                                    <label for="edit_nazwa{{$admin->id}}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Imie</label>
+                                    <input type="text" id="edit_nazwa{{$admin->id}}" value="{{$admin->Imie}}" name="imie" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
                                 </div>
                                 <div class="pb-6 ps-6 pe-6">
-                                    <label for="edit_adres{{$hulajnoga->id}}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Adres</label>
-                                    <input type="text" id="edit_adres{{$hulajnoga->id}}" value="{{$hulajnoga->Model}}" name="adres" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
+                                    <label for="edit_adres{{$admin->id}}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nazwisko</label>
+                                    <input type="text" id="edit_adres{{$admin->id}}" value="{{$admin->Nazwisko}}"  name="nazwisko" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
                                 </div>
-                                <div class="p-6">
-                                    <label for="placowka" class="block mb-2 text-sm font-medium text-gray-900 dark:text-whit">Przypisz do placówki</label>
-
-                                    <select name="placowka_id" id="edit_placowka{{$hulajnoga->id}}" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
-                                        @foreach($placowki ?? [] as $placowka)
-                                            <option value="{{ $placowka->id }}" {{ $hulajnoga->placowka_id == $placowka->id ? 'selected' : '' }}>
-                                                {{ $placowka->nazwa }}
-                                            </option>
-                                        @endforeach
-                                    </select>
+                                <div class="pb-6 ps-6 pe-6">
+                                    <label for="edit_adres{{$admin->id}}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Telefon</label>
+                                    <input type="text" id="edit_adres{{$admin->id}}" value="{{$admin->Telefon}}"  name="telefon" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
                                 </div>
-
                                 <div class="p-6 flex items-center justify-center pt-6 border-t border-gray-200 rounded-b dark:border-gray-600">
                                     <button type="submit" class="text-white w-full bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Edytuj</button>
                                 </div>
@@ -155,15 +139,16 @@
     </div>
     </div>
 
+
     <!-- Main modal -->
-    <div id="hulajnogiModal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div id="addClient" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative w-full max-w-md max-h-full">
             <!-- Modal content -->
             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                 <!-- Modal header -->
                 <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                        Dodaj hulajnoge
+                        Dodaj klienta
                     </h3>
                     <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="defaultModal">
                         <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
@@ -172,24 +157,19 @@
                 </div>
                 <!-- Modal body -->
                 <div class="space-y-6">
-                    <form id="addForm" action="{{ route('hulajnogi.store') }}" method="POST">
+                    <form id="addForm" action="{{ route('pracownicy.store') }}" method="POST">
                         @csrf
                         <div class="p-6">
-                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nazwa</label>
-                            <input type="text" id="nazwa"  name="nazwa" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
+                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Imie</label>
+                            <input type="text" id="imie"  name="imie" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
                         </div>
                         <div class="pb-6 ps-6 pe-6">
-                            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Model</label>
-                            <input type="text"  name="model" id="model"class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
+                            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nazwisko</label>
+                            <input type="text" id="nazwisko" name="nazwisko" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
                         </div>
-                        <div class="p-6">
-
-                        <label for="placowka" class="block mb-2 text-sm font-medium text-gray-900 dark:text-whit">Przypisz do placówki</label>
-                        <select name="placowka_id" id="placowka" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
-                            @foreach($placowki ?? [] as $placowka)
-                                <option value="{{ $placowka->id }}">{{ $placowka->nazwa }}</option>
-                            @endforeach
-                        </select>
+                        <div class="pb-6 ps-6 pe-6">
+                            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Telefon</label>
+                            <input type="text" id="telefon" name="telefon" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
                         </div>
                         <div class=" p-6 flex items-center justify-center pt-6 border-t border-gray-200 rounded-b dark:border-gray-600">
                             <button data-modal-hide="defaultModal" type="submit" class="text-white w-full bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Dodaj</button>
@@ -197,10 +177,8 @@
                     </form>
                 </div>
             </div>
+    @endsection
 
 
-@endsection
-
-</body>
+    </body>
     </html>
-
