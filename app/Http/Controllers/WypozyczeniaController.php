@@ -17,13 +17,14 @@ class WypozyczeniaController extends Controller
         $users=User::all();
         $klienci = [];
         $hulajnogi=Hulajnogi::all();
+        $zajete=Hulajnogi::where('zajeta',1)->get()->toArray();
 
         foreach ($users as $user) {
             if ($user->isKlient()) {
                 $klienci[] = $user;
             }
         }
-        return view('wypozyczenia', compact('wypozyczenia','klienci','hulajnogi'));
+        return view('wypozyczenia', compact('wypozyczenia','klienci','hulajnogi','zajete'));
     }
 
     public function store(Request $request)
@@ -40,8 +41,16 @@ class WypozyczeniaController extends Controller
         $wypozyczenie->pracownik_id = Auth::id();
 
         $wypozyczenie->save();
+
+        $hulajnogi = $request->input('hulajnogi');
         $nr=Wypozyczenia::find($wypozyczenie->id);
-        $nr->hulajnogi()->attach($request->input('hulajnogi'));
+        $nr->hulajnogi()->attach($hulajnogi);
+
+        foreach ($hulajnogi as $hulajnogaId) {
+            $hulajnoga = Hulajnogi::find($hulajnogaId);
+            $hulajnoga->zajeta = 1;
+            $hulajnoga->save();
+        }
 
         return redirect('/wypozyczenia');
     }
@@ -49,16 +58,19 @@ class WypozyczeniaController extends Controller
     public function destroy($id)
     {
         $wypozyczenie = Wypozyczenia::findOrFail($id);
+        $hulajnogi = $wypozyczenie->hulajnogi()->pluck('hulajnoga_id')->toArray();
+
         $wypozyczenie->delete();
+
+        Hulajnogi::whereIn('id', $hulajnogi)->update(['zajeta' => 0]);
 
         return redirect('/wypozyczenia');
     }
 
-    public function update(Request $request, Wypozyczenia $wypozyczenie)
+    public function update(Request $request, $id)
     {
-        /*Wypozyczenia::find($wypozyczenie->id)->forceDelete();*/
-        $nr=Wypozyczenia::find($wypozyczenie->id);
-        Wypozyczenia::destroy($nr);
+        $wypozyczenie = Wypozyczenia::findOrFail($id);
+
         $wypozyczenie2= new Wypozyczenia;
         $wypozyczenie2->klient_id = $request->input('klient_id');
 
@@ -71,10 +83,20 @@ class WypozyczeniaController extends Controller
         $wypozyczenie2->pracownik_id = Auth::id();
 
         $wypozyczenie2->save();
-        $nr=Wypozyczenia::find($wypozyczenie2->id);
-        $nr->hulajnogi()->attach($request->input('hulajnogi'));
-        /*$wypozyczenie->hulajnogi()->sync($request->input('hulajnogi'));*/
-        /*$wypozyczenie->hulajnogi()->attach($request->input('hulajnogi'));*/
+
+        $hulajnogi = $request->input('hulajnogi');
+        $wypozyczenie2->hulajnogi()->attach($hulajnogi);
+
+
+        $hulajnogi2 = $wypozyczenie->hulajnogi()->pluck('hulajnoga_id')->toArray();
+        Hulajnogi::whereIn('id', $hulajnogi2)->update(['zajeta' => 0]);
+        $wypozyczenie->forceDelete();
+
+        foreach ($hulajnogi as $hulajnogaId) {
+            $hulajnoga = Hulajnogi::find($hulajnogaId);
+            $hulajnoga->zajeta = 1;
+            $hulajnoga->save();
+        }
 
         return redirect('/wypozyczenia');
     }

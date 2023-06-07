@@ -12,7 +12,7 @@ class Hulajnogi extends Model
     protected  $primaryKey = 'id';
     public $timestamps = true;
 
-    protected $fillable = ['Nazwa', 'Model', 'placowka_id'];
+    protected $fillable = ['Nazwa', 'Model', 'placowka_id','zajeta'];
     protected $dates = ['created_at', 'updated_at'];
 
     public function placowka()
