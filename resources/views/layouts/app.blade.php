@@ -42,7 +42,7 @@
 
         <li>
             <div class="iocn-link">
-                <a href="{{ route('users.index') }}">
+                <a href="#{{--{{ route('users.index') }}--}}">
                     <i class="bx bx-group"></i>
                     <span class="link_name">Uzytkownicy</span>
                 </a>
