@@ -75,6 +75,12 @@
             </a>
         </li>
         <li>
+            <a href="{{ route('odbiory.index') }}">
+                <i class="bx bx-dollar"></i>
+                <span class="link_name">Odbiory</span>
+            </a>
+        </li>
+        <li>
 
             <!-- nav link with dropdown menu example
       <li>
@@ -186,6 +192,15 @@
                             </div>
                             <div class="ml-auto flex items-center space-x-7">
                                 <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-modal-target="addRewizje" data-modal-toggle="addRewizje">Dodaj rewizje</button>
+                            </div>
+                        @elseif($currentRoute === 'odbiory.index')
+                            <div class="flex h-full text-gray-600 dark:text-gray-400">
+                                <a href="#" class="cursor-pointer h-full border-b-2 border-blue-500 text-blue-500 dark:text-white dark:border-white inline-flex mr-8 items-center">
+                                    Odbiory
+                                </a>
+                            </div>
+                            <div class="ml-auto flex items-center space-x-7">
+                                <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-modal-target="addOdbior" data-modal-toggle="addOdbior">Dodaj odbiór</button>
                             </div>
                         @endif
 
