@@ -21,19 +21,19 @@
                 <tr>
                     <th class="px-4 py-2">Nazwa</th>
                     <th class="px-4 py-2">Email</th>
-                    <th class="px-4 py-2">Akcje</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($clients as $client)
                     <tr>
-                        <td class="px-4 py-2">{{ $client->name }}</td>
-                        <td class="px-4 py-2">{{ $client->email }}</td>
-                        <td class="px-4 py-2">
-                     <!-- Modal toggle -->
+                        <td class="px-4 py-2 text-center">{{ $client->name }}</td>
+                        <td class="px-4 py-2 text-center">{{ $client->email }}</td>
+                        <td class="px-4 py-2 text-center">
+                     <!-- Modal toggle
 <button data-modal-target="defaultModal" data-modal-toggle="defaultModal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
 Edytuj
 </button>
+ -->
 
 <!-- Main modal -->
 <div id="defaultModal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 flex items-center justify-center hidden w-full h-screen bg-opacity-50 bg-gray-900">
@@ -91,7 +91,7 @@ Edytuj
             </tbody>
         </table>
 
-        <h2 class="text-xl font-bold my-4">users</h2>
+        <h2 class="text-xl font-bold my-4">Pracownicy</h2>
         <table class="table-auto w-full bg-white border border-gray-200 rounded-lg shadow">
             <thead>
                 <tr>
@@ -99,15 +99,14 @@ Edytuj
                     <th class="px-4 py-2">Email</th>
                     <th class="px-4 py-2">Placówka</th>
                     <th class="px-4 py-2">Wypłata</th>
-                    <th class="px-4 py-2">Akcje</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($employees as $employee)
                     <tr>
-                        <td class="px-4 py-2">{{ $employee->name }}</td>
-                        <td class="px-4 py-2">{{ $employee->email }}</td>
-                        <td class="px-4 py-2">
+                        <td class="px-4 py-2 text-center">{{ $employee->name }}</td>
+                        <td class="px-4 py-2 text-center">{{ $employee->email }}</td>
+                        <td class="px-4 py-2 text-center">
                             @if($employee->placowka)
                                 {{ $employee->placowka->nazwa }}
                             @else
@@ -117,11 +116,11 @@ Edytuj
                         <td class="px-4 py-2">{{ $employee->salary }}</td>
                         <td class="px-4 py-2">
 
-<!-- Modal toggle -->
+<!-- Modal toggle
 <button data-modal-target="defaultModal" data-modal-toggle="defaultModal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
 Edytuj
 </button>
-
+-->
 <!-- Main modal -->
 <div id="defaultModal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 flex items-center justify-center hidden w-full h-screen bg-opacity-50 bg-gray-900">
     <div class="relative w-full max-w-2xl">
@@ -190,9 +189,6 @@ Edytuj
 </div>
 </div>
 </div>
-
-
-
                         </td>
                     </tr>
 
@@ -217,15 +213,14 @@ Edytuj
                 <tr>
                     <th class="px-4 py-2">Nazwa</th>
                     <th class="px-4 py-2">Email</th>
-                    <th class="px-4 py-2">Akcje</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($admins as $admin)
                     <tr>
-                        <td class="px-4 py-2">{{ $admin->name }}</td>
-                        <td class="px-4 py-2">{{ $admin->email }}</td>
-                        <td class="px-4 py-2">
+                        <td class="px-4 py-2 text-center">{{ $admin->name }}</td>
+                        <td class="px-4 py-2 text-center">{{ $admin->email }}</td>
+                        <td class="px-4 py-2 text-center">
                         </td>
                     </tr>
 

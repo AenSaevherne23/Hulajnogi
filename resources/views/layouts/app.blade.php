@@ -2,6 +2,7 @@
 <html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
+    <title> Placowki </title>
     <!-- Boxiocns CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,23 +42,25 @@
         </li>
 
         <li>
-            <a href="{{ route('users.index') }}">
-                <i class="bx bx-group"></i>
-                <span class="link_name">Uzytkownicy</span>
-            </a>
+            <div class="iocn-link">
+                <a href="http://127.0.0.1:8000/users">
+                    <i class="bx bx-group"></i>
+                    <span class="link_name">Uzytkownicy</span>
+                </a>
+                <i class='bx bxs-chevron-down arrow' ></i>
+            </div>
+            <ul class="sub-menu">
+                <li><a class="link_name" href="#">Category</a></li>
+                <li><a href="{{ route('pracownicy.index') }}">Pracownicy</a></li>
+                <li><a href="{{ route('klienci.index') }}">Klienci</a></li>
+                <li><a href="{{ route('kierownicy.index') }}">Kierownicy</a></li>
+            </ul>
         </li>
 
         <li>
             <a href="{{ route('hulajnogi.index') }}">
                 <i class="bx bx-map"></i>
                 <span class="link_name">Hulajnogi</span>
-            </a>
-        </li>
-
-        <li>
-            <a href="{{ route('klienci.index') }}">
-                <i class="bx bx-user"></i>
-                <span class="link_name">Klienci</span>
             </a>
         </li>
 
@@ -99,7 +102,7 @@
                 </div>
                 <div class="name-job">
                     <div class="profile_name">{{ optional(Auth::user())->name }}</div>
-                    <div class="job"></div>
+                    <div class="job">otaku retard</div>
                 </div>
 
                 <a href="{{ route('logout') }}"
@@ -114,7 +117,6 @@
             </div>
         </li>
     </ul>
-    </div>
 </div>
 <section class="home-section">
     <div class="overlay-button">
@@ -168,6 +170,24 @@
                             </div>
                             <div class="ml-auto flex items-center space-x-7">
                                 <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-modal-target="addClient" data-modal-toggle="addClient">Dodaj klienta</button>
+                            </div>
+                        @elseif($currentRoute === 'pracownicy.index')
+                            <div class="flex h-full text-gray-600 dark:text-gray-400">
+                                <a href="#" class="cursor-pointer h-full border-b-2 border-blue-500 text-blue-500 dark:text-white dark:border-white inline-flex mr-8 items-center">
+                                    Pracownicy
+                                </a>
+                            </div>
+                            <div class="ml-auto flex items-center space-x-7">
+                                <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-modal-target="addClient" data-modal-toggle="addClient">Dodaj pracownika</button>
+                            </div>
+                        @elseif($currentRoute === 'kierownicy.index')
+                            <div class="flex h-full text-gray-600 dark:text-gray-400">
+                                <a href="#" class="cursor-pointer h-full border-b-2 border-blue-500 text-blue-500 dark:text-white dark:border-white inline-flex mr-8 items-center">
+                                    Kierownicy
+                                </a>
+                            </div>
+                            <div class="ml-auto flex items-center space-x-7">
+                                <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-modal-target="addClient" data-modal-toggle="addClient">Dodaj kierownika</button>
                             </div>
                         @elseif($currentRoute === 'wypozyczenia.index')
                             <div class="flex h-full text-gray-600 dark:text-gray-400">
@@ -225,7 +245,6 @@
                             </button>
                         </div>
                     </div>
-                            <div class="pb-20">
 
                     @yield("content")
                             </div>
@@ -234,9 +253,9 @@
                 </div>
             </div>
         </div>
-    </div>
 
 </section>
+</div>
 <script>
     let arrow = document.querySelectorAll(".arrow");
     for (var i = 0; i < arrow.length; i++) {
