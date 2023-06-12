@@ -2,7 +2,6 @@
 <html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <title> Placowki </title>
     <!-- Boxiocns CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,7 +42,7 @@
 
         <li>
             <div class="iocn-link">
-                <a href="http://127.0.0.1:8000/users">
+                <a href="{{ route('users.index') }}">
                     <i class="bx bx-group"></i>
                     <span class="link_name">Uzytkownicy</span>
                 </a>
@@ -77,32 +76,15 @@
                 <span class="link_name">Rewizje</span>
             </a>
         </li>
-        <li>
 
-            <!-- nav link with dropdown menu example
-      <li>
-          <div class="iocn-link">
-              <a href="#">
-                  <i class='bx bx-collection' ></i>
-                  <span class="link_name">Category</span>
-              </a>
-              <i class='bx bxs-chevron-down arrow' ></i>
-          </div>
-          <ul class="sub-menu">
-              <li><a class="link_name" href="#">Category</a></li>
-              <li><a href="#">HTML & CSS</a></li>
-              <li><a href="#">JavaScript</a></li>
-              <li><a href="#">PHP & MySQL</a></li>
-          </ul>
-      </li>
-       -->
+        <li>
             <div class="profile-details">
                 <div class="profile-content">
                     <img src="/images/totallyImportant.jpg" alt="profileImg">
                 </div>
                 <div class="name-job">
                     <div class="profile_name">{{ optional(Auth::user())->name }}</div>
-                    <div class="job">otaku retard</div>
+                    <div class="job"></div>
                 </div>
 
                 <a href="{{ route('logout') }}"
@@ -117,6 +99,7 @@
             </div>
         </li>
     </ul>
+    </div>
 </div>
 <section class="home-section">
     <div class="overlay-button">
@@ -245,6 +228,7 @@
                             </button>
                         </div>
                     </div>
+                            <div class="pb-20">
 
                     @yield("content")
                             </div>
@@ -253,9 +237,9 @@
                 </div>
             </div>
         </div>
-
+    </div>
 </section>
-</div>
+
 <script>
     let arrow = document.querySelectorAll(".arrow");
     for (var i = 0; i < arrow.length; i++) {

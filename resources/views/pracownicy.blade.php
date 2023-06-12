@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
 
     <html>
@@ -60,6 +59,43 @@
                         <div class="table_center">
                             <div id="dropdown{{$employee->id}}" class="drop-down">
                                 <div class="drop-down__button">
+                                        <span class="drop-down__name w-8 h-8 inline-flex items-center justify-center text-gray-400 ml-auto">
+                                            <svg viewBox="0 0 24 24" class="w-5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="1"></circle>
+                                        <circle cx="19" cy="12" r="1"></circle>
+                                        <circle cx="5" cy="12" r="1"></circle>
+                                    </svg></span>
+                                </div>
+                                <div class="drop-down__menu-box">
+                                    <ul class="drop-down__menu">
+                                        <li data-name="profile" class="drop-down__item" data-modal-target="editRecordModal{{$employee->id}}" data-modal-toggle="editRecordModal{{$employee->id}}">Edytuj</li>
+                                        <form id="deleteForm" action="{{ route('pracownicy.destroy', $employee->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <div class="flex items-center">
+                                                <button type="submit" class="w-full">
+                                                    <li data-name="dashboard" class="drop-down__item">
+                                                        Usuń
+                                                    </li>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800">
+                    <div class="flex items-center justify-between">
+                        <div class="sm:flex hidden flex-col">
+                            {{$employee->updated_at->format('Y-m-d')}}
+                        </div>
+
+
+                        <div class="table_center">
+                            <div id="dropdown{{$employee->id}}" class="drop-down">
+                                <div class="drop-down__button">
                                     <span class="drop-down__name w-8 h-8 inline-flex items-center justify-center text-gray-400 ml-auto">
                                         <svg viewBox="0 0 24 24" class="w-5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                             <circle cx="12" cy="12" r="1"></circle>
@@ -84,7 +120,7 @@
                                     </ul>
                                 </div>
                             </div>
-                         
+                        </div>
                     </div>
                 </td>
             </tr>
@@ -107,22 +143,22 @@
                             <form action="{{ route('employees.update', $employee->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
-            
+
                                 <div class="mb-4">
                 <label for="name" class="block text-gray-800 dark:text-white font-semibold mb-1">Nazwa</label>
                 <input type="text" class="form-control w-full border-gray-300 rounded-lg focus:ring-blue-300" id="name" name="name" value="{{ $employee->name }}" required>
             </div>
-            
+
             <div class="mb-4">
                 <label for="email" class="block text-gray-800 dark:text-white font-semibold mb-1">Email</label>
                 <input type="email" class="form-control w-full border-gray-300 rounded-lg focus:ring-blue-300" id="email" name="email" value="{{ $employee->email }}" required>
             </div>
-            
+
             <div class="mb-4">
                 <label for="salary" class="block text-gray-800 dark:text-white font-semibold mb-1">Pensja</label>
                 <input type="number" class="form-control w-full border-gray-300 rounded-lg focus:ring-blue-300" id="salary" name="salary" value="{{ $employee->salary }}" required>
             </div>
-            
+
             <div class="mb-4">
                 <label for="id_placowki" class="block text-gray-800 dark:text-white font-semibold mb-1">Przypisana placówka</label>
                 <select class="form-select w-full border-gray-300 rounded-lg focus:ring-blue-300" id="id_placowki" name="id_placowki" required>
@@ -136,13 +172,13 @@
             </div>
 
         @endforeach
-        
+
 <div class="mt-6 flex justify-end">
     <button type="submit" class="block bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 text-white font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
         Zapisz zmiany
     </button>
 </div>
-                         
+
                         </form>
                     </div>
                   </div>
@@ -150,7 +186,7 @@
               </div>
                             <div id="roleModal{{$employee->id}}" class="modal fixed inset-0 flex items-center justify-center z-50 hidden">
                                 <div class="modal-overlay absolute inset-0 bg-gray-500 opacity-75"></div>
-                                
+
                                 <div class="modal-container bg-white w-full mx-auto rounded shadow-lg z-50 max-w-md">
                                   <div class="modal-content py-4 text-left px-6">
                                     <!-- Modal header -->
@@ -164,14 +200,14 @@
                                         </svg>
                                       </button>
                                     </div>
-                                    
+
                                     <!-- Modal body -->
                                     <div class="my-4">
                                         <form action="{{ route('pracownicy.changerole', $employee->id) }}" method="POST">
 
                                         @csrf
                                         @method('PUT')
-                                        
+
                                         <div class="mb-4">
                                             <label for="role" class="block text-gray-800 dark:text-white font-semibold mb-1">Rola</label>
                                             <select class="form-select w-full border-gray-300 rounded-lg focus:ring-blue-300" id="role" name="role" required>
@@ -181,7 +217,7 @@
                                                 <option value="client" {{ $employee->role === 'client' ? 'selected' : '' }}>Client</option>
                                             </select>
                                         </div>
-                                        
+
                                         <div class="mt-6 flex justify-end">
                                             <button type="submit" class="block bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 text-white font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                                 Zapisz zmiany
@@ -192,7 +228,7 @@
                                   </div>
                                 </div>
                               </div>
-                             
+
         <script>
             $(document).ready(function() {
                 $('[id^="dropdown"]').click(function() {
@@ -261,24 +297,5 @@
         </div>
     </div>
     @endsection
-  
-
-<script>
-    $(document).ready(function() {
-        $('[data-modal-toggle^="roleModal"]').click(function() {
-            var modalId = $(this).data('modal-target');
-            $('#' + modalId).show();
-            $('.modal-overlay').show();
-            $('body').addClass('modal-open');
-        });
-
-        $('.modal-close').click(function() {
-            $(this).closest('.modal').hide();
-            $('.modal-overlay').hide();
-            $('body').removeClass('modal-open');
-        });
-    });
-</script>
-
     </body>
     </html>

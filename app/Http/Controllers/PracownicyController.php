@@ -64,10 +64,10 @@ class PracownicyController extends Controller
         $employee = User::findOrFail($id);
         $employee->role = $request->input('role'); // Dodajanie roli pracownika
         $employee->save();
-    
+
         return redirect('/users');
     }
-    
+
 
     public function update(Request $request, $id)
     {
