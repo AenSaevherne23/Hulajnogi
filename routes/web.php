@@ -39,6 +39,8 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
     return redirect('/home');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
+Route::get('/rezerwacje', [PlacowkiController::class, 'index'])->name('placowki.index');
+
 Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/placowki', [PlacowkiController::class, 'index'])->name('placowki.index');
     Route::post('/placowki', [PlacowkiController::class, 'store'])->name('placowki.store');

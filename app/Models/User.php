@@ -12,23 +12,16 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    
      protected $fillable = ['name', 'email', 'password', 'salary', 'role', 'id_placowki'];
-
-
-
 
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-
-
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-   
 
 
 
@@ -37,15 +30,13 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->role === 'admin';
     }
 
-
-
     public function isEmployee()
     {
         return $this->role === 'employee';
     }
     public function isKlient()
     {
-        return $this->role === 'Klient';
+        return $this->role === 'client';
     }
     public function placowka()
     {

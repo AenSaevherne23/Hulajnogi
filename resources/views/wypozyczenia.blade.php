@@ -7,8 +7,10 @@
                 <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800">Data rozpoczęcia</th>
                 <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800">Data zakończenia</th>
                 <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800">Klient</th>
+                <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800">Hulajnogi</th>
                 <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800">Pracownik</th>
                 <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800">Placówka</th>
+
             </tr>
             </thead>
             <tbody class="text-gray-500 dark:text-gray-100 ">
@@ -28,6 +30,15 @@
                     <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800">
                         <div class="flex items-center">
                             {{$wypozyczenie->klient->name}}
+                        </div>
+                    </td>
+                    <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800">
+                        <div class="flex items-center">
+                            <ul>
+                                @foreach ($wypozyczenie->hulajnogi as $hul)
+                                    <li>- {{ $hul->Nazwa }}</li>
+                                @endforeach
+                            </ul>
                         </div>
                     </td>
                     <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800">
