@@ -55,7 +55,7 @@ public function calculateRentalCost($dataRozpoczecia, $dataZakonczenia)
         $wypozyczenie = Wypozyczenia::find($wypozyczenieId);
         $odbior->wypozyczenie_id = $wypozyczenieId;
         $dataRozpoczecia = $wypozyczenie->data_wypozyczenia;
-        $dataZakonczenia = $wypozyczenie->data_zakończenia;
+        $dataZakonczenia = $wypozyczenie->data_zakonczenia;
 
         $kosztWypozyczenia = $this->calculateRentalCost($dataRozpoczecia, $dataZakonczenia);
         $odbior->koszt_wypozyczenia = $kosztWypozyczenia;
@@ -68,16 +68,46 @@ public function calculateRentalCost($dataRozpoczecia, $dataZakonczenia)
     {
         $odbior = Odbiory::findOrFail($id);
 
-
         $odbior->delete();
+
+        Hulajnogi::where('id', $odbior->hulajnoga_id)->update(['zajeta' => 1]);
 
         return redirect('/odbiory');
     }
-    public function update(Request $request, Rewizje $odbior)
+    public function update(Request $request, $id)
     {
-        $odbior->hulajnoga_id = $request->input('hulajnoga_id');
-        $odbior->pracownik_id = Auth::id();
-        $odbior->koszt_wypozyczenia = $request->input('koszt_wyp');
+        $odbior = Odbiory::findOrFail($id);
+        $odbior2 = new Odbiory;
+
+        $hulajnogi = $request->input('hulajnoga_id');
+
+        $odbior2->hulajnogi()->attach($hulajnogi);
+
+
+        $hulajnogi2 = $odbior->hulajnogi()->pluck('hulajnoga_id')->toArray();
+        Hulajnogi::whereIn('id', $hulajnogi2)->update(['zajeta' => 1]);
+        $odbior->forceDelete();
+
+        foreach ($hulajnogi as $hulajnogaId) {
+            $hulajnoga = Hulajnogi::find($hulajnogaId);
+            $hulajnoga->zajeta = 0;
+            $hulajnoga->save();
+        }
+
+
+
+
+        $odbior2->hulajnoga_id = $hulajnogaId;
+        $odbior2->pracownik_id = Auth::id();
+
+        $wypozyczenieId = $request->input('wypozyczenie_id');
+        $wypozyczenie = Wypozyczenia::find($wypozyczenieId);
+        $odbior->wypozyczenie_id = $wypozyczenieId;
+        $dataRozpoczecia = $wypozyczenie->data_wypozyczenia;
+        $dataZakonczenia = $wypozyczenie->data_zakonczenia;
+
+        $kosztWypozyczenia = $this->calculateRentalCost($dataRozpoczecia, $dataZakonczenia);
+        $odbior->koszt_wypozyczenia = $kosztWypozyczenia;
         $odbior->save();
 
         return redirect('/odbiory');
