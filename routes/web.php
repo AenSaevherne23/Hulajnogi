@@ -98,4 +98,10 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::post('/wypozyczenia', [\App\Http\Controllers\WypozyczeniaController::class, 'store'])->name('wypozyczenia.store');
     Route::put('/wypozyczenia/{wypozyczenia}', [\App\Http\Controllers\WypozyczeniaController::class, 'update'])->name('wypozyczenia.update');
     Route::delete('/wypozyczenia/{wypozyczenia}', [\App\Http\Controllers\WypozyczeniaController::class, 'destroy'])->name('wypozyczenia.destroy');
+
+    Route::get('/odbiory', [\App\Http\Controllers\OdbioryController::class, 'index'])->name('odbiory.index');
+    Route::post('/odbiory', [\App\Http\Controllers\OdbioryController::class, 'store'])->name('odbiory.store');
+    Route::delete('/odbiory/{odbior}', [\App\Http\Controllers\OdbioryController::class, 'destroy'])->name('odbiory.destroy');
+    Route::put('/odbiory/{odbior}', [\App\Http\Controllers\OdbioryController::class, 'update'])->name('odbiory.update');
+
 });
