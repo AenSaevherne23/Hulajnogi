@@ -14,4 +14,21 @@ class Klienci extends Model
 
     protected $fillable = ['Imie', 'Nazwisko', 'Telefon'];
     protected $dates = ['created_at', 'updated_at'];
+
+     protected static function boot()
+    {
+        parent::boot();
+
+        // Zdarzenie "created" wywoływane po utworzeniu nowego klienta
+        static::created(function ($client) {
+            $user = new User();
+            $user->name = $client->Imie;
+            // Ustaw inne pola użytkownika według potrzeb
+            $user->role = 'client';
+            unset($user->email);
+            unset($user->password);
+            // Zapisz nowego użytkownika
+            $user->save();
+        });
+    }
 }

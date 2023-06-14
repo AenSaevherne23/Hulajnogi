@@ -12,9 +12,9 @@ return new class extends Migration
 
             $table->id();
             $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('email')->unique()->default('')->nullable();
+            //$table->timestamp('email_verified_at')->default('')->nullable();
+            $table->string('password')->default('')->nullable();
             $table->decimal('salary', 10, 2)->nullable(); // Dodaj pole dla pensji
             $table->string('role')->default('employee'); // Dodaj pole dla roli, domyślnie 'employee'
             $table->rememberToken();

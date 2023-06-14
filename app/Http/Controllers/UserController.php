@@ -39,7 +39,7 @@ class UserController extends Controller
             $employee->email = $request->input('email');
             $employee->password = bcrypt($request->input('password'));
             $employee->salary = $request->input('salary');
-            $employee->role = 'employee';
+            $employee->role = 'guest';
             $employee->id_placowki = $request->input('id_placowki');
             $employee->save();
 
