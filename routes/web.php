@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\KierownicyController;
 use App\Http\Controllers\KlienciController;
 use App\Http\Controllers\PracownicyController;
+use App\Http\Controllers\RezerwacjeController;
 
 
 /*
@@ -39,7 +40,7 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
     return redirect('/home');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
-Route::get('/rezerwacje', [PlacowkiController::class, 'index'])->name('placowki.index');
+Route::get('/rezerwacje', [RezerwacjeController::class, 'index'])->name('rezerwacje.index');
 
 Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/placowki', [PlacowkiController::class, 'index'])->name('placowki.index');
