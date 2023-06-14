@@ -125,7 +125,7 @@
                                         </select>
                                     </div>
                                     <div class="pb-6 ps-6 pe-6">
-                                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Data rozpoczęcia:</label>
+                                        <label for="" class="block mb-2 text-sm font-medium text-gray-900">Data rozpoczęcia:</label>
                                         <input class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" type="text" id="datetimepicker" name="data_wyp" placeholder="Wybierz datę rozpoczęcia..." value="{{ $wypozyczenie->data_wypozyczenia }}"/>
                                         <script>
                                             flatpickr("#datetimepicker",{
@@ -161,9 +161,9 @@
                                         @foreach($hulajnogi as $hulajnoga)
                                             @if($hulajnoga->zajeta==0 || $hulajnoga->zajeta==1 && in_array($hulajnoga->id, $wypozyczenie->hulajnogi->pluck('id')->toArray()))
                                                 <div>
-                                                    <input type="checkbox" name="hulajnogi[]" value="{{ $hulajnoga->id }}" multiple
+                                                    <input id="check{{$hulajnoga->id}}" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2" type="checkbox" name="hulajnogi[]" value="{{ $hulajnoga->id }}" multiple
                                                         {{ in_array($hulajnoga->id, $wypozyczenie->hulajnogi->pluck('id')->toArray()) ? 'checked' : '' }}>
-                                                    <span>{{ $hulajnoga->Nazwa }}</span>
+                                                    <label for="check{{$hulajnoga->id}}" class="ml-2 text-sm font-medium text-gray-900">{{ $hulajnoga->Nazwa }}</label>
                                                 </div>
                                             @endif
                                         @endforeach
@@ -267,8 +267,9 @@
                                 @foreach($hulajnogi as $hulajnoga)
                                     @if($hulajnoga->zajeta==0)
                                         <div>
-                                            <input type="checkbox" name="hulajnogi[]" value="{{ $hulajnoga->id }}" multiple>
-                                            <span>{{ $hulajnoga->Nazwa }}</span>
+                                            <input id="pcheck{{$hulajnoga->id}}" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2" type="checkbox" name="hulajnogi[]" value="{{ $hulajnoga->id }}" multiple>
+                                            {{--<input type="checkbox" name="hulajnogi[]" value="{{ $hulajnoga->id }}" multiple>--}}
+                                            <label for="pcheck{{$hulajnoga->id}}" class="ml-2 text-sm font-medium text-gray-900">{{ $hulajnoga->Nazwa }}</label>
                                         </div>
                                     @endif
                                 @endforeach

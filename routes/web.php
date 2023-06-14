@@ -41,6 +41,9 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
 Route::get('/rezerwacje', [RezerwacjeController::class, 'index'])->name('rezerwacje.index');
+Route::post('/rezerwacje', [RezerwacjeController::class, 'store'])->name('rezerwacje.store');
+Route::put('/rezerwacje/{rezerwacja}', [RezerwacjeController::class, 'update'])->name('rezerwacje.update');
+Route::delete('/rezerwacje/{rezerwacja}', [RezerwacjeController::class, 'destroy'])->name('rezerwacje.destroy');
 
 Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/placowki', [PlacowkiController::class, 'index'])->name('placowki.index');

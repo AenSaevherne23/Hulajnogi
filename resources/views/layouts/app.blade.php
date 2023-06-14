@@ -220,7 +220,7 @@
                                 </a>
                             </div>
                             <div class="ml-auto flex items-center space-x-7">
-                                <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-modal-target="addOdbior" data-modal-toggle="addOdbior">Dodaj odbiór</button>
+                                <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-modal-target="addRezerwacja" data-modal-toggle="addRezerwacja">Dodaj rezerwację</button>
                             </div>
                         @endif
 

@@ -25,6 +25,6 @@ class Rezerwacje extends Model
 
     public function hulajnogi()
     {
-        return $this->belongsToMany(Hulajnogi::class, 'wypozyczenia_hulajnogi', 'wypozyczenie_id', 'hulajnoga_id');
+        return $this->belongsToMany(Hulajnogi::class, 'rezerwacje_hulajnogi', 'rezerwacja_id', 'hulajnoga_id');
     }
 }

@@ -13,9 +13,11 @@ return new class extends Migration
             $table->unsignedBigInteger('klient_id');
             $table->dateTime('data_wypozyczenia');
             $table->dateTime('data_zakonczenia');
+            $table->unsignedBigInteger('placowka_id');
             $table->timestamps();
 
             $table->foreign('klient_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('placowka_id')->references('id')->on('placowki')->onDelete('cascade');
         });
 
         Schema::create('rezerwacje_hulajnogi', function (Blueprint $table) {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Hulajnogi;
+use App\Models\Placowki;
 use App\Models\Rezerwacje;
 use App\Models\User;
 use App\Models\Wypozyczenia;
@@ -13,6 +14,7 @@ class RezerwacjeController extends Controller
 {
     public function index()
     {
+        $placowki=Placowki::all();
         $rezerwacje = Rezerwacje::all();
         $users=User::all();
         $klienci = [];
@@ -24,13 +26,13 @@ class RezerwacjeController extends Controller
                 $klienci[] = $user;
             }
         }
-        return view('rezerwacje', compact('rezerwacje','klienci','hulajnogi','zajete'));
+        return view('rezerwacje', compact('rezerwacje','klienci','hulajnogi','zajete','placowki'));
     }
 
     public function store(Request $request)
     {
         $rezerwacja = new Rezerwacje;
-        $rezerwacja->klient_id = $request->input('klient_id');
+        $rezerwacja->klient_id = Auth::id();
 
         $dataWypozyczenia = $request->input('data_wyp');
         $dataZakonczenia = $request->input('data_zak');
@@ -38,12 +40,12 @@ class RezerwacjeController extends Controller
         $rezerwacja->data_wypozyczenia = $dataWypozyczenia;
         $rezerwacja->data_zakonczenia = $dataZakonczenia;
 
-        $rezerwacja->pracownik_id = Auth::id();
+        $rezerwacja->placowka_id=$request->input('placowka_id');
 
         $rezerwacja->save();
 
         $hulajnogi = $request->input('hulajnogi');
-        $nr=Wypozyczenia::find($rezerwacja->id);
+        $nr=Rezerwacje::find($rezerwacja->id);
         $nr->hulajnogi()->attach($hulajnogi);
 
         foreach ($hulajnogi as $hulajnogaId) {
@@ -57,10 +59,10 @@ class RezerwacjeController extends Controller
 
     public function destroy($id)
     {
-        $wypozyczenie = Wypozyczenia::findOrFail($id);
-        $hulajnogi = $wypozyczenie->hulajnogi()->pluck('hulajnoga_id')->toArray();
+        $rezerwacja = Rezerwacje::findOrFail($id);
+        $hulajnogi = $rezerwacja->hulajnogi()->pluck('hulajnoga_id')->toArray();
 
-        $wypozyczenie->delete();
+        $rezerwacja->delete();
 
         Hulajnogi::whereIn('id', $hulajnogi)->update(['zajeta' => 0]);
 
@@ -69,28 +71,28 @@ class RezerwacjeController extends Controller
 
     public function update(Request $request, $id)
     {
-        $wypozyczenie = Wypozyczenia::findOrFail($id);
+        $rezerwacja = Rezerwacje::findOrFail($id);
 
-        $wypozyczenie2= new Wypozyczenia;
-        $wypozyczenie2->klient_id = $request->input('klient_id');
+        $rezerwacja2= new Rezerwacje;
+        $rezerwacja2->klient_id = Auth::id();
 
         $dataWypozyczenia = $request->input('data_wyp');
         $dataZakonczenia = $request->input('data_zak');
 
-        $wypozyczenie2->data_wypozyczenia = $dataWypozyczenia;
-        $wypozyczenie2->data_zakonczenia = $dataZakonczenia;
+        $rezerwacja2->data_wypozyczenia = $dataWypozyczenia;
+        $rezerwacja2->data_zakonczenia = $dataZakonczenia;
 
-        $wypozyczenie2->pracownik_id = Auth::id();
+        $rezerwacja2->placowka_id=$request->input('placowka_id');
 
-        $wypozyczenie2->save();
+        $rezerwacja2->save();
 
         $hulajnogi = $request->input('hulajnogi');
-        $wypozyczenie2->hulajnogi()->attach($hulajnogi);
+        $rezerwacja2->hulajnogi()->attach($hulajnogi);
 
 
-        $hulajnogi2 = $wypozyczenie->hulajnogi()->pluck('hulajnoga_id')->toArray();
+        $hulajnogi2 = $rezerwacja->hulajnogi()->pluck('hulajnoga_id')->toArray();
         Hulajnogi::whereIn('id', $hulajnogi2)->update(['zajeta' => 0]);
-        $wypozyczenie->forceDelete();
+        $rezerwacja->forceDelete();
 
         foreach ($hulajnogi as $hulajnogaId) {
             $hulajnoga = Hulajnogi::find($hulajnogaId);
