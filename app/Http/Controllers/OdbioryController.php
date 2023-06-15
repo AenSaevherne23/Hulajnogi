@@ -23,7 +23,7 @@ class OdbioryController extends Controller
 
         return view('odbiory', compact('odbiory','users','hulajnogi','zajete','wypozyczenia'));
     }
-public function calculateRentalCost($dataRozpoczecia, $dataZakonczenia)
+public function calculateRentalCost($dataRozpoczecia, $dataZakonczenia, $hulajnogi)
 {
     $dataStart = Carbon::parse($dataRozpoczecia);
     $dataEnd = Carbon::parse($dataZakonczenia);
@@ -33,34 +33,36 @@ public function calculateRentalCost($dataRozpoczecia, $dataZakonczenia)
 
     // Oblicz koszt na podstawie czasu trwania
     $stawkaGodzinowa = 10; // Przykładowa stawka godzinowa
-    $kosztWypozyczenia = $stawkaGodzinowa * $czasTrwania;
-
+    $kosztWypozyczenia = $stawkaGodzinowa * $czasTrwania * count($hulajnogi);
     return $kosztWypozyczenia;
 }
     public function store(Request $request)
     {
-        $hulajnogaId = $request->input('hulajnoga_id');
+        $request->validate([
+            'wypozyczenie_id' => 'unique:odbiory'
+        ]);
 
-        // Znajdź wybraną hulajnogę
-        $hulajnoga = Hulajnogi::find($hulajnogaId);
-
-        // Zaktualizuj status na "zajęta"
-        $hulajnoga->zajeta = 0;
-        $hulajnoga->save();
-        $odbior = new Odbiory;
-        $odbior->hulajnoga_id = $hulajnogaId;
+        $odbior = new Odbiory();
         $odbior->pracownik_id = Auth::id();
 
         $wypozyczenieId = $request->input('wypozyczenie_id');
         $wypozyczenie = Wypozyczenia::find($wypozyczenieId);
         $odbior->wypozyczenie_id = $wypozyczenieId;
+
         $dataRozpoczecia = $wypozyczenie->data_wypozyczenia;
         $dataZakonczenia = $wypozyczenie->data_zakonczenia;
+        $odbior->klient_id = $wypozyczenie->klient_id;
 
-        $kosztWypozyczenia = $this->calculateRentalCost($dataRozpoczecia, $dataZakonczenia);
+        $kosztWypozyczenia = $this->calculateRentalCost($dataRozpoczecia, $dataZakonczenia, $wypozyczenie->hulajnogi);
         $odbior->koszt_wypozyczenia = $kosztWypozyczenia;
         $odbior->save();
 
+        $wypozyczenie = Wypozyczenia::find($wypozyczenieId); // Używamy zmienną $wypozyczenieId
+        $hulajnogi = $wypozyczenie->hulajnogi;
+        foreach ($hulajnogi as $hulajnoga) {
+            $hulajnoga->zajeta = 0;
+            $hulajnoga->save();
+        }
 
         return redirect('/odbiory');
     }

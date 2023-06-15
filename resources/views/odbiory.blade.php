@@ -4,22 +4,20 @@
   <table class="w-full text-left transition-opacity ease-in-out duration-100">
       <thead>
       <tr class="text-black">
-          <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800">Hulajnoga</th>
+          <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800">Klient</th>
           <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800">Pracownik</th>
           <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800">Koszt wypożyczenia</th>
           <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800">Placówka</th>
       </tr>
       </thead>
-      <tbody class="text-gray-500 dark:text-gray-100 ">
+
       @foreach($odbiory as $odbior)
-
-          <tr class="  hover:bg-zinc-600 hover:bg-opacity-10 transition-colors duration-300 ease-in-out">
-              <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800">
-                  <div class="flex items-center">
-                      {{$odbior->hulajnoga->Nazwa}}
-                  </div>
-              </td>
-
+          <tbody class="text-gray-500 dark:text-gray-100 ">
+          <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800">
+              <div class="flex items-center">
+                  {{$odbior->klient->name}}
+              </div>
+          </td>
               <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800">
                   <div class="flex items-center">
                       {{$odbior->pracownik->name}}
@@ -94,16 +92,7 @@
                       <div class="space-y-6">
                           <form id="addForm" action="{{ route('odbiory.update',$odbior->id) }}" method="POST">
                               @csrf
-                              <div class="pb-6 ps-6 pe-6">
-                                  <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Wypożyczone hulajnogi:</label>
-                                  <select name="hulajnoga_id" id="hulajnoga" class="form-control  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
-                                      @foreach($hulajnogi ?? [] as $hulajnoga)
-                                          @if($hulajnoga->zajeta==1)
-                                              <option value="{{ $hulajnoga->id }}">{{ $hulajnoga->Nazwa }}</option>
-                                          @endif
-                                      @endforeach
-                                  </select>
-                              </div>
+
                               <div class="pb-6 ps-6 pe-6">
                                   <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nazwa klienta:
                                       <select name="wypozyczenie_id" id="wypozyczenie" class="form-control  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
@@ -168,22 +157,22 @@
               <div class="space-y-6">
                   <form id="addForm" action="{{ route('odbiory.store') }}" method="POST">
                       @csrf
-                      <div class="pb-6 ps-6 pe-6">
-                          <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Wypożyczone hulajnogi:</label>
-                          <select name="hulajnoga_id" id="hulajnoga" class="form-control  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
-                              @foreach($hulajnogi ?? [] as $hulajnoga)
-                                  @if($hulajnoga->zajeta==1)
-                                  <option value="{{ $hulajnoga->id }}">{{ $hulajnoga->Nazwa }}</option>
-                                  @endif
-                              @endforeach
-                          </select>
-                      </div>
+
                       <div class="pb-6 ps-6 pe-6">
                           <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nazwa klienta:
                               <select name="wypozyczenie_id" id="wypozyczenie" class="form-control  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
-                          @foreach($wypozyczenia ?? [] as $wypozyczenie)
-                              <option value="{{$wypozyczenie->id}}">{{$wypozyczenie->klient->name}}</option>
-                          @endforeach
+                                  @foreach($odbiory as $odbior)
+                                  @foreach($wypozyczenia ?? [] as $wypozyczenie)
+                                      @if($wypozyczenie->id !== $odbior->wypozyczenie->id)
+                                          <option value="{{$wypozyczenie->id}}">
+                                              {{$wypozyczenie->klient->name}},
+                                              {{$wypozyczenie->pracownik->name}},
+                                              {{$wypozyczenie->data_rozpoczecia}},
+                                              {{$wypozyczenie->data_zakonczenia}}
+                                          </option>
+                                      @endif
+                                      @endforeach
+                                  @endforeach
                               </select>
                       </div>
                       <div class="pb-6 ps-6 pe-6">
