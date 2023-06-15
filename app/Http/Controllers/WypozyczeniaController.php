@@ -58,6 +58,23 @@ class WypozyczeniaController extends Controller
         }
         else if($request->input('typ_wyp')=='rezerwacja')
         {
+            $rezerwacja=Rezerwacje::findOrFail($request->input('rezerwacja_id'));
+
+            $wypozyczenie = new Wypozyczenia;
+            $wypozyczenie->klient_id = $rezerwacja->klient_id;
+            $wypozyczenie->data_wypozyczenia = $rezerwacja->data_wypozyczenia;
+            $wypozyczenie->data_zakonczenia = $rezerwacja->data_zakonczenia;
+            $wypozyczenie->pracownik_id = Auth::id();
+            $wypozyczenie->save();
+
+            $hulajnogi = $rezerwacja->hulajnogi()->pluck('hulajnoga_id')->toArray();
+            $wypozyczenie->hulajnogi()->attach($hulajnogi);
+
+            foreach ($hulajnogi as $hulajnogaId) {
+                $hulajnoga = Hulajnogi::find($hulajnogaId);
+                $hulajnoga->zajeta = 1;
+                $hulajnoga->save();
+            }
 
         }
 

@@ -225,13 +225,13 @@
                             @csrf
                             <p class="px-6 pt-6 block mb-2 text-sm font-medium text-gray-900">Typ wypożyczenia:</p>
                             <div class="ps-6 pe-6 flex items-center mb-4">
-                                <input onclick="fun1()" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600" type="radio" id="nowe" name="typ_wyp" value="nowe">
-                                <label onclick="fun1()" class="block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="nowe">Nowe</label>
+                                <input onclick="fun1()" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300" type="radio" id="nowe" name="typ_wyp" value="nowe" checked>
+                                <label onclick="fun1()" class="block ml-2 text-sm font-medium text-gray-900" for="nowe">Nowe</label>
                             </div>
 
                             <div class="pb-6 ps-6 pe-6 flex items-center">
-                                <input onclick="fun2()" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600" type="radio" id="rezerwacja" name="typ_wyp" value="rezerwacja">
-                                <label onclick="fun2()" class="block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="rezerwacja">Z rezerwacji</label>
+                                <input onclick="fun2()" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300" type="radio" id="rezerwacja" name="typ_wyp" value="rezerwacja">
+                                <label onclick="fun2()" class="block ml-2 text-sm font-medium text-gray-900" for="rezerwacja">Z rezerwacji</label>
                             </div>
 
                             <div class="schowaj pb-6 ps-6 pe-6">
