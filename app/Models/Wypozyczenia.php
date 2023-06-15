@@ -14,7 +14,7 @@ class Wypozyczenia extends Model
     protected $table = 'wypozyczenia';
     protected  $primaryKey = 'id';
 
-    protected $fillable = ['klient_id', 'data_rozpoczecia', 'data_zakonczenia','pracownik_id'];
+    protected $fillable = ['klient_id', 'data_rozpoczecia', 'data_zakonczenia','pracownik_id','odebrane'];
 
     public function klient()
     {

@@ -15,6 +15,7 @@ class CreateWypozyczeniaTable extends Migration
             $table->dateTime('data_wypozyczenia');
             $table->dateTime('data_zakonczenia');
             $table->unsignedBigInteger('pracownik_id');
+            $table->boolean('odebrane')->default(false);
             $table->timestamps();
 
             $table->foreign('klient_id')->references('id')->on('users')->onDelete('cascade');
