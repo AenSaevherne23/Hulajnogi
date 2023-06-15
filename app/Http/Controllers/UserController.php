@@ -39,11 +39,30 @@ class UserController extends Controller
             $employee->email = $request->input('email');
             $employee->password = bcrypt($request->input('password'));
             $employee->salary = $request->input('salary');
-            $employee->role = 'guest';
+            $employee->role = 'client';
             $employee->id_placowki = $request->input('id_placowki');
             $employee->save();
 
             return redirect('/users'); // Zmieniono ścieżkę przekierowania
+        } else {
+            // Użytkownik nie ma uprawnień, przekieruj lub zwróć odpowiedni komunikat
+        }
+    }
+
+    public function dodajpracownika(Request $request)
+    {
+        if (Gate::allows('create-employee', auth()->user())) {
+            // Użytkownik ma uprawnienia do tworzenia pracownika
+            $employee = new User;
+            $employee->name = $request->input('name');
+            $employee->email = $request->input('email');
+            $employee->password = bcrypt($request->input('password'));
+            $employee->salary = $request->input('salary');
+            $employee->role = 'employee';
+            $employee->id_placowki = $request->input('id_placowki');
+            $employee->save();
+
+            return redirect('/pracownicy'); // Zmieniono ścieżkę przekierowania
         } else {
             // Użytkownik nie ma uprawnień, przekieruj lub zwróć odpowiedni komunikat
         }

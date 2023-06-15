@@ -67,7 +67,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::post('/klienci',[\App\Http\Controllers\KlienciController::class, 'store'])->name('klienci.store');
     Route::delete('/klienci/{id}', [\App\Http\Controllers\KlienciController::class, 'destroy'])->name('klienci.destroy');
     Route::put('/klienci/{klient}', [\App\Http\Controllers\KlienciController::class, 'update'])->name('klienci.update');
-
+    Route::get('/kliencikonta', [UserController::class,'index'])->name('kliencikonta.index');
     Route::get('/pracownicy', [PracownicyController::class, 'index'])->name('pracownicy.index');
     Route::get('/pracownicy/create', [PracownicyController::class, 'create'])->name('pracownicy.create');
     Route::post('/pracownicy', [PracownicyController::class, 'store'])->name('pracownicy.store');
@@ -76,6 +76,12 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::put('/pracownicy/{id}/changerole', [PracownicyController::class, 'changeRole'])->name('pracownicy.changerole');
     Route::put('/pracownicy/{id}', [PracownicyController::class,'update'])->name('pracownicy.update');
 
+    Route::post('/pracownicy', [UserController::class, 'dodajpracownika'])->name('users.dodajpracownika');
+
+
+
+    Route::get('/pracownicy/create', [PracownicyController::class, 'create'])->name('pracownicy.create');
+ Route::put('/pracownicy/{id}/changerole', [PracownicyController::class, 'changeRole'])->name('pracownicy.changerole');
     Route::get('/hulajnogi', [\App\Http\Controllers\HulajnogiController::class, 'index'])->name('hulajnogi.index');
 	Route::post('/hulajnogi',[\App\Http\Controllers\HulajnogiController::class, 'store'])->name('hulajnogi.store');
 	Route::delete('/hulajnogi/{id}', [\App\Http\Controllers\HulajnogiController::class, 'destroy'])->name('hulajnogi.destroy');

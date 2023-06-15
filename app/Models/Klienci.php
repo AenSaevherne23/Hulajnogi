@@ -28,6 +28,7 @@ class Klienci extends Model
             unset($user->email);
             unset($user->password);
             // Zapisz nowego użytkownika
+            $user->opis = $client->Telefon;
             $user->save();
         });
     }

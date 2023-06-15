@@ -255,7 +255,7 @@
 
 
     <!-- Main modal -->
-    <div id="addEmployee" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div id="addClient" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative w-full max-w-md max-h-full">
             <!-- Modal content -->
             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
@@ -270,80 +270,32 @@
                     </button>
                 </div>
                 <!-- Modal body -->
-  <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
-    <h2 class="text-xl font-semibold mb-4">Dodaj pracownika</h2>
-    <form id="register-form" method="POST" action="{{ route('register') }}" style="display: none;">
-            @csrf
+                <div class="space-y-6">
+                    <form id="addForm" action="{{ route('pracownicy.store') }}" method="POST">
+                        @csrf
+                        <div class="p-6">
+                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nazwa</label>
+                            <input type="text" id="imie"  name="imie" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
+                        </div>
+                        <div class="p-6">
+                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                            <input type="text" id="imie"  name="imie" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
+                        </div>
 
-            <div class="row mb-3">
-                <label for="name" class="block
-             text-sm font-bold text-gray-700 tracking-wide mb-1">{{ __('Nazwa') }}</label>
+                        <div class="pb-6 ps-6 pe-6">
+                            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Wypłata</label>
+                            <input type="text" id="nazwisko" name="nazwisko" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
+                        </div>
 
-                <div class="col-md-6">
-                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror block text-sm py-3 px-4 rounded-lg w-full border outline-none" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
-                    @error('name')
-                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                    @enderror
+                        <div class=" p-6 flex items-center justify-center pt-6 border-t border-gray-200 rounded-b dark:border-gray-600">
+                            <button data-modal-hide="defaultModal" type="submit" class="text-white w-full bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Dodaj</button>
+                        </div>
+                    </form>
                 </div>
             </div>
-
-            <div class="row mb-3">
-                <label for="email" class="block
-             text-sm font-bold text-gray-700 tracking-wide mb-1">{{ __('Adres Email') }}</label>
-
-                <div class="col-md-6">
-                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror block text-sm py-3 px-4 rounded-lg w-full border outline-none" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                    @error('email')
-                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                    @enderror
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <label for="password" class="block
-             text-sm font-bold text-gray-700 tracking-wide mb-1">{{ __('Hasło') }}</label>
-
-                <div class="col-md-6">
-                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror block text-sm py-3 px-4 rounded-lg w-full border outline-none" name="password" required autocomplete="new-password">
-
-                    @error('password')
-                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                    @enderror
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <label for="password-confirm" class="block
-             text-sm font-bold text-gray-700 tracking-wide mb-1">{{ __('Powtórz hasło') }}</label>
-
-                <div class="col-md-6">
-                    <input id="password-confirm" type="password" class="form-control mb-8 block text-sm py-3 px-4 rounded-lg w-full border outline-none" name="password_confirmation" required autocomplete="new-password">
-                </div>
-            </div>
-
-
-            <button id="register-submit" type="submit" class="w-full">
-                <a class="relative inline-flex items-center justify-center w-full p-4 px-5 py-3 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-full shadow-xl group hover:ring-1 hover:ring-purple-500">
-                    <span class="absolute inset-0 w-full h-full bg-gradient-to-br from-blue-600 via-purple-600 to-pink-700"></span>
-                    <span class="absolute bottom-20 right-5 block w-80 h-80 mb-10 mr-30 transition duration-500 origin-bottom-left transform rotate-45 translate-x-0 bg-pink-500 rounded-full opacity-30 group-hover:rotate-90 group-hover:scale-125 ease"></span>
-                    <span class="relative text-white"> {{ __('Stwórz konto!') }}</span>
-                </a>
-            </button>
-        </form>
-  </div>
-</div>
-</div>
-</div>
-
-                    
+        </div>
+    </div>
     @endsection
     </body>
     </html>

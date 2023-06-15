@@ -23,6 +23,7 @@ return new class extends Migration
             // Dodaj pole id_placowki
             $table->unsignedBigInteger('id_placowki')->nullable();
             $table->foreign('id_placowki')->references('id')->on('placowki')->onDelete('cascade');
+            $table->string('opis')->default('')->nullable();
         });
     }
 
