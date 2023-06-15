@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rezerwacje;
 use App\Models\Wypozyczenia;
 use App\Models\User;
 use App\Models\Hulajnogi;
@@ -13,6 +14,7 @@ class WypozyczeniaController extends Controller
 {
     public function index()
     {
+        $rezerwacje=Rezerwacje::all();
         $wypozyczenia = Wypozyczenia::all();
         $users=User::all();
         $klienci = [];
@@ -24,32 +26,39 @@ class WypozyczeniaController extends Controller
                 $klienci[] = $user;
             }
         }
-        return view('wypozyczenia', compact('wypozyczenia','klienci','hulajnogi','zajete'));
+        return view('wypozyczenia', compact('wypozyczenia','klienci','hulajnogi','zajete','rezerwacje'));
     }
 
     public function store(Request $request)
     {
-        $wypozyczenie = new Wypozyczenia;
-        $wypozyczenie->klient_id = $request->input('klient_id');
+        if($request->input('typ_wyp')=='nowe')
+        {
+            $wypozyczenie = new Wypozyczenia;
+            $wypozyczenie->klient_id = $request->input('klient_id');
 
-        $dataWypozyczenia = $request->input('data_wyp');
-        $dataZakonczenia = $request->input('data_zak');
+            $dataWypozyczenia = $request->input('data_wyp');
+            $dataZakonczenia = $request->input('data_zak');
 
-        $wypozyczenie->data_wypozyczenia = $dataWypozyczenia;
-        $wypozyczenie->data_zakonczenia = $dataZakonczenia;
+            $wypozyczenie->data_wypozyczenia = $dataWypozyczenia;
+            $wypozyczenie->data_zakonczenia = $dataZakonczenia;
 
-        $wypozyczenie->pracownik_id = Auth::id();
+            $wypozyczenie->pracownik_id = Auth::id();
 
-        $wypozyczenie->save();
+            $wypozyczenie->save();
 
-        $hulajnogi = $request->input('hulajnogi');
-        $nr=Wypozyczenia::find($wypozyczenie->id);
-        $nr->hulajnogi()->attach($hulajnogi);
+            $hulajnogi = $request->input('hulajnogi');
+            $nr=Wypozyczenia::find($wypozyczenie->id);
+            $nr->hulajnogi()->attach($hulajnogi);
 
-        foreach ($hulajnogi as $hulajnogaId) {
-            $hulajnoga = Hulajnogi::find($hulajnogaId);
-            $hulajnoga->zajeta = 1;
-            $hulajnoga->save();
+            foreach ($hulajnogi as $hulajnogaId) {
+                $hulajnoga = Hulajnogi::find($hulajnogaId);
+                $hulajnoga->zajeta = 1;
+                $hulajnoga->save();
+            }
+        }
+        else if($request->input('typ_wyp')=='rezerwacja')
+        {
+
         }
 
         return redirect('/wypozyczenia');

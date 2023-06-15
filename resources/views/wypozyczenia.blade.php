@@ -223,15 +223,27 @@
                     <div class="space-y-6">
                         <form id="addForm" action="{{ route('wypozyczenia.store') }}" method="POST">
                             @csrf
-                            <div class="p-6">
-                                <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Klient:</label>
+                            <p class="px-6 pt-6 block mb-2 text-sm font-medium text-gray-900">Typ wypożyczenia:</p>
+                            <div class="ps-6 pe-6 flex items-center mb-4">
+                                <input onclick="fun1()" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600" type="radio" id="nowe" name="typ_wyp" value="nowe">
+                                <label onclick="fun1()" class="block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="nowe">Nowe</label>
+                            </div>
+
+                            <div class="pb-6 ps-6 pe-6 flex items-center">
+                                <input onclick="fun2()" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600" type="radio" id="rezerwacja" name="typ_wyp" value="rezerwacja">
+                                <label onclick="fun2()" class="block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="rezerwacja">Z rezerwacji</label>
+                            </div>
+
+                            <div class="schowaj pb-6 ps-6 pe-6">
+                                <label for="klient_id" class="block mb-2 text-sm font-medium text-gray-900">Klient:</label>
                                 <select name="klient_id" id="klient_id" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                                     @foreach($klienci as $klient)
                                         <option value="{{ $klient->id }}">{{ $klient->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="pb-6 ps-6 pe-6">
+
+                            <div class="schowaj pb-6 ps-6 pe-6">
                                 <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Data rozpoczęcia:</label>
                                 <input type="text" id="datetimepicker" name="data_wyp" placeholder="Wybierz datę rozpoczęcia..." class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"/>
                                 <script>
@@ -246,7 +258,7 @@
                                         }});
                                 </script>
                             </div>
-                            <div class="pb-6 ps-6 pe-6">
+                            <div class="schowaj pb-6 ps-6 pe-6">
                                 <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Data zakończenia:</label>
                                 <input type="text" id="datetimepicker2" name="data_zak" placeholder="Wybierz datę zakończenia..." class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"/>
                                 <script>
@@ -262,7 +274,7 @@
                                     });
                                 </script>
                             </div>
-                            <div class="pb-6 ps-6 pe-6">
+                            <div class="schowaj pb-6 ps-6 pe-6">
                                 <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Dostępne hulajnogi:</label>
                                 @foreach($hulajnogi as $hulajnoga)
                                     @if($hulajnoga->zajeta==0)
@@ -274,10 +286,49 @@
                                     @endif
                                 @endforeach
                             </div>
+                            <div class="schowaj2 hidden pb-6 ps-6 pe-6">
+                                <label for="rezerwacja_id" class="block mb-2 text-sm font-medium text-gray-900">Rezerwacja:</label>
+                                <select name="rezerwacja_id" id="rezerwacja_id" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    @foreach($rezerwacje as $rezerwacja)
+                                        <option value="{{ $rezerwacja->id }}">Rezerwacja #{{ $rezerwacja->id }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <div class=" p-6 flex items-center justify-center pt-6 border-t border-gray-200 rounded-b">
                                 <button data-modal-hide="addWypozyczenie" type="submit" class="text-white w-full bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Dodaj</button>
                             </div>
                         </form>
                     </div>
                 </div>
+    <script>
+        function fun1()
+        {
+            const zmiany=document.getElementsByClassName('schowaj');
+            const zmiany2=document.getElementsByClassName('schowaj2');
+            for (let i=0; i< zmiany.length; i++)
+            {
+                zmiany[i].style.display='block';
+            }
+
+            for (let i=0; i< zmiany2.length; i++)
+            {
+                zmiany2[i].style.display='none';
+            }
+        }
+
+        function fun2()
+        {
+            const zmiany=document.getElementsByClassName('schowaj');
+            const zmiany2=document.getElementsByClassName('schowaj2');
+            for (let i=0; i< zmiany.length; i++)
+            {
+                zmiany[i].style.display='none';
+            }
+
+            for (let i=0; i< zmiany2.length; i++)
+            {
+                zmiany2[i].style.display='block';
+            }
+        }
+    </script>
 @endsection
