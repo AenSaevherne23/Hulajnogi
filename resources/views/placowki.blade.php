@@ -14,7 +14,9 @@
             <tr class="text-black">
                 <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200">Nazwa</th>
                 <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200">Adres</th>
+                @if(Auth::user()->isAdmin()||Auth::user()->isEmployee())
                 <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200">Data dodania</th>
+                @endif
             </tr>
             </thead>
             <tbody class="text-gray-500">
@@ -31,7 +33,7 @@
 
                             {{$placowka->adres}}
                         </div>
-                    </td>
+                    </td>@if(Auth::user()->isAdmin()||Auth::user()->isEmployee())
                     <td class="sm:p-3 py-2 px-1 border-b border-gray-200">
                         <div class="flex items-center justify-between">
                             <div class="sm:flex hidden flex-col">
@@ -67,8 +69,9 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
-                    </td>
+                    </td>@endif
                 </tr>
                 <!-- Edit modal -->
                 <div id="editRecordModal{{$placowka->id}}" tabindex="-1" aria-hidden="true" class="editRecordModal fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">

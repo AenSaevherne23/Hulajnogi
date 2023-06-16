@@ -1,3 +1,6 @@
+@if(\Illuminate\Support\Facades\Auth::check())
+    {{\Illuminate\Support\Facades\Redirect::route('/placowki')}}
+@endif
 <title>Zaloguj się</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/tw-elements"></script>

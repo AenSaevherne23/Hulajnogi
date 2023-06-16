@@ -39,7 +39,7 @@
                 <span class="link_name">Placowki</span>
             </a>
         </li>
-
+        @if(Auth::user()->isAdmin()||Auth::user()->isEmployee())
         <li>
             <div class="iocn-link">
                 <a href="#{{--{{ route('users.index') }}--}}">
@@ -55,7 +55,7 @@
                 <li><a href="{{ route('kierownicy.index') }}">Kierownicy</a></li>
             </ul>
         </li>
-
+        @endif
         <li>
             <a href="{{ route('hulajnogi.index') }}">
                 <i class="bx bx-map"></i>
@@ -69,7 +69,7 @@
                 <span class="link_name">Rezerwacje</span>
             </a>
         </li>
-
+        @if(Auth::user()->isAdmin()||Auth::user()->isEmployee())
         <li>
             <a href="{{ route('wypozyczenia.index') }}">
                 <i class='bx bx-calendar'></i>
@@ -90,7 +90,7 @@
             </a>
         </li>
         <li>
-
+        @endif
         <li>
             <div class="profile-details">
                 <div class="profile-content">
@@ -131,25 +131,28 @@
                         @php
                             $currentRoute = \Illuminate\Support\Facades\Route::currentRouteName();
                         @endphp
-
                         @if($currentRoute === 'placowki.index')
                             <div class="flex h-full text-gray-600">
                                 <a href="#" class="cursor-pointer h-full border-b-2 border-blue-500 text-blue-500 inline-flex mr-8 items-center">
                                     Placowki
                                 </a>
                             </div>
+                            @if(Auth::user()->isAdmin()||Auth::user()->isEmployee())
                             <div class="ml-auto flex items-center space-x-7">
                                 <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500 text-white hover:bg-blue-700 transition-all duration-300" data-modal-target="defaultModal" data-modal-toggle="defaultModal">Dodaj placówkę</button>
                             </div>
+                            @endif
                         @elseif($currentRoute === 'hulajnogi.index')
                             <div class="flex h-full text-gray-600">
                                 <a href="#" class="cursor-pointer h-full border-b-2 border-blue-500 text-blue-500 inline-flex mr-8 items-center">
                                     Hulajnogi
                                 </a>
                             </div>
+                            @if(Auth::user()->isAdmin()||Auth::user()->isEmployee())
                             <div class="ml-auto flex items-center space-x-7">
                                 <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-modal-target="hulajnogiModal" data-modal-toggle="hulajnogiModal">Dodaj hulajnoge</button>
                             </div>
+                            @endif
                         @elseif($currentRoute === 'users.index')
                             <div class="flex h-full text-gray-600">
                                 <a href="#" class="cursor-pointer h-full border-b-2 border-blue-500 text-blue-500 inline-flex mr-8 items-center">
@@ -223,7 +226,6 @@
                                 <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-modal-target="addRezerwacja" data-modal-toggle="addRezerwacja">Dodaj rezerwację</button>
                             </div>
                         @endif
-
                     </div>
                     <div class="flex-grow overflow-hidden h-full flex flex-col">
                         <div class="py-2 px-3 overflow-y-hidden">

@@ -22,7 +22,12 @@ use App\Http\Controllers\RezerwacjeController;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    if(\Illuminate\Support\Facades\Auth::check())
+    {
+        return redirect('/placowki');
+    }
+    else
+        return view('auth.login');
 });
 
 Auth::routes();
@@ -36,7 +41,6 @@ Route::get('/email/verify', function () {
 
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
-
     return redirect('/home');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
@@ -45,22 +49,27 @@ Route::post('/rezerwacje', [RezerwacjeController::class, 'store'])->name('rezerw
 Route::put('/rezerwacje/{rezerwacja}', [RezerwacjeController::class, 'update'])->name('rezerwacje.update');
 Route::delete('/rezerwacje/{rezerwacja}', [RezerwacjeController::class, 'destroy'])->name('rezerwacje.destroy');
 
+Route::get('/placowki', [PlacowkiController::class, 'index'])->name('placowki.index');
+
+Route::get('/hulajnogi', [\App\Http\Controllers\HulajnogiController::class, 'index'])->name('hulajnogi.index');
+
 Route::group(['middleware' => ['auth', 'admin']], function () {
-    Route::get('/placowki', [PlacowkiController::class, 'index'])->name('placowki.index');
+
     Route::post('/placowki', [PlacowkiController::class, 'store'])->name('placowki.store');
     Route::put('/placowki/{placowka}', [PlacowkiController::class, 'update'])->name('placowki.update');
     Route::delete('/placowki/{placowka}', [PlacowkiController::class, 'destroy'])->name('placowki.destroy');
+
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
     Route::post('/users', [UserController::class, 'store'])->name('users.store');
     Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::put('/users/{id}', [UserController::class,'update'])->name('users.update');
+
     Route::put('/employees/{employee}',[PracownicyController::class,'update'])->name('employees.update');
     Route::put('/employees/{employee}',[PracownicyController::class,'update'])->name('employees.update');
 
     Route::put('/admins/{admin}', [UserController::class,'update'])->name('admins.update');
     Route::put('/clients/{id}', [UserController::class,'update'])->name('clients.update');
-
 
     Route::get('/kierownicy', [KierownicyController::class, 'index'])->name('kierownicy.index');
     Route::get('/kierownicy/create', [KierownicyController::class, 'create'])->name('kierownicy.create');
@@ -82,18 +91,9 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::put('/pracownicy/{id}/changerole', [PracownicyController::class, 'changeRole'])->name('pracownicy.changerole');
     Route::put('/pracownicy/{id}', [PracownicyController::class,'update'])->name('pracownicy.update');
 
-    Route::get('/hulajnogi', [\App\Http\Controllers\HulajnogiController::class, 'index'])->name('hulajnogi.index');
 	Route::post('/hulajnogi',[\App\Http\Controllers\HulajnogiController::class, 'store'])->name('hulajnogi.store');
 	Route::delete('/hulajnogi/{id}', [\App\Http\Controllers\HulajnogiController::class, 'destroy'])->name('hulajnogi.destroy');
 	Route::put('/hulajnogi/{hulajnoga}', [\App\Http\Controllers\HulajnogiController::class, 'update'])->name('hulajnogi.update');
-
-    /*
-	Route::get('/klienci', [\App\Http\Controllers\KlienciController::class, 'index'])->name('klienci.index');
-	Route::post('/klienci',[\App\Http\Controllers\KlienciController::class, 'store'])->name('klienci.store');
-	Route::delete('/klienci/{id}', [\App\Http\Controllers\KlienciController::class, 'destroy'])->name('klienci.destroy');
-	Route::put('/klienci/{klient}', [\App\Http\Controllers\KlienciController::class, 'update'])->name('klienci.update');
-    */
-
 
     Route::get('/rewizje', [\App\Http\Controllers\RewizjeController::class, 'index'])->name('rewizje.index');
     Route::post('/rewizje', [\App\Http\Controllers\RewizjeController::class, 'store'])->name('rewizje.store');
