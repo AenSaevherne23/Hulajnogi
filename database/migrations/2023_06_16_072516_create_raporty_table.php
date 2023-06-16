@@ -20,13 +20,13 @@ return new class extends Migration
             $table->decimal('zysk');
             $table->unsignedBigInteger('placowka_id')->nullable();
             $table->unsignedBigInteger('odbiory_id')->nullable();
-            $table->unsignedBigInteger('rewizje_id')->nullable();
+            $table->unsignedInteger('rewizje_id')->nullable();
             $table->unsignedBigInteger('wypozyczenia_id')->nullable();
 
-            $table->foreign('placowka_id')->references('id')->on('placowki')->onDelete('set null');
-            $table->foreign('odbiory_id')->references('id')->on('odbiory')->onDelete('set null');
-            $table->foreign('rewizje_id')->references('id')->on('rewizje')->onDelete('set null');
-            $table->foreign('wypozyczenia_id')->references('id')->on('wypozyczenia')->onDelete('set null');
+            $table->foreign('placowka_id')->references('id')->on('placowki')->onDelete('cascade');
+            $table->foreign('odbiory_id')->references('id')->on('odbiory')->onDelete('cascade');
+            $table->foreign('rewizje_id')->references('id')->on('rewizje')->onDelete('cascade');
+            $table->foreign('wypozyczenia_id')->references('id')->on('wypozyczenia')->onDelete('cascade');
 
             $table->timestamps();
         });
