@@ -30,5 +30,7 @@ class Wypozyczenia extends Model
     {
         return $this->belongsToMany(Hulajnogi::class, 'wypozyczenia_hulajnogi', 'wypozyczenie_id', 'hulajnoga_id');
     }
+    
+
 }
 

@@ -78,6 +78,13 @@
         </li>
 
         <li>
+            <a href="{{ route('raporty.index') }}">
+                <i class="bx bx-file"></i>
+                <span class="link_name">Raporty</span>
+            </a>
+        </li>
+
+        <li>
             <a href="{{ route('rewizje.index') }}">
                 <i class="bx bx-file"></i>
                 <span class="link_name">Rewizje</span>
@@ -168,6 +175,17 @@
                             <div class="ml-auto flex items-center space-x-7">
                                 <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-modal-target="addClient" data-modal-toggle="addClient">Dodaj klienta</button>
                             </div>
+
+                        @elseif($currentRoute === 'raporty.index')
+                            <div class="flex h-full text-gray-600">
+                                <a href="#" class="cursor-pointer h-full border-b-2 border-blue-500 text-blue-500 inline-flex mr-8 items-center">
+                                    Raporty
+                                </a>
+                            </div>
+                            <div class="ml-auto flex items-center space-x-7">
+                                <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-modal-target="addRaport" data-modal-toggle="addRaport">Dodaj raport</button>
+                            </div>
+
                         @elseif($currentRoute === 'pracownicy.index')
                             <div class="flex h-full text-gray-600">
                                 <a href="#" class="cursor-pointer h-full border-b-2 border-blue-500 text-blue-500 inline-flex mr-8 items-center">

@@ -8,6 +8,7 @@ use App\Http\Controllers\KierownicyController;
 use App\Http\Controllers\KlienciController;
 use App\Http\Controllers\PracownicyController;
 use App\Http\Controllers\RezerwacjeController;
+use App\Http\Controllers\RaportyController;
 
 
 /*
@@ -29,6 +30,14 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+    Route::get('/raporty', [RaportyController::class, 'index'])->name('raporty.index');
+    Route::get('/raporty/create', [RaportyController::class, 'create'])->name('raporty.create');
+    Route::post('/raporty', [RaportyController::class, 'store'])->name('raporty.store');
+    Route::get('/raporty/{raporty}', [RaportyController::class, 'show'])->name('raporty.show');
+    Route::get('/raporty/{raporty}/edit', [RaportyController::class, 'edit'])->name('raporty.edit');
+    Route::put('/raporty/{raporty}', [RaportyController::class, 'update'])->name('raporty.update');
+    Route::delete('/raporty/{raporty}', [RaportyController::class, 'destroy'])->name('raporty.destroy');
+
 
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
@@ -46,6 +55,7 @@ Route::put('/rezerwacje/{rezerwacja}', [RezerwacjeController::class, 'update'])-
 Route::delete('/rezerwacje/{rezerwacja}', [RezerwacjeController::class, 'destroy'])->name('rezerwacje.destroy');
 
 Route::group(['middleware' => ['auth', 'admin']], function () {
+
     Route::get('/placowki', [PlacowkiController::class, 'index'])->name('placowki.index');
     Route::post('/placowki', [PlacowkiController::class, 'store'])->name('placowki.store');
     Route::put('/placowki/{placowka}', [PlacowkiController::class, 'update'])->name('placowki.update');
@@ -60,7 +70,6 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 
     Route::put('/admins/{admin}', [UserController::class,'update'])->name('admins.update');
     Route::put('/clients/{id}', [UserController::class,'update'])->name('clients.update');
-
 
     Route::get('/kierownicy', [KierownicyController::class, 'index'])->name('kierownicy.index');
     Route::get('/kierownicy/create', [KierownicyController::class, 'create'])->name('kierownicy.create');
@@ -87,13 +96,11 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 	Route::delete('/hulajnogi/{id}', [\App\Http\Controllers\HulajnogiController::class, 'destroy'])->name('hulajnogi.destroy');
 	Route::put('/hulajnogi/{hulajnoga}', [\App\Http\Controllers\HulajnogiController::class, 'update'])->name('hulajnogi.update');
 
-    /*
-	Route::get('/klienci', [\App\Http\Controllers\KlienciController::class, 'index'])->name('klienci.index');
-	Route::post('/klienci',[\App\Http\Controllers\KlienciController::class, 'store'])->name('klienci.store');
-	Route::delete('/klienci/{id}', [\App\Http\Controllers\KlienciController::class, 'destroy'])->name('klienci.destroy');
-	Route::put('/klienci/{klient}', [\App\Http\Controllers\KlienciController::class, 'update'])->name('klienci.update');
-    */
-
+    Route::get('/raporty', [RaportyController::class, 'index'])->name('raporty.index');
+    Route::post('/raporty', [RaportyController::class, 'store'])->name('raporty.store');
+    Route::get('/raporty/{id}/edit', [RaportyController::class, 'edit'])->name('raporty.edit');
+    Route::put('/raporty/{id}', [RaportyController::class, 'update'])->name('raporty.update');
+    Route::delete('/raporty/{id}', [RaportyController::class, 'destroy'])->name('raporty.destroy');
 
     Route::get('/rewizje', [\App\Http\Controllers\RewizjeController::class, 'index'])->name('rewizje.index');
     Route::post('/rewizje', [\App\Http\Controllers\RewizjeController::class, 'store'])->name('rewizje.store');

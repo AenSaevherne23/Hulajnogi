@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('raporty', function (Blueprint $table) {
             $table->id();
-            $table->date('data');
             $table->integer('liczba_wypozyczen');
             $table->integer('liczba_odbiorow');
             $table->integer('liczba_uszkodzonych');

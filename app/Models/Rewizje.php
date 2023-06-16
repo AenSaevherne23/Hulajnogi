@@ -19,4 +19,9 @@ class Rewizje extends Model
     {
         return $this->belongsTo(Hulajnogi::class, 'hulajnoga_id');
     }
+
+    public function placowka()
+    {
+        return $this->belongsTo(Placowki::class, 'placowka_id');
+    }
 }

@@ -17,7 +17,7 @@ class Raporty extends Model
 
     public function placowka()
     {
-        return $this->belongsTo(Placowki::Class, 'placowka_id');
+        return $this->belongsTo(Placowki::class, 'placowka_id');
     }
 
     public function odbior()
