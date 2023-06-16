@@ -52,7 +52,7 @@
                               </div>
                               <div class="drop-down__menu-box">
                                   <ul class="drop-down__menu">
-                                      <li data-name="profile" class="drop-down__item" data-modal-target="editRecordModal{{$odbior->id}}" data-modal-toggle="editRecordModal{{$odbior->id}}">Edytuj</li>
+
                                       <form id="deleteForm" action="{{ route('odbiory.destroy', $odbior->id) }}" method="POST">
                                           @csrf
                                           @method('DELETE')
