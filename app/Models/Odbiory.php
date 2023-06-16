@@ -11,19 +11,18 @@ class Odbiory extends Model
     protected $table = 'odbiory';
     protected  $primaryKey = 'id';
 
-    protected $fillable = ['hulajnoga_id', 'pracownik_id','wypozyczenie_id','koszt_wypozyczenia'];
+    protected $fillable = ['klient_id','pracownik_id','wypozyczenie_id','koszt_wypozyczenia'];
 
 
-
+    public function klient()
+    {
+        return $this->belongsTo(User::class, 'klient_id');
+    }
     public function pracownik()
     {
         return $this->belongsTo(User::class, 'pracownik_id');
     }
 
-    public function hulajnoga()
-    {
-        return $this->belongsTo(Hulajnogi::class, 'hulajnoga_id');
-    }
     public function wypozyczenie()
     {
         return $this->belongsTo(Wypozyczenia::class,'wypozyczenia_id');

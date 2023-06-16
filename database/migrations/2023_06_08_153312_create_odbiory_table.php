@@ -12,13 +12,13 @@ class CreateOdbioryTable extends Migration
     {
         Schema::create('odbiory', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('hulajnoga_id');
+            $table->unsignedBigInteger('klient_id');
             $table->unsignedBigInteger('pracownik_id');
-            $table->unsignedBigInteger('wypozyczenie_id');
+            $table->unsignedBigInteger('wypozyczenie_id')->unique();
             $table->decimal('koszt_wypozyczenia');
             $table->timestamps();
 
-            $table->foreign('hulajnoga_id')->references('id')->on('hulajnogi')->onDelete('cascade');
+            $table->foreign('klient_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('pracownik_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('wypozyczenie_id')->references('id')->on('wypozyczenia')->onDelete('cascade');
         });

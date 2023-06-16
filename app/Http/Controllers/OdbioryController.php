@@ -23,7 +23,7 @@ class OdbioryController extends Controller
 
         return view('odbiory', compact('odbiory','users','hulajnogi','zajete','wypozyczenia'));
     }
-public function calculateRentalCost($dataRozpoczecia, $dataZakonczenia)
+public function calculateRentalCost($dataRozpoczecia, $dataZakonczenia, $hulajnogi)
 {
     $dataStart = Carbon::parse($dataRozpoczecia);
     $dataEnd = Carbon::parse($dataZakonczenia);
@@ -33,47 +33,73 @@ public function calculateRentalCost($dataRozpoczecia, $dataZakonczenia)
 
     // Oblicz koszt na podstawie czasu trwania
     $stawkaGodzinowa = 10; // Przykładowa stawka godzinowa
-    $kosztWypozyczenia = $stawkaGodzinowa * $czasTrwania;
-
+    $kosztWypozyczenia = $stawkaGodzinowa * $czasTrwania * count($hulajnogi);
     return $kosztWypozyczenia;
 }
     public function store(Request $request)
     {
-        $hulajnogaId = $request->input('hulajnoga_id');
-
-        // Znajdź wybraną hulajnogę
-        $hulajnoga = Hulajnogi::find($hulajnogaId);
-
-        // Zaktualizuj status na "zajęta"
-        $hulajnoga->zajeta = 0;
-        $hulajnoga->save();
-        $odbior = new Odbiory;
-        $odbior->hulajnoga_id = $hulajnogaId;
-        $odbior->pracownik_id = Auth::id();
+        $request->validate([
+            'wypozyczenie_id' => 'unique:odbiory'
+        ]);
 
         $wypozyczenieId = $request->input('wypozyczenie_id');
         $wypozyczenie = Wypozyczenia::find($wypozyczenieId);
+
+        if (!$wypozyczenie) {
+
+            return redirect('/odbiory')->with('error', 'Nie można odnaleźć wypożyczenia.');
+        }
+
+
+        if ($wypozyczenie->odebrane) {
+
+            return redirect('/odbiory')->with('error', 'To wypożyczenie zostało już odebrane.');
+        }
+
+        $odbior = new Odbiory();
+        $odbior->pracownik_id = Auth::id();
         $odbior->wypozyczenie_id = $wypozyczenieId;
+        $odbior->klient_id = $wypozyczenie->klient_id;
+
         $dataRozpoczecia = $wypozyczenie->data_wypozyczenia;
         $dataZakonczenia = $wypozyczenie->data_zakonczenia;
-
-        $kosztWypozyczenia = $this->calculateRentalCost($dataRozpoczecia, $dataZakonczenia);
+        $kosztWypozyczenia = $this->calculateRentalCost($dataRozpoczecia, $dataZakonczenia, $wypozyczenie->hulajnogi);
         $odbior->koszt_wypozyczenia = $kosztWypozyczenia;
+
         $odbior->save();
 
 
+        $wypozyczenie->odebrane = true;
+        $wypozyczenie->save();
+
+        $hulajnogi = $wypozyczenie->hulajnogi;
+        foreach ($hulajnogi as $hulajnoga) {
+            $hulajnoga->zajeta = 0;
+            $hulajnoga->save();
+        }
+
         return redirect('/odbiory');
     }
+
     public function destroy($id)
     {
         $odbior = Odbiory::findOrFail($id);
 
-        $odbior->delete();
+        $wypozyczenie = Wypozyczenia::where('id', $odbior->wypozyczenie_id)->first();
+        $hulajnogi = $wypozyczenie->hulajnogi;
 
-        Hulajnogi::where('id', $odbior->hulajnoga_id)->update(['zajeta' => 1]);
+        Wypozyczenia::where('id',$odbior->wypozyczenie_id)->update(['odebrane' => false]);
+
+        foreach ($hulajnogi as $hulajnoga) {
+            $hulajnoga->zajeta = 1;
+            $hulajnoga->save();
+        }
+
+        $odbior->delete();
 
         return redirect('/odbiory');
     }
+
     public function update(Request $request, $id)
     {
         $odbior = Odbiory::findOrFail($id);
