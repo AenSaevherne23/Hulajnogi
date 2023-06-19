@@ -111,4 +111,5 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 
     Route::get('/podsumowania', [\App\Http\Controllers\PodsumowaniaController::class, 'index'])->name('podsumowania.index');
     Route::post('/podsumowania', [\App\Http\Controllers\PodsumowaniaController::class, 'store'])->name('podsumowania.store');
+    Route::delete('/podsumowania/{podsumowanie}', [\App\Http\Controllers\PodsumowaniaController::class, 'destroy'])->name('podsumowania.destroy');
 });
