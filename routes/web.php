@@ -109,4 +109,6 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::post('/odbiory', [\App\Http\Controllers\OdbioryController::class, 'store'])->name('odbiory.store');
     Route::delete('/odbiory/{odbior}', [\App\Http\Controllers\OdbioryController::class, 'destroy'])->name('odbiory.destroy');
 
+    Route::get('/podsumowania', [\App\Http\Controllers\PodsumowaniaController::class, 'index'])->name('podsumowania.index');
+    Route::post('/podsumowania', [\App\Http\Controllers\PodsumowaniaController::class, 'store'])->name('podsumowania.store');
 });
