@@ -38,19 +38,9 @@
 
                         {{ $client->Telefon }}
                     </div>
-                </td>
-                <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800">
-
-                </td>
-                <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800">
-                    <div class="flex items-center">
-
-                        {{ $client->salary }}
-                    </div>
-                </td>
                 <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800">
                     <div class="flex items-center justify-between">
-                        <div class="sm:flex hidden flex-col">
+                        <div class="flex items-center">
                             {{$client->updated_at->format('Y-m-d')}}
                         </div>
 

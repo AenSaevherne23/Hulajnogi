@@ -72,11 +72,12 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/pracownicy/create', [PracownicyController::class, 'create'])->name('pracownicy.create');
     Route::post('/pracownicy', [PracownicyController::class, 'store'])->name('pracownicy.store');
     Route::get('/pracownicy/{pracownicy}/edit', [PracownicyController::class, 'edit'])->name('pracownicy.edit');
-    Route::delete('/pracownicy/{pracownicy}', [PracownicyController::class, 'destroy'])->name('pracownicy.destroy');
+    //Route::delete('/pracownicy/{pracownicy}', [PracownicyController::class, 'destroy'])->name('pracownicy.destroy');
     Route::put('/pracownicy/{id}/changerole', [PracownicyController::class, 'changeRole'])->name('pracownicy.changerole');
     Route::put('/pracownicy/{id}', [PracownicyController::class,'update'])->name('pracownicy.update');
 
-    Route::post('/pracownicy', [UserController::class, 'dodajpracownika'])->name('users.dodajpracownika');
+    Route::post('/pracownicy', [UserController::class, 'store'])->name('users.store');
+    Route::delete('/pracownicy/{id}', [UserController::class, 'destroy'])->name('users.destroy');
 
 
 

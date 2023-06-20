@@ -162,7 +162,7 @@
                                 </a>
                             </div>
                             <div class="ml-auto flex items-center space-x-7">
-                                <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-modal-target="addEmployee" data-modal-toggle="addEmployee">Dodaj pracownika</button>
+                                <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-modal-target="registrationModal" data-modal-toggle="registrationModal">Dodaj pracownika</button>
                             </div>
                         @elseif($currentRoute === 'kierownicy.index')
                             <div class="flex h-full text-gray-600 dark:text-gray-400">

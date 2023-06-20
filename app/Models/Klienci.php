@@ -22,7 +22,7 @@ class Klienci extends Model
         // Zdarzenie "created" wywoływane po utworzeniu nowego klienta
         static::created(function ($client) {
             $user = new User();
-            $user->name = $client->Imie;
+            $user->name = $client->Imie . " " . $client->Nazwisko;
             // Ustaw inne pola użytkownika według potrzeb
             $user->role = 'client';
             unset($user->email);

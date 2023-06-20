@@ -12,7 +12,7 @@ return new class extends Migration
 
             $table->id();
             $table->string('name');
-            $table->string('email')->unique()->default('')->nullable();
+            $table->string('email')->nullable()->unique();
             //$table->timestamp('email_verified_at')->default('')->nullable();
             $table->string('password')->default('')->nullable();
             $table->decimal('salary', 10, 2)->nullable(); // Dodaj pole dla pensji
