@@ -97,7 +97,7 @@
                     <!-- Modal header -->
                     <div class="flex items-start justify-between p-4 border-b rounded-t">
                         <h3 class="text-xl font-semibold text-gray-900">
-                            Edytuj rewizje
+                            Edytuj rewizję
                         </h3>
                         <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" data-modal-hide="editRecordModal{{$rewizja->id}}" data-bs-dismiss="modal">
                             <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -107,7 +107,7 @@
                         </button>
                     </div>
                     <!-- Modal body -->
-                    <div class="space-y-1">
+                    <div class="space-y-6">
                         <form id="editForm" action="{{ route('rewizje.update', $rewizja->id) }}" method="POST">
                             @csrf
                             @method('PUT')
@@ -120,23 +120,25 @@
                                 <input type="checkbox" id="edit_adres{{$rewizja->id}}" value="{{$rewizja->Czy_uszkodzona ? 'checked' : ''}}" name="czy_uszkodzona" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5">
                             </div>
 
-                            <div class="p-6">
+                            <div class="pb-6 ps-6 pe-6">
                                 <label for="edit_nazwa{{$rewizja->id}}" class="block mb-2 text-sm font-medium text-gray-900">Opis</label>
                                 <textarea type="text" id="edit_nazwa{{$rewizja->id}}" value="{{$rewizja->Opis}}" name="opis" class="form-controlform-control  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" rows="3" required></textarea>
                             </div>
-                            <div class="p-6">
+
+                            <div class="pb-6 ps-6 pe-6">
                                 <label for="edit_nazwa{{$rewizja->id}}" class="block mb-2 text-sm font-medium text-gray-900">Koszt uszkodzeń</label>
                                 <input type="number" id="edit_nazwa{{$rewizja->id}}" value="{{$rewizja->Koszt_uszkodzen}}" name="koszt_uszkodzen" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
                             </div>
-                            <div class="p-6">
-                            <label for="edit_nazwa{{$rewizja->id}}" class="block mb-2 text-sm font-medium text-gray-900">Przypisz do hulajnogi</label>
-                            <select name="hulajnoga_id" id="edit_rewizja{{$rewizja->id}}" class="form-control   bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
-                                @foreach($hulajnogi ?? [] as $hulajnoga)
-                                    <option value="{{ $hulajnoga->id }}" {{ $rewizja->hulajnoga_id == $hulajnoga->id ? 'selected' : '' }}>
-                                        {{ $hulajnoga->Nazwa }}
-                                    </option>
-                                @endforeach
-                            </select>
+
+                            <div class="pb-6 ps-6 pe-6">
+                                <label for="edit_nazwa{{$rewizja->id}}" class="block mb-2 text-sm font-medium text-gray-900">Przypisz do hulajnogi</label>
+                                <select name="hulajnoga_id" id="edit_rewizja{{$rewizja->id}}" class="form-control   bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                                    @foreach($hulajnogi ?? [] as $hulajnoga)
+                                        <option value="{{ $hulajnoga->id }}" {{ $rewizja->hulajnoga_id == $hulajnoga->id ? 'selected' : '' }}>
+                                            {{ $hulajnoga->Nazwa }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="p-6 flex items-center justify-center pt-6 border-t border-gray-200 rounded-b">
                                 <button type="submit" class="text-white w-full bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Edytuj</button>
@@ -194,20 +196,20 @@
                         <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Data</label>
                         <input type="date" class="form-control form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="data" name="data" required>
                     </div>
-                    <div class="p-6 flex items-center">
+                    <div class="pb-6 ps-6 pe-6 flex items-center">
                         <label for="czy_uszkodzona" class="mr-4 text-sm font-medium text-gray-900">Czy uszkodzona</label>
                         <input type="checkbox" class="form-check-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5" id="czy_uszkodzona" name="czy_uszkodzona">
                     </div>
 
-                    <div class="p-6">
+                    <div class="pb-6 ps-6 pe-6">
                         <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Opis</label>
                         <textarea class="form-control  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="opis" name="opis" rows="3" required></textarea>
                     </div>
-                    <div class="p-6">
+                    <div class="pb-6 ps-6 pe-6">
                         <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Koszt uszkodzeń</label>
                         <input type="number" class="form-control  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="koszt_uszkodzen" name="koszt_uszkodzen" required>
                     </div>
-                    <div class="p-6">
+                    <div class="pb-6 ps-6 pe-6">
                         <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Przypisz do hulajnogi</label>
                         <select name="hulajnoga_id" id="hulajnoga" class="form-control  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
                             @foreach($hulajnogi ?? [] as $hulajnoga)

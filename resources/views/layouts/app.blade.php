@@ -88,6 +88,7 @@
             </ul>
         </li>
         @endif
+
         <li>
             <a href="{{ route('hulajnogi.index') }}">
                 <i class="bx bx-map"></i>
@@ -123,6 +124,26 @@
         </li>
         <li>
         @endif
+
+        @if(Auth::user()->isAdmin()||Auth::user()->isEmployee())
+            <li>
+                <div class="iocn-link">
+                    <a href="#{{--{{ route('users.index') }}--}}">
+                        <i class="bx bx-group"></i>
+                        <span class="link_name">Raporty</span>
+                    </a>
+                    <i class='bx bxs-chevron-down arrow' ></i>
+                </div>
+                <ul class="sub-menu">
+                    <li><a class="link_name" href="#">Category</a></li>
+                    <li><a href="{{ route('raporty.index') }}">Z placówki</a></li>
+                    @if(Auth::user()->isAdmin())
+                    <li><a href="{{ route('podsumowania.index') }}">Z firmy</a></li>
+                    @endif
+                </ul>
+            </li>
+        @endif
+
         <li>
             <div class="profile-details">
                 <div class="profile-content">
@@ -236,7 +257,7 @@
                         @elseif($currentRoute === 'raporty.index')
                             <div class="flex h-full text-gray-600">
                                 <a href="#" class="cursor-pointer h-full border-b-2 border-blue-500 text-blue-500 inline-flex mr-8 items-center">
-                                    Raporty
+                                    Raport z placówki
                                 </a>
                             </div>
                             <div class="ml-auto flex items-center space-x-7">

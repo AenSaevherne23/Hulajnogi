@@ -114,7 +114,7 @@
                             <form id="editForm" action="{{ route('hulajnogi.update', $hulajnoga->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
-                                <div class="p-6">
+                                <div class="pb-6 ps-6 pe-6">
                                     <label for="edit_nazwa{{$hulajnoga->id}}" class="block mb-2 text-sm font-medium text-gray-900">Nazwa:</label>
                                     <input type="text" id="edit_nazwa{{$hulajnoga->id}}" value="{{$hulajnoga->Nazwa}}" name="nazwa" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
                                 </div>
@@ -124,7 +124,6 @@
                                 </div>
                                 <div class="pb-6 ps-6 pe-6">
                                     <label for="placowka" class="block mb-2 text-sm font-medium text-gray-900">Placówka:</label>
-
                                     <select name="placowka_id" id="edit_placowka{{$hulajnoga->id}}" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
                                         @foreach($placowki ?? [] as $placowka)
                                             <option value="{{ $placowka->id }}" {{ $hulajnoga->placowka_id == $placowka->id ? 'selected' : '' }}>
@@ -196,15 +195,14 @@
                             <input type="text"  name="model" id="model"class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
                         </div>
                         <div class="pb-6 ps-6 pe-6">
-
-                        <label for="placowka" class="block mb-2 text-sm font-medium text-gray-900">Przypisz do placówki</label>
-                        <select name="placowka_id" id="placowka" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
-                            @foreach($placowki ?? [] as $placowka)
-                                <option value="{{ $placowka->id }}">{{ $placowka->nazwa }}</option>
-                            @endforeach
-                        </select>
+                            <label for="placowka" class="block mb-2 text-sm font-medium text-gray-900">Przypisz do placówki</label>
+                            <select name="placowka_id" id="placowka" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                                @foreach($placowki ?? [] as $placowka)
+                                    <option value="{{ $placowka->id }}">{{ $placowka->nazwa }}</option>
+                                @endforeach
+                            </select>
                         </div>
-                        <div class="p-6 flex items-center justify-center pt-6 border-t border-gray-200 rounded-b">
+                        <div class="pb-6 ps-6 pe-6 flex items-center justify-center pt-6 border-t border-gray-200 rounded-b">
                             <button data-modal-hide="defaultModal" type="submit" class="text-white w-full bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Dodaj</button>
                         </div>
                     </form>

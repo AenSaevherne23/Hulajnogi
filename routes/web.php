@@ -35,15 +35,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-    Route::get('/raporty', [RaportyController::class, 'index'])->name('raporty.index');
-    Route::get('/raporty/create', [RaportyController::class, 'create'])->name('raporty.create');
-    Route::post('/raporty', [RaportyController::class, 'store'])->name('raporty.store');
-    Route::get('/raporty/{raporty}', [RaportyController::class, 'show'])->name('raporty.show');
-    Route::get('/raporty/{raporty}/edit', [RaportyController::class, 'edit'])->name('raporty.edit');
-    Route::put('/raporty/{raporty}', [RaportyController::class, 'update'])->name('raporty.update');
-    Route::delete('/raporty/{raporty}', [RaportyController::class, 'destroy'])->name('raporty.destroy');
-
-
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
 })->middleware(['auth'])->name('verification.notice');
@@ -52,6 +43,7 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
     $request->fulfill();
 
     return redirect('/home');
+
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
 Route::get('/rezerwacje', [RezerwacjeController::class, 'index'])->name('rezerwacje.index');
