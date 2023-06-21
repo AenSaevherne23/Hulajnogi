@@ -18,6 +18,15 @@
         </tr>
         </thead>
         <tbody class="text-gray-500">
+        @if ($hulajnogi->count() === 0)
+            @for ($i = 1; $i <= 10; $i++)
+                @php
+                    $nazwa = "Hulajnoga $i";
+                    $adres = "Model $i";
+                    \App\Models\Hulajnogi::create(['Nazwa' => $nazwa, 'Model' => $adres]);
+                @endphp
+            @endfor
+        @endif
         @foreach($hulajnogi ?? [] as $hulajnoga)
             <tr class="  hover:bg-zinc-600 hover:bg-opacity-10 transition-colors duration-300 ease-in-out">
                 <td class="sm:p-3 py-2 px-1 border-b border-gray-200">
