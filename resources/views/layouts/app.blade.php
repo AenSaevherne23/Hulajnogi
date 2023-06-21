@@ -32,94 +32,94 @@
         <span class="logo_name">Hulajnogi</span>
     </div>
     <div class="pt-12">
-    <ul class="nav-links">
-        <li>
-            <a href="{{ route('placowki.index') }}">
-                <i class="bx bx-home"></i>
-                <span class="link_name">Placowki</span>
-            </a>
-        </li>
-
-        <li>
-            <div class="iocn-link">
-                <a href="#{{--{{ route('users.index') }}--}}">
-                    <i class="bx bx-group"></i>
-                    <span class="link_name">Uzytkownicy</span>
+        <ul class="nav-links">
+            <li>
+                <a href="{{ route('placowki.index') }}">
+                    <i class="bx bx-home"></i>
+                    <span class="link_name">Placowki</span>
                 </a>
-                <i class='bx bxs-chevron-down arrow' ></i>
-            </div>
-            <ul class="sub-menu">
-                <li><a class="link_name" href="#">Category</a></li>
-                <li><a href="{{ route('pracownicy.index') }}">Pracownicy</a></li>
-                <li><a href="{{ route('klienci.index') }}">Klienci</a></li>
-                <li><a href="{{ route('kierownicy.index') }}">Kierownicy</a></li>
-            </ul>
-        </li>
+            </li>
 
-        <li>
-            <a href="{{ route('hulajnogi.index') }}">
-                <i class="bx bx-map"></i>
-                <span class="link_name">Hulajnogi</span>
-            </a>
-        </li>
-
-        <li>
-            <a href="{{ route('rezerwacje.index') }}">
-                <i class="bx bx-file"></i>
-                <span class="link_name">Rezerwacje</span>
-            </a>
-        </li>
-
-        <li>
-            <a href="{{ route('wypozyczenia.index') }}">
-                <i class='bx bx-calendar'></i>
-                <span class="link_name">Wypożyczenia</span>
-            </a>
-        </li>
-
-        <li>
-            <a href="{{ route('raporty.index') }}">
-                <i class="bx bx-file"></i>
-                <span class="link_name">Raporty</span>
-            </a>
-        </li>
-
-        <li>
-            <a href="{{ route('rewizje.index') }}">
-                <i class="bx bx-file"></i>
-                <span class="link_name">Rewizje</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('odbiory.index') }}">
-                <i class="bx bx-dollar"></i>
-                <span class="link_name">Odbiory</span>
-            </a>
-        </li>
-        <li>
-
-        <li>
-            <div class="profile-details">
-                <div class="profile-content">
-                    <img src="/images/totallyImportant.jpg" alt="profileImg">
+            <li>
+                <div class="iocn-link">
+                    <a href="#{{--{{ route('users.index') }}--}}">
+                        <i class="bx bx-group"></i>
+                        <span class="link_name">Uzytkownicy</span>
+                    </a>
+                    <i class='bx bxs-chevron-down arrow' ></i>
                 </div>
-                <div class="name-job">
-                    <div class="profile_name">{{ optional(Auth::user())->name }}</div>
-                    <div class="job"></div>
-                </div>
+                <ul class="sub-menu">
+                    <li><a class="link_name" href="#">Category</a></li>
+                    <li><a href="{{ route('pracownicy.index') }}">Pracownicy</a></li>
+                    <li><a href="{{ route('klienci.index') }}">Klienci</a></li>
+                    <li><a href="{{ route('kierownicy.index') }}">Kierownicy</a></li>
+                </ul>
+            </li>
 
-                <a href="{{ route('logout') }}"
-                   onclick="event.preventDefault();
+            <li>
+                <a href="{{ route('hulajnogi.index') }}">
+                    <i class='bx bxs-map-alt'></i>
+                    <span class="link_name">Hulajnogi</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ route('rezerwacje.index') }}">
+                    <i class="bx bx-file"></i>
+                    <span class="link_name">Rezerwacje</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ route('wypozyczenia.index') }}">
+                    <i class='bx bx-calendar'></i>
+                    <span class="link_name">Wypożyczenia</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ route('raporty.index') }}">
+                    <i class='bx bx-line-chart'></i>
+                    <span class="link_name">Raporty</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ route('rewizje.index') }}">
+                    <i class='bx bx-revision'></i>
+                    <span class="link_name">Rewizje</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('odbiory.index') }}">
+                    <i class='bx bxs-package'></i>
+                    <span class="link_name">Odbiory</span>
+                </a>
+            </li>
+            <li>
+
+            <li>
+                <div class="profile-details">
+                    <div class="profile-content">
+                        <img src="/images/totallyImportant.jpg" alt="profileImg">
+                    </div>
+                    <div class="name-job">
+                        <div class="profile_name">{{ optional(Auth::user())->name }}</div>
+                        <div class="job"></div>
+                    </div>
+
+                    <a href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                    <i class='bx bx-log-out' ></i>
-                </a>
+                        <i class='bx bx-log-out' ></i>
+                    </a>
 
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
-                    @csrf
-                </form>
-            </div>
-        </li>
-    </ul>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+                        @csrf
+                    </form>
+                </div>
+            </li>
+        </ul>
     </div>
 </div>
 <section class="home-section">
@@ -244,13 +244,10 @@
 
                     </div>
                     <div class="flex-grow overflow-hidden h-full flex flex-col">
-                        <div class="py-2 px-3 overflow-y-hidden">
-                    <div class="flex w-full items-center mb-7 ">
+                        <div class="sm:p-7 p-4 overflow-y-auto">
 
-                    </div>
                             <div class="pb-20">
-
-                    @yield("content")
+                                @yield("content")
                             </div>
                         </div>
                     </div>
