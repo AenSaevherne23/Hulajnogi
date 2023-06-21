@@ -8,6 +8,7 @@ use App\Http\Controllers\KierownicyController;
 use App\Http\Controllers\KlienciController;
 use App\Http\Controllers\PracownicyController;
 use App\Http\Controllers\RezerwacjeController;
+use App\Http\Controllers\RaportyController;
 
 
 /*
