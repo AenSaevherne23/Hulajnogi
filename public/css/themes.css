@@ -14,7 +14,7 @@
 }
 .theme-dark {
     --color-primary: #ab3ad1;
-    --color-secondary: #2a2a2a;
+    --color-secondary: #101010;
     --color-accent: #12cdea;
     --font-color: #ffffff;
 
@@ -141,4 +141,8 @@
 
 .themecontainer .bg-gray-50 {
     color: black;
+}
+.themecontainer .bg-gray-500 {
+    background-color: white;
+    color: black
 }
