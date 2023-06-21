@@ -15,4 +15,7 @@ class Placowki extends Model
 
     protected $fillable = ['nazwa', 'adres'];
     protected $dates = ['created_at', 'updated_at'];
+
+
+
 }

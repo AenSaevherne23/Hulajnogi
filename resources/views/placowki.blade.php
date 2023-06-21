@@ -20,7 +20,18 @@
             </tr>
             </thead>
             <tbody class="text-gray-500">
+            @if ($placowki->count() === 0)
+                @for ($i = 1; $i <= 2; $i++)
+                    @php
+                        $nazwa = "Placówka $i";
+                        $adres = "Adres $i";
+                        \App\Models\Placowki::create(['nazwa' => $nazwa, 'adres' => $adres]);
+                    @endphp
+                @endfor
+            @endif
+
             @foreach($placowki as $placowka)
+
 
                 <tr class="  hover:bg-zinc-600 hover:bg-opacity-10 transition-colors duration-300 ease-in-out">
                     <td class="sm:p-3 py-2 px-1 border-b border-gray-200">

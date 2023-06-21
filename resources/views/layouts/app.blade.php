@@ -79,13 +79,13 @@
 
         <li>
             <a href="{{ route('rewizje.index') }}">
-                <i class="bx bx-file"></i>
+                <i class="bx bx-revision"></i>
                 <span class="link_name">Rewizje</span>
             </a>
         </li>
         <li>
             <a href="{{ route('odbiory.index') }}">
-                <i class="bx bx-dollar"></i>
+                <i class="bx bxs-package"></i>
                 <span class="link_name">Odbiory</span>
             </a>
         </li>
@@ -101,18 +101,18 @@
                     <div class="job"></div>
                 </div>
 
-                <a href="{{ route('logout') }}"
-                   onclick="event.preventDefault();
+                    <a href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                    <i class='bx bx-log-out' ></i>
-                </a>
+                        <i class='bx bx-log-out' ></i>
+                    </a>
 
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
-                    @csrf
-                </form>
-            </div>
-        </li>
-    </ul>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+                        @csrf
+                    </form>
+                </div>
+            </li>
+        </ul>
     </div>
 </div>
 <section class="home-section">
@@ -171,6 +171,17 @@
                             <div class="ml-auto flex items-center space-x-7">
                                 <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-modal-target="addClient" data-modal-toggle="addClient">Dodaj klienta</button>
                             </div>
+
+                        @elseif($currentRoute === 'raporty.index')
+                            <div class="flex h-full text-gray-600">
+                                <a href="#" class="cursor-pointer h-full border-b-2 border-blue-500 text-blue-500 inline-flex mr-8 items-center">
+                                    Raporty
+                                </a>
+                            </div>
+                            <div class="ml-auto flex items-center space-x-7">
+                                <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-modal-target="addRaport" data-modal-toggle="addRaport">Dodaj raport</button>
+                            </div>
+
                         @elseif($currentRoute === 'pracownicy.index')
                             <div class="flex h-full text-gray-600">
                                 <a href="#" class="cursor-pointer h-full border-b-2 border-blue-500 text-blue-500 inline-flex mr-8 items-center">
@@ -237,13 +248,10 @@
                         @endif
                     </div>
                     <div class="flex-grow overflow-hidden h-full flex flex-col">
-                        <div class="py-2 px-3 overflow-y-hidden">
-                    <div class="flex w-full items-center mb-7 ">
+                        <div class="sm:p-7 p-4 overflow-y-auto">
 
-                    </div>
                             <div class="pb-20">
-
-                    @yield("content")
+                                @yield("content")
                             </div>
                         </div>
                     </div>

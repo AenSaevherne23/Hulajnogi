@@ -14,6 +14,7 @@ class Odbiory extends Model
     protected $fillable = ['klient_id','pracownik_id','wypozyczenie_id','koszt_wypozyczenia'];
 
 
+
     public function klient()
     {
         return $this->belongsTo(User::class, 'klient_id');

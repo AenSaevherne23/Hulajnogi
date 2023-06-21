@@ -34,6 +34,14 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+    Route::get('/raporty', [RaportyController::class, 'index'])->name('raporty.index');
+    Route::get('/raporty/create', [RaportyController::class, 'create'])->name('raporty.create');
+    Route::post('/raporty', [RaportyController::class, 'store'])->name('raporty.store');
+    Route::get('/raporty/{raporty}', [RaportyController::class, 'show'])->name('raporty.show');
+    Route::get('/raporty/{raporty}/edit', [RaportyController::class, 'edit'])->name('raporty.edit');
+    Route::put('/raporty/{raporty}', [RaportyController::class, 'update'])->name('raporty.update');
+    Route::delete('/raporty/{raporty}', [RaportyController::class, 'destroy'])->name('raporty.destroy');
+
 
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
@@ -41,6 +49,7 @@ Route::get('/email/verify', function () {
 
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
+
     return redirect('/home');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
@@ -94,6 +103,12 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 	Route::post('/hulajnogi',[\App\Http\Controllers\HulajnogiController::class, 'store'])->name('hulajnogi.store');
 	Route::delete('/hulajnogi/{id}', [\App\Http\Controllers\HulajnogiController::class, 'destroy'])->name('hulajnogi.destroy');
 	Route::put('/hulajnogi/{hulajnoga}', [\App\Http\Controllers\HulajnogiController::class, 'update'])->name('hulajnogi.update');
+
+    Route::get('/raporty', [RaportyController::class, 'index'])->name('raporty.index');
+    Route::post('/raporty', [RaportyController::class, 'store'])->name('raporty.store');
+    Route::get('/raporty/{id}/edit', [RaportyController::class, 'edit'])->name('raporty.edit');
+    Route::put('/raporty/{id}', [RaportyController::class, 'update'])->name('raporty.update');
+    Route::delete('/raporty/{id}', [RaportyController::class, 'destroy'])->name('raporty.destroy');
 
     Route::get('/rewizje', [\App\Http\Controllers\RewizjeController::class, 'index'])->name('rewizje.index');
     Route::post('/rewizje', [\App\Http\Controllers\RewizjeController::class, 'store'])->name('rewizje.store');
