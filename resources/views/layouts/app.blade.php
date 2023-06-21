@@ -51,7 +51,8 @@
             <ul class="sub-menu">
                 <li><a class="link_name" href="#">Category</a></li>
                 <li><a href="{{ route('pracownicy.index') }}">Pracownicy</a></li>
-                <li><a href="{{ route('klienci.index') }}">Klienci</a></li>
+                <li><a href="{{ route('klienci.index') }}">Klienci Stacjonarnie</a></li>
+                <li><a href="{{ route('kliencikonta.index') }}">Klienci</a></li>
                 <li><a href="{{ route('kierownicy.index') }}">Kierownicy</a></li>
             </ul>
         </li>
@@ -189,7 +190,7 @@
                                 </a>
                             </div>
                             <div class="ml-auto flex items-center space-x-7">
-                                <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-modal-target="addClient" data-modal-toggle="addClient">Dodaj pracownika</button>
+                                <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-modal-target="registrationModal" data-modal-toggle="registrationModal">Dodaj pracownika</button>
                             </div>
                         @elseif($currentRoute === 'kierownicy.index')
                             <div class="flex h-full text-gray-600">

@@ -32,22 +32,24 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        if (Gate::allows('create-employee', auth()->user())) {
+       // if (Gate::allows('create-employee', auth()->user())) {            // wylaczylem bramki bo nie ma zrobionych polityk podobno pepeW 
             // Użytkownik ma uprawnienia do tworzenia pracownika
-            $employee = new User;
-            $employee->name = $request->input('name');
-            $employee->email = $request->input('email');
-            $employee->password = bcrypt($request->input('password'));
-            $employee->salary = $request->input('salary');
-            $employee->role = 'employee';
-            $employee->id_placowki = $request->input('id_placowki');
-            $employee->save();
+            $pracownik = new User;
+            $pracownik->name = $request->input('name');
+            $pracownik->email = $request->input('email');
+            $pracownik->password = bcrypt($request->input('password'));
+            $pracownik->salary = $request->input('salary');
+            $pracownik->role = 'employee';
+            $pracownik->id_placowki = $request->input('id_placowki');
+            $pracownik->save();
 
-            return redirect('/users'); // Zmieniono ścieżkę przekierowania
-        } else {
+            return redirect('/pracownicy')->with('success', 'Pracownik został pomyślnie utworzony.');
+       // } else {
             // Użytkownik nie ma uprawnień, przekieruj lub zwróć odpowiedni komunikat
-        }
+           // return redirect('/')->with('error', 'Nie masz uprawnień do tworzenia pracownika.');
+       // }
     }
+    
 
     public function edit(User $employee)
     {
@@ -74,16 +76,10 @@ class UserController extends Controller
     
     
 
-    public function destroy(User $employee)
-    {
-        if (Gate::allows('delete-employee', auth()->user())) {
-            // Użytkownik ma uprawnienia do usunięcia pracownika
-            $employee->delete();
-            //...
-        } else {
-            // Użytkownik nie ma uprawnień, przekieruj lub zwróć odpowiedni komunikat
-        }
 
-        return redirect('/users'); // Zmieniono ścieżkę przekierowania
+    public function destroy(User $id)
+    {
+        $id->delete();
+        return redirect('/pracownicy');
     }
 }
