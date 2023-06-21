@@ -14,11 +14,42 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="{{ '/css/navbar.css' }}" rel="stylesheet"/>
     <link href="{{'/css/dropdown.css' }}" rel="stylesheet"/>
+    <link href="{{'/css/themes.css' }}" rel="stylesheet"/>
+    <link href="{{ asset('../public/css/themes.css') }}" rel="stylesheet"/>
     <link href="{{ asset('../public/css/navbar.css') }}" rel="stylesheet"/>
     <link href="{{ asset('../public/css/dropdown.css') }}" rel="stylesheet"/>
 
 
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+
+        // Immediately invoked function to set the theme on initial load
+        (function () {
+            if (localStorage.getItem('theme') === 'theme-dark') {
+                setTheme('theme-dark');
+            } else {
+                setTheme('theme-light');
+            }
+        })();
+
+        // function to set a given theme/color-scheme
+        function setTheme(themeName) {
+            localStorage.setItem('theme', themeName);
+            document.documentElement.className = themeName;
+        }
+
+        // function to toggle between light and dark theme
+        function toggleTheme() {
+            if (localStorage.getItem('theme') === 'theme-dark') {
+                setTheme('theme-light');
+            } else {
+                setTheme('theme-dark');
+            }
+        }
+
+    </script>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -117,6 +148,7 @@
     </div>
 </div>
 <section class="home-section">
+
     <div class="overlay-button">
     </div>
     <div class="bg-gray-100  text-gray-600 h-screen flex overflow-hidden text-sm">
@@ -125,8 +157,12 @@
 
             <div class="flex-grow flex overflow-x-hidden">
 
-                <div class="flex-grow border-gray-200 overflow-y-hidden">
-                    <div class="h-16 lg:flex w-full border-b border-gray-200 hidden px-10">
+                <div class="flex-grow border-gray-200 overflow-y-hidden ">
+                    <div class="themecontainer transition-all duration-200">
+
+                    <div class="h-16 lg:flex w-full border-b border-gray-200 hidden px-10 ">
+
+
 
 
                         @php
@@ -140,6 +176,12 @@
                             </div>
                             @if(Auth::user()->isAdmin()||Auth::user()->isEmployee())
                             <div class="ml-auto flex items-center space-x-7">
+                                <button id="switch" onclick="toggleTheme()">
+                                    <i id="theme-icon" class="theme-icon">
+                                        <i class='bx bxs-moon' ></i>
+                                        <i class='bx bxs-sun' ></i>
+                                    </i>
+                                </button>
                                 <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500 text-white hover:bg-blue-700 transition-all duration-300" data-modal-target="defaultModal" data-modal-toggle="defaultModal">Dodaj placówkę</button>
                             </div>
                             @endif
@@ -151,6 +193,12 @@
                             </div>
                             @if(Auth::user()->isAdmin()||Auth::user()->isEmployee())
                             <div class="ml-auto flex items-center space-x-7">
+                                <button id="switch" onclick="toggleTheme()">
+                                    <i id="theme-icon" class="bx ">
+                                        <i class='bx bxs-moon' ></i>
+                                        <i class='bx bxs-sun' ></i>
+                                    </i>
+                                </button>
                                 <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-modal-target="hulajnogiModal" data-modal-toggle="hulajnogiModal">Dodaj hulajnoge</button>
                             </div>
                             @endif
@@ -161,6 +209,12 @@
                                 </a>
                             </div>
                             <div class="ml-auto flex items-center space-x-7">
+                                <button id="switch" onclick="toggleTheme()">
+                                    <i id="theme-icon" class="bx ">
+                                        <i class='bx bxs-moon' ></i>
+                                        <i class='bx bxs-sun' ></i>
+                                    </i>
+                                </button>
                                 <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500"  data-modal-target="addEmployee" data-modal-toggle="addEmployee">Dodaj uzytkownika</button>
                             </div>
                         @elseif($currentRoute === 'klienci.index')
@@ -170,6 +224,12 @@
                                 </a>
                             </div>
                             <div class="ml-auto flex items-center space-x-7">
+                                <button id="switch" onclick="toggleTheme()">
+                                    <i id="theme-icon" class="bx ">
+                                        <i class='bx bxs-moon' ></i>
+                                        <i class='bx bxs-sun' ></i>
+                                    </i>
+                                </button>
                                 <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-modal-target="addClient" data-modal-toggle="addClient">Dodaj klienta</button>
                             </div>
 
@@ -180,6 +240,12 @@
                                 </a>
                             </div>
                             <div class="ml-auto flex items-center space-x-7">
+                                <button id="switch" onclick="toggleTheme()">
+                                    <i id="theme-icon" class="bx ">
+                                        <i class='bx bxs-moon' ></i>
+                                        <i class='bx bxs-sun' ></i>
+                                    </i>
+                                </button>
                                 <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-modal-target="addRaport" data-modal-toggle="addRaport">Dodaj raport</button>
                             </div>
 
@@ -190,6 +256,12 @@
                                 </a>
                             </div>
                             <div class="ml-auto flex items-center space-x-7">
+                                <button id="switch" onclick="toggleTheme()">
+                                    <i id="theme-icon" class="bx ">
+                                        <i class='bx bxs-moon' ></i>
+                                        <i class='bx bxs-sun' ></i>
+                                    </i>
+                                </button>
                                 <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-modal-target="registrationModal" data-modal-toggle="registrationModal">Dodaj pracownika</button>
                             </div>
                         @elseif($currentRoute === 'kierownicy.index')
@@ -199,6 +271,12 @@
                                 </a>
                             </div>
                             <div class="ml-auto flex items-center space-x-7">
+                                <button id="switch" onclick="toggleTheme()">
+                                    <i id="theme-icon" class="bx ">
+                                        <i class='bx bxs-moon' ></i>
+                                        <i class='bx bxs-sun' ></i>
+                                    </i>
+                                </button>
                                 <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-modal-target="addClient" data-modal-toggle="addClient">Dodaj kierownika</button>
                             </div>
                         @elseif($currentRoute === 'podsumowania.index')
@@ -208,6 +286,12 @@
                                 </a>
                             </div>
                             <div class="ml-auto flex items-center space-x-7">
+                                <button id="switch" onclick="toggleTheme()">
+                                    <i id="theme-icon" class="bx ">
+                                        <i class='bx bxs-moon' ></i>
+                                        <i class='bx bxs-sun' ></i>
+                                    </i>
+                                </button>
                                 <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-modal-target="addpodsumowanie" data-modal-toggle="addpodsumowanie">Dodaj raport</button>
                             </div>
                         @elseif($currentRoute === 'wypozyczenia.index')
@@ -217,6 +301,12 @@
                                 </a>
                             </div>
                             <div class="ml-auto flex items-center space-x-7">
+                                <button id="switch" onclick="toggleTheme()">
+                                    <i id="theme-icon" class="bx ">
+                                        <i class='bx bxs-moon' ></i>
+                                        <i class='bx bxs-sun' ></i>
+                                    </i>
+                                </button>
                                 <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-modal-target="addWypozyczenie" data-modal-toggle="addWypozyczenie">Dodaj wypożyczenie</button>
                             </div>
                         @elseif($currentRoute === 'rewizje.index')
@@ -226,6 +316,12 @@
                                 </a>
                             </div>
                             <div class="ml-auto flex items-center space-x-7">
+                                <button id="switch" onclick="toggleTheme()">
+                                    <i id="theme-icon" class="bx ">
+                                        <i class='bx bxs-moon' ></i>
+                                        <i class='bx bxs-sun' ></i>
+                                    </i>
+                                </button>
                                 <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-modal-target="addRewizje" data-modal-toggle="addRewizje">Dodaj rewizje</button>
                             </div>
                         @elseif($currentRoute === 'odbiory.index')
@@ -235,6 +331,12 @@
                                 </a>
                             </div>
                             <div class="ml-auto flex items-center space-x-7">
+                                <button id="switch" onclick="toggleTheme()">
+                                    <i id="theme-icon" class="bx ">
+                                        <i class='bx bxs-moon' ></i>
+                                        <i class='bx bxs-sun' ></i>
+                                    </i>
+                                </button>
                                 <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-modal-target="addOdbior" data-modal-toggle="addOdbior">Dodaj odbiór</button>
                             </div>
                         @elseif($currentRoute === 'rezerwacje.index')
@@ -243,18 +345,30 @@
                                     Rezerwacje
                                 </a>
                             </div>
+
                             <div class="ml-auto flex items-center space-x-7">
+                                <button id="switch" onclick="toggleTheme()">
+                                    <i id="theme-icon" class="bx ">
+                                        <i class='bx bxs-moon' ></i>
+                                        <i class='bx bxs-sun' ></i>
+                                    </i>
+                                </button>
                                 <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-modal-target="addRezerwacja" data-modal-toggle="addRezerwacja">Dodaj rezerwację</button>
                             </div>
                         @endif
+
                     </div>
-                    <div class="flex-grow overflow-hidden h-full flex flex-col">
-                        <div class="sm:p-7 p-4 overflow-y-auto">
+                    </div>
+                    <div class="themecontainer duration-200">
+
+                    <div class="flex-grow overflow-hidden h-full flex flex-col  duration-200">
+                        <div class="sm:p-7 p-4 overflow-y-auto h-screen  duration-200">
 
                             <div class="pb-20">
                                 @yield("content")
                             </div>
                         </div>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -263,7 +377,9 @@
 
 </section>
 
+
 <script>
+
     let arrow = document.querySelectorAll(".arrow");
     for (var i = 0; i < arrow.length; i++) {
         arrow[i].addEventListener("click", (e)=>{
@@ -279,7 +395,10 @@
         sidebar.classList.toggle("close");
         sidebarBtn.classList.toggle("translated");
     });
+
+
 </script>
+
 
 </body>
 </html>

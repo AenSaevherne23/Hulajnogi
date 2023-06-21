@@ -10,18 +10,18 @@
     <table class="w-full text-left transition-opacity ease-in-out duration-100">
         <thead>
         <tr class="text-black">
-            <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800">Data</th>
-            <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800">Liczba wypożyczeń</th>
-            <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800">Liczba odbiorów</th>
-            <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800">Liczba uszkodzonych</th>
-            <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800">Zysk</th>
-            <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800">Placówka</th>
+            <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 ">Data</th>
+            <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200">Liczba wypożyczeń</th>
+            <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 ">Liczba odbiorów</th>
+            <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 ">Liczba uszkodzonych</th>
+            <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 ">Zysk</th>
+            <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 ">Placówka</th>
 
-            <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800"></th>
+            <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200 "></th>
 
         </tr>
         </thead>
-        <tbody class="text-gray-500 dark:text-gray-100 ">
+        <tbody class="text-gray-500">
 
         @foreach($raporty  ?? [] as $raport)
             <tr class="  hover:bg-zinc-600 hover:bg-opacity-10 transition-colors duration-300 ease-in-out">

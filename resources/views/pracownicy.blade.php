@@ -107,22 +107,22 @@
 
                                 <div class="mb-4">
                                     <label for="name" class="block text-gray-800  font-semibold mb-1">Nazwa</label>
-                                    <input type="text" class="form-control w-full border-gray-300 rounded-lg focus:ring-blue-300" id="name" name="name" value="{{ $employee->name }}" required>
+                                    <input type="text" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="name" name="name" value="{{ $employee->name }}" required>
                                 </div>
 
                                 <div class="mb-4">
                                     <label for="email" class="block text-gray-800  font-semibold mb-1">Email</label>
-                                    <input type="email" class="form-control w-full border-gray-300 rounded-lg focus:ring-blue-300" id="email" name="email" value="{{ $employee->email }}" required>
+                                    <input type="email" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="email" name="email" value="{{ $employee->email }}" required>
                                 </div>
 
                                 <div class="mb-4">
                                     <label for="salary" class="block text-gray-800  font-semibold mb-1">Pensja</label>
-                                    <input type="number" class="form-control w-full border-gray-300 rounded-lg focus:ring-blue-300" id="salary" name="salary" value="{{ $employee->salary }}" required>
+                                    <input type="number" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="salary" name="salary" value="{{ $employee->salary }}" required>
                                 </div>
 
                                 <div class="mb-4">
                                     <label for="id_placowki" class="block text-gray-800  font-semibold mb-1">Przypisana placówka</label>
-                                    <select class="form-select w-full border-gray-300 rounded-lg focus:ring-blue-300" id="id_placowki" name="id_placowki" required>
+                                    <select class="form-select w-full bg-gray-500 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="id_placowki" name="id_placowki" required>
                                         <option value="">Wybierz placówkę</option>
                                         @foreach(\App\Models\Placowki::all() as $placowka)
                                             <option value="{{ $placowka->id }}" {{ $placowka->id == $employee->id_placowki ? 'selected' : '' }}>
@@ -167,7 +167,7 @@
 
                                 <div class="mb-4">
                                     <label for="role" class="block text-gray-800  font-semibold mb-1">Rola</label>
-                                    <select class="form-select w-full border-gray-300 rounded-lg focus:ring-blue-300" id="role" name="role" required>
+                                    <select class="form-select w-full w-full text-black bg-gray-500 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="role" name="role" required>
                                         <option value="">Wybierz rolę</option>
                                         <option value="admin" {{ $employee->role === 'admin' ? 'selected' : '' }}>Admin</option>
                                         <option value="employee" {{ $employee->role === 'employee' ? 'selected' : '' }}>Employee</option>

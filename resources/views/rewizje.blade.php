@@ -10,6 +10,8 @@
         <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200">Opis</th>
         <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200">Koszt uszkodzeń</th>
         <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200">Hulajnoga</th>
+        <th class="font-normal px-3 pt-0 pb-3 border-b border-gray-200"></th>
+
 
 
     </tr>
