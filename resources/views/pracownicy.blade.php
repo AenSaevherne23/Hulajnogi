@@ -122,7 +122,7 @@
 
                                 <div class="mb-4">
                                     <label for="id_placowki" class="block text-gray-800  font-semibold mb-1">Przypisana placówka</label>
-                                    <select class="form-select w-full  border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="id_placowki" name="id_placowki" required>
+                                    <select class="form-select w-full  border bg-gray-500  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="id_placowki" name="id_placowki" required>
                                         <option value="">Wybierz placówkę</option>
                                         @foreach(\App\Models\Placowki::all() as $placowka)
                                             <option value="{{ $placowka->id }}" {{ $placowka->id == $employee->id_placowki ? 'selected' : '' }}>
