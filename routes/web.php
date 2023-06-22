@@ -66,7 +66,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     // Route::post('/users', [UserController::class, 'store'])->name('users.store');
     // Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
     // Route::put('/users/{id}', [UserController::class,'update'])->name('users.update');
-    
+
     Route::post('/kliencikonta', [UserController::class, 'storeklient'])->name('users.storeklient');
 
     Route::put('/employees/{employee}',[PracownicyController::class,'update'])->name('employees.update');
@@ -90,7 +90,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/pracownicy', [PracownicyController::class, 'index'])->name('pracownicy.index');
     Route::get('/pracownicy/create', [PracownicyController::class, 'create'])->name('pracownicy.create');
     Route::post('/pracownicy', [PracownicyController::class, 'store'])->name('pracownicy.store');
-    
+
     Route::get('/pracownicy/{pracownicy}/edit', [PracownicyController::class, 'edit'])->name('pracownicy.edit');
     //Route::delete('/pracownicy/{pracownicy}', [PracownicyController::class, 'destroy'])->name('pracownicy.destroy');
     Route::put('/pracownicy/{id}/changerole', [PracownicyController::class, 'changeRole'])->name('pracownicy.changerole');
@@ -102,7 +102,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/pracownicy/create', [PracownicyController::class, 'create'])->name('pracownicy.create');
     Route::put('/pracownicy/{id}/changerole', [PracownicyController::class, 'changeRole'])->name('pracownicy.changerole');
 
-    Route::get('/hulajnogi', [\App\Http\Controllers\HulajnogiController::class, 'index'])->name('hulajnogi.index');
+    //Route::get('/hulajnogi', [\App\Http\Controllers\HulajnogiController::class, 'index'])->name('hulajnogi.index');
 	Route::post('/hulajnogi',[\App\Http\Controllers\HulajnogiController::class, 'store'])->name('hulajnogi.store');
 	Route::delete('/hulajnogi/{id}', [\App\Http\Controllers\HulajnogiController::class, 'destroy'])->name('hulajnogi.destroy');
 	Route::put('/hulajnogi/{hulajnoga}', [\App\Http\Controllers\HulajnogiController::class, 'update'])->name('hulajnogi.update');
