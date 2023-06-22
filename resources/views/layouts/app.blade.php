@@ -84,7 +84,7 @@
                 <li><a href="{{ route('pracownicy.index') }}">Pracownicy</a></li>
                 <li><a href="{{ route('klienci.index') }}">Klienci Stacjonarnie</a></li>
                 <li><a href="{{ route('kliencikonta.index') }}">Klienci</a></li>
-                <li><a href="{{ route('kierownicy.index') }}">Kierownicy</a></li>
+                {{-- <li><a href="{{ route('kierownicy.index') }}">Kierownicy</a></li> --}}
             </ul>
         </li>
         @endif
@@ -253,7 +253,21 @@
                                 </button>
                                 <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-modal-target="addClient" data-modal-toggle="addClient">Dodaj klienta</button>
                             </div>
-
+                            @elseif($currentRoute === 'kliencikonta.index')
+                            <div class="flex h-full text-gray-600">
+                                <a href="#" class="cursor-pointer h-full border-b-2 border-blue-500 text-blue-500 inline-flex mr-8 items-center">
+                                    Klienci Online
+                                </a>
+                            </div>
+                            <div class="ml-auto flex items-center space-x-7">
+                                <button id="switch" onclick="toggleTheme()">
+                                    <i id="theme-icon" class="bx ">
+                                        <i class='bx bxs-moon' ></i>
+                                        <i class='bx bxs-sun' ></i>
+                                    </i>
+                                </button>
+                                <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-modal-target="addClientOnline" data-modal-toggle="addClientOnline">Dodaj klienta</button>
+                            </div>
                         @elseif($currentRoute === 'raporty.index')
                             <div class="flex h-full text-gray-600">
                                 <a href="#" class="cursor-pointer h-full border-b-2 border-blue-500 text-blue-500 inline-flex mr-8 items-center">
@@ -285,7 +299,7 @@
                                 </button>
                                 <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-modal-target="registrationModal" data-modal-toggle="registrationModal">Dodaj pracownika</button>
                             </div>
-                        @elseif($currentRoute === 'kierownicy.index')
+                        {{-- @elseif($currentRoute === 'kierownicy.index')
                             <div class="flex h-full text-gray-600">
                                 <a href="#" class="cursor-pointer h-full border-b-2 border-blue-500 text-blue-500 inline-flex mr-8 items-center">
                                     Kierownicy
@@ -299,7 +313,7 @@
                                     </i>
                                 </button>
                                 <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500" data-modal-target="addClient" data-modal-toggle="addClient">Dodaj kierownika</button>
-                            </div>
+                            </div> --}}
                         @elseif($currentRoute === 'podsumowania.index')
                             <div class="flex h-full text-gray-600">
                                 <a href="#" class="cursor-pointer h-full border-b-2 border-blue-500 text-blue-500 inline-flex mr-8 items-center">

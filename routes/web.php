@@ -61,11 +61,13 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::put('/placowki/{placowka}', [PlacowkiController::class, 'update'])->name('placowki.update');
     Route::delete('/placowki/{placowka}', [PlacowkiController::class, 'destroy'])->name('placowki.destroy');
 
-    Route::get('/users', [UserController::class, 'index'])->name('users.index');
-    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
-    Route::post('/users', [UserController::class, 'store'])->name('users.store');
-    Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
-    Route::put('/users/{id}', [UserController::class,'update'])->name('users.update');
+    // Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    // Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+    // Route::post('/users', [UserController::class, 'store'])->name('users.store');
+    // Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+    // Route::put('/users/{id}', [UserController::class,'update'])->name('users.update');
+    
+    Route::post('/kliencikonta', [UserController::class, 'storeklient'])->name('users.storeklient');
 
     Route::put('/employees/{employee}',[PracownicyController::class,'update'])->name('employees.update');
     Route::put('/employees/{employee}',[PracownicyController::class,'update'])->name('employees.update');
@@ -88,6 +90,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/pracownicy', [PracownicyController::class, 'index'])->name('pracownicy.index');
     Route::get('/pracownicy/create', [PracownicyController::class, 'create'])->name('pracownicy.create');
     Route::post('/pracownicy', [PracownicyController::class, 'store'])->name('pracownicy.store');
+    
     Route::get('/pracownicy/{pracownicy}/edit', [PracownicyController::class, 'edit'])->name('pracownicy.edit');
     //Route::delete('/pracownicy/{pracownicy}', [PracownicyController::class, 'destroy'])->name('pracownicy.destroy');
     Route::put('/pracownicy/{id}/changerole', [PracownicyController::class, 'changeRole'])->name('pracownicy.changerole');

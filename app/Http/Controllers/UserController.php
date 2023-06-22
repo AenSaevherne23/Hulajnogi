@@ -49,6 +49,24 @@ class UserController extends Controller
            // return redirect('/')->with('error', 'Nie masz uprawnień do tworzenia pracownika.');
        // }
     }
+
+    public function storeklient(Request $request)
+    {
+       // if (Gate::allows('create-employee', auth()->user())) {            // wylaczylem bramki bo nie ma zrobionych polityk podobno pepeW 
+            // Użytkownik ma uprawnienia do tworzenia pracownika
+            $pracownik = new User;
+            $pracownik->name = $request->input('name');
+            $pracownik->opis = $request->input('email');
+            $pracownik->role = 'client';
+
+            $pracownik->save();
+
+            return redirect('/kliencikonta')->with('success', 'klient zostal dodany.');
+       // } else {
+            // Użytkownik nie ma uprawnień, przekieruj lub zwróć odpowiedni komunikat
+           // return redirect('/')->with('error', 'Nie masz uprawnień do tworzenia pracownika.');
+       // }
+    }
     
 
     public function edit(User $employee)
@@ -71,7 +89,7 @@ class UserController extends Controller
         $employee->role = $request->input('role'); // Dodajanie roli pracownika
         $employee->save();
     
-        return redirect('/users');
+        return redirect('/kliencikonta');
     }
     
     
